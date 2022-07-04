@@ -7,7 +7,7 @@ from rest_framework_nested import routers
 
 
 router = routers.DefaultRouter()
-router.register('api/', views.PwhViewSet, basename='home')
+router.register('api', views.PwhViewSet, basename='home')
 
 
 
