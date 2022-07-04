@@ -5,7 +5,7 @@ from rest_framework.viewsets import ModelViewSet
 from myapp.models import pwh
 
 from myapp.serializers import PwhSerializer
-
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -14,7 +14,7 @@ def home(request):
     return HttpResponse("Ok")
 class PwhViewSet(ModelViewSet):
     serializer_class = PwhSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
