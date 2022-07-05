@@ -44,8 +44,8 @@ if(isSuccess){
     <div className="manage-pwh-div">
       <form onSubmit={onSubmit}>
       <label htmlFor="">Select &nbsp;  
-    <select name="tag" id="" className='' onChange={onChange}>
-      <option value="" disabled>{tagShow[0].tag? tagShow[0].tag :"---Select--" }</option>
+    <select name="tag" id="" className='' onChange={onChange} defaultValue={tagShow[0].tag}>
+      <option value=""   disabled>{tagShow.tag? tagShow.tag :"---Select--" }</option>
       <option value="Transfered">Transfered</option>
       <option value="Deceased">Deceased</option>
       <option value="Blocked">Blocked</option>

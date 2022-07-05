@@ -372,7 +372,7 @@ if(isLoading){
           <p>Studying?</p>
           <div className="form-control flex">
           <label htmlFor="is_studying">Yes
-          <input type="radio" name="is_studying" value="true"
+          <input type="radio" name="is_studying" value="true" 
         onChange={onChange('pwh_occupation')}/></label>
           <label htmlFor="is_studying">No
           <input type="radio" name="is_studying" value="false"
