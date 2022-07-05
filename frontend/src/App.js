@@ -7,24 +7,24 @@ import Header from "./components/Header/Header";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import MyPwh from "./components/pwhData/MyPwh";
-// import AddNewPwh from "./components/pwhData/AddNewPwh";
-import ChangePassword from "./components/account/ChangePassword";
-// import MultiForm from "./components/pwhData/forms/MultiForm";
-import NotFound from "./components/NotFound";
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
+import Spinner from "./components/Spinner";
 
 
 const DownLoadData = lazy (() => import ('./components/pwhData/DownLoadData'))
 const SearchDiv = lazy (() => import ('./components/pwhData/search/SearchDiv'))
 const AddNewPwh = lazy (() => import ('./components/pwhData/AddNewPwh'))
+const NotFound = lazy (() => import ('./components/NotFound'))
+const ChangePassword = lazy (() => import ('./components/account/ChangePassword'))
 
 function App() {
  const {user} = useSelector((state) => state.auth)
   return (
     <>
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner />}>
       <div className="container">
         <Header />
         <Routes>
