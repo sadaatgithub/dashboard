@@ -1,0 +1,30 @@
+.search-container{
+  
+    background-color: rgba(255, 255, 255, 0.925);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ 
+}
+.search-div{
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+align-self: center;
+justify-content: center;
+flex-grow: 1;
+}
+.search-div > input::first-letter{
+    text-transform: capitalize;
+}
+.search-close{
+    align-self: start;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    /* transform: translateX(50%); */
+}
+.close-div{
+    display: flex;
+}
