@@ -97,7 +97,7 @@ const userUpdate  = async(data) =>{
 const updateTag = async(data) =>{
   const {id, tag} = data
   // console.log(tag);
-  const response = await axiosInstance.post(id+'/patient_tags/',{tag:tag},config)
+  const response = await axiosInstance.post(baseURL + id+'/patient_tags/',{tag:tag},config)
   return response.data
 }
 
@@ -116,7 +116,7 @@ const configImg = {
   const {id, image} = postImage
   let formData = new FormData();
   formData.append('image', image)
-  const response = await axiosInstance.post(id +"/patient_image/", formData, configImg)
+  const response = await axiosInstance.post(baseURL + id +"/patient_image/", formData, configImg)
   return response.data
 }
 
