@@ -7,16 +7,17 @@ import Header from "./components/Header/Header";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import MyPwh from "./components/pwhData/MyPwh";
-import AddNewPwh from "./components/pwhData/AddNewPwh";
+// import AddNewPwh from "./components/pwhData/AddNewPwh";
 import ChangePassword from "./components/account/ChangePassword";
 // import MultiForm from "./components/pwhData/forms/MultiForm";
 import NotFound from "./components/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
-import SearchDiv from "./components/pwhData/search/SearchDiv";
-// import DownLoadData from "./components/pwhData/DownLoadData";
+
 
 const DownLoadData = lazy (() => import ('./components/pwhData/DownLoadData'))
+const SearchDiv = lazy (() => import ('./components/pwhData/search/SearchDiv'))
+const AddNewPwh = lazy (() => import ('./components/pwhData/AddNewPwh'))
 
 function App() {
  const {user} = useSelector((state) => state.auth)
