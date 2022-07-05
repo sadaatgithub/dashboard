@@ -16,7 +16,7 @@ const districtList = [...new Set(data.map((item) => item.pwh_address.district))]
 const [byDistrict, setByDistrict] = useState('')
 const [byFactor, setByFactor] = useState('')
 
-const excelData = data.filter((data) => data).filter((data)=> data.pwh_address.district.includes(byDistrict)).filter((data) => data.pwh_medical.factor_def.includes(byFactor))
+const excelData = data.filter((data) => data).filter((data)=> data?.pwh_address?.district?.includes(byDistrict)).filter((data) => data?.pwh_medical?.factor_def?.includes(byFactor))
 // const dispatch = useDispatch()
 
 const notFctor = data.filter((data) => data.pwh_medical.factor_level === null)

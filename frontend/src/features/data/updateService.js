@@ -1,6 +1,6 @@
 import axiosInstance from "../../api/Axios";
 
-const baseURL = "http://127.0.0.1:8000/";
+const baseURL = "http://127.0.0.1:8000/api/";
 
 
 // getting which one to update fetching with id
@@ -14,7 +14,7 @@ const getPwhWithId  = async(id) =>{
       accept: 'application/json',
     }, 
   }
-  const response = await axiosInstance.get(baseURL + id, config);
+  const response = await axiosInstance.get(baseURL + id + "/", config);
   // console.log(response.data);
   return response.data;
 }
@@ -31,7 +31,7 @@ const updatePwh  = async(data) =>{
       accept: 'application/json',
     }, 
   }
-  const response = await axiosInstance.put(data.id + "/" ,data,config);
+  const response = await axiosInstance.put(baseURL + data.id + "/" ,data,config);
   // console.log(response.data);
   return response.data;
 }

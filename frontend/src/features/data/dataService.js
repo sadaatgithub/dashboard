@@ -1,6 +1,7 @@
 import axiosInstance from "../../api/Axios";
 
 const baseURL = "http://127.0.0.1:8000/api/";
+const authURL = "http://127.0.0.1:8000/"
 
 // fetching data for that user
   const config = {
@@ -58,7 +59,7 @@ const fetchUser  = async() =>{
       accept: 'application/json',
     }, 
   }
-  const response = await axiosInstance.get(baseURL + "auth/users/me",config);
+  const response = await axiosInstance.get(authURL + "auth/users/me",config);
   if(response.data){
     localStorage.setItem('user_detail',JSON.stringify(response.data))
   }
@@ -74,7 +75,7 @@ const changePassword  = async(data) =>{
   //     accept: 'application/json',
   //   }, 
   // }
-  const response = await axiosInstance.post("auth/users/set_password/",data,config);
+  const response = await axiosInstance.post(authURL + "auth/users/set_password/",data,config);
   // console.log(response.data);
   return response.data;
 }
@@ -89,7 +90,7 @@ const userUpdate  = async(data) =>{
       accept: 'application/json',
     }, 
   }
-  const response = await axiosInstance.put("auth/users/me/",data,config);
+  const response = await axiosInstance.put(authURL + "auth/users/me/",data,config);
   // console.log(response.data);
   return response.data;
 }
