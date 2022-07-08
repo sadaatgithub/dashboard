@@ -15,8 +15,23 @@ const login = async (userData) => {
     localStorage.setItem('refresh_token', response.data.refresh)
   
   }
+  autoLogout()
   return response.data;
 };
+
+const autoLogout = () =>{
+  console.log("autologout")
+  const accessToken = localStorage.getItem('user')
+  if(accessToken){
+    const tokenParts = JSON.parse(atob(accessToken.split('.')[1]));
+    console.log(tokenParts.exp)
+    const now = Math.ceil(Date.now() / 1000);
+    const autoLogoutTime = (tokenParts.exp - now) * 1000
+    console.log(autoLogoutTime)
+    const printLogout = () => console.log("logout")
+   const logoutNow = setTimeout(printLogout,autoLogoutTime)
+  }
+}
 
 const logout = () => {
   localStorage.removeItem("user");
@@ -28,5 +43,6 @@ const logout = () => {
 const authService = {
   login,
   logout,
+  autoLogout,
 };
 export default authService;
