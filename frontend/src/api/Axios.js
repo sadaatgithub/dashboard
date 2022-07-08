@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import autoLogout from "../features/auth/authService"
 const baseURL = 'http://127.0.0.1:8000/'
 
 
@@ -31,10 +31,8 @@ axiosInstance.interceptors.response.use(
 			return Promise.reject(error);
 		}
 
-		if (
-			error.response.status === 401 &&
-			originalRequest.url === baseURL + 'token/refresh/'
-		) {
+		if (error.response.status === 401 && originalRequest.url === baseURL + 'token/refresh/') 
+		{
 			window.location.href = '/login/';
 			return Promise.reject(error);
 		}
@@ -52,9 +50,10 @@ axiosInstance.interceptors.response.use(
 
 				// exp date in token is expressed in seconds, while now() returns milliseconds:
 				const now = Math.ceil(Date.now() / 1000);
-				// console.log(tokenParts.exp);
+				console.log(tokenParts.exp);
 
 				if (tokenParts.exp > now) {
+					// autoLogout()
 					return axiosInstance
 						.post('token/refresh/', { refresh: refreshToken })
 						.then((response) => {
