@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from requests import request
 
 from rest_framework.viewsets import ModelViewSet,GenericViewSet
 from .models import PatientImage, pwh, User
@@ -26,6 +27,11 @@ class PwhViewSet(ModelViewSet):
     def get_serializer_context(self):
         return {'user_id':self.request.user.id}
 
+class ChapterViewSet(RetrieveModelMixin,UpdateModelMixin,GenericViewSet):
+   serializer_class = ChapterSerializer
+   
+   def get_queryset(self):
+       return User.objects.filter(id=request.user.id)
 
 class PatientImageViewSet(ModelViewSet):
     serializer_class = PatientImageSerializer

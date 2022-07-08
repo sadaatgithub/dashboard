@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from djoser.serializers import UserSerializer as BaseUserSerializer
 from myapp.models import FamilyDetails, MedicalDetails, Membership, Occupational, PatientImage, User, contact, pwh, pwhadress, useradress
 
 
@@ -167,3 +167,21 @@ class ChapterSerializer(serializers.ModelSerializer):
         model = useradress
         # fields = '__all__'
         exclude = ['user']
+
+class UserSerializer(BaseUserSerializer):
+    chapter_address = ChapterSerializer()
+    class Meta(BaseUserSerializer.Meta):
+        fields = ['id','first_name','last_name','chapter_address']
+        # depth = 1
+
+    def update(self,instance,validated_data):
+
+        chapter_address = validated_data.pop('chapter_address')
+        chapter_address_id = chapter_address.pop('id')
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.save()
+
+        if useradress.objects.filter(user=instance.id, id=chapter_address_id).exists():
+            useradress.objects.filter(user=instance.id, id=chapter_address_id).update(**chapter_address)
+        return instance
