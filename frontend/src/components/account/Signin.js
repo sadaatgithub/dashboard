@@ -50,8 +50,6 @@ useEffect(() =>{
    
     if (user){
        toast.success("You are logged in")
-      //  dispatch(fetchUser())
-      //  dispatch(fetchData())
        navigate('/')
   }
     // dispatch(reset())
@@ -60,9 +58,9 @@ useEffect(() =>{
 
 
 
-if(isLoading){
-  return <Spinner/>
-}
+// if(isLoading){
+//   return <Spinner/>
+// }
   return (
     <>
       <section className="login-div">
@@ -95,7 +93,7 @@ if(isLoading){
           />
           </div>
           <div className="form-group">
-            <button type="submit" className="btn-login">Login</button>
+            <button type="submit" className="btn-login">{isLoading? 'Requesting' : 'Login'}</button>
           </div>
         </form>
       </section>

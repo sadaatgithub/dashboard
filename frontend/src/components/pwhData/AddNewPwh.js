@@ -131,10 +131,6 @@ const onChange = level => e => {
   };
 
 useEffect(() =>{
-  
-// console.log(tabArray[tab]);
-
-
     if(isSuccess){
       toast.success("Successfully Added...!")
       dispatch(fetchData())
