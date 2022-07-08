@@ -66,15 +66,15 @@ const fetchUser  = async() =>{
   return response.data;
 }
 const changePassword  = async(data) =>{
-  // const config = {
-  //   headers: {
-  //     Authorization: localStorage.getItem('user')
-  //       ? 'JWT ' + localStorage.getItem('user')
-  //       : null,
-  //     'Content-Type': 'application/json',
-  //     accept: 'application/json',
-  //   }, 
-  // }
+  const config = {
+    headers: {
+      Authorization: localStorage.getItem('user')
+        ? 'JWT ' + localStorage.getItem('user')
+        : null,
+      'Content-Type': 'application/json',
+      accept: 'application/json',
+    }, 
+  }
   const response = await axiosInstance.post(authURL + "auth/users/set_password/",data,config);
   // console.log(response.data);
   return response.data;
