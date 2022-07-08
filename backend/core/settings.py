@@ -143,6 +143,11 @@ SIMPLE_JWT = {
    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+DJOSER ={
+    'SERIALIZERS':{
+        'current_user':'myapp.serializers.UserSerializer',
+        }
+}
 CORS_ALLOWED_ORIGINS = [
     # "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
