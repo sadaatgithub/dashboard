@@ -22,6 +22,9 @@ const Header = () => {
     dispatch(resetData())
     // navigate('/')
   }
+
+
+  
 useEffect(() =>{
   if(user){
     dispatch(fetchData())

@@ -129,11 +129,7 @@ const handleClick = (e) =>{
     if(!user){
       navigate('/login')
     }
-    if(isSuccess){
     
-      console.log(currentItem);
-
-    }
   },[user])
 
   if(isLoading){
