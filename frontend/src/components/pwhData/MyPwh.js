@@ -1,8 +1,9 @@
 import React,{useState,useEffect, useRef, useMemo}from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch} from 'react-redux';
-import { fetchData, reset } from '../../features/data/dataSlice';
+import { fetchData, reset, sortingBy } from '../../features/data/dataSlice';
 // import { getPwhWithId , reset as resetUpdateData} from "../../features/data/addNewPwhSlice";
+import { FaAngleUp, FaAngleDown ,FaArrowDown, FaSortAlphaDown, FaSortAlphaUp, FaSort,FaSortDown,FaSortUp} from 'react-icons/fa';
 // import { useDownloadExcel  } from 'react-export-table-to-excel';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Spinner from '../Spinner';
@@ -11,7 +12,7 @@ import { fetchUser } from '../../features/user/userSlice';
 // import Spinner from './Spinner';
 
 const MyPwh = () => {
-  const {data,isLoading,isSuccess} = useSelector((state)=>state.data)
+  const {data,isLoading,isSuccess,sortByName,sortByNammeDsc} = useSelector((state)=>state.data)
   const {user} = useSelector((state) => state.auth)
   const [search, setSearch] =  useState('')
   const [visible,setVisible] = useState(false)
@@ -104,6 +105,21 @@ const MyPwh = () => {
 
 // }
 
+const sortData = () =>{
+  let nextSort;
+  
+ if(sortByName === 'down') nextSort = "up"
+ else if (sortByName === "up") nextSort = "default"
+ else if (sortByName === "default") nextSort = "down"
+    dispatch(sortingBy(nextSort))
+    // console.log(sortByName)
+
+
+  }
+const sortNameIcon = sortByName === "default"? <><FaSort  size={15}/></>
+                    : sortByName === "down"? <FaSortDown size={15}/> 
+                    : sortByName === "up"? <FaSortUp size={15}/> :''
+  // console.log('sorted')
 
 const viewMore = ((e) =>{
     const id = e.target.value;
@@ -169,7 +185,7 @@ if(!data){
       <thead>
         <tr>
           <td>S No</td>
-          <td>First Name</td>
+          <td onClick={sortData} style={{cursor:'pointer'}}>First Name {sortNameIcon}</td>
           <td>Father Name</td>
           <td>Last Name</td>
           <td>Factor Def</td>
