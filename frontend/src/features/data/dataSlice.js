@@ -8,6 +8,10 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
+  sortByName: 'default',
+  sortByNameDsc : false,
+  sortByFactorAsc : false,
+  sortByFactorDsc : false,
   message:'',
 
 }
@@ -62,6 +66,36 @@ export const dataSlice = createSlice({
       state.isError = false
       state.message = ''
       state.data = []
+    },
+    sortingBy:(state,action) =>{
+      const sortBy = action.payload
+
+      if(sortBy === "down"){
+        state.data = state.data.sort((a,b) => { 
+            let fa = a['first_name'].toLowerCase(),
+            fb = b['first_name'].toLowerCase();
+            return fa < fb ? '-1': fa > fb? '1': '0'})
+        console.log('sortin A-Z')
+        state.sortByName = "down"
+      }
+
+      if(sortBy === "up"){
+        state.data = state.data.sort((a,b) => { 
+            let fa = a['first_name'].toLowerCase(),
+            fb = b['first_name'].toLowerCase();
+            return fa > fb ? '-1': fa < fb? '1': '0'})
+        state.sortByName = "up"
+
+        console.log('sortin Z-A')
+      }
+      if(sortBy === "default"){
+        state.data = state.data.sort((a,b) => a['first_name'])
+        state.sortByName = "default"
+
+        console.log('sortin default')
+      }
+
+        // console.log(data)
     }
 },
 extraReducers:(builder) =>{
@@ -102,7 +136,7 @@ extraReducers:(builder) =>{
 })
 
 
-export const { reset } = dataSlice.actions
+export const { reset , sortingBy} = dataSlice.actions
 export default dataSlice.reducer;
 
 
