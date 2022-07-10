@@ -144,15 +144,7 @@ const handleClick = (e) =>{
     if(!user){
       navigate('/login')
     }
-<<<<<<< HEAD
     
-=======
-    // if(isSuccess){
-    
-    //   console.log(currentItem);
-
-    // }
->>>>>>> myworkspace1
   },[user])
 
   if(isLoading){
