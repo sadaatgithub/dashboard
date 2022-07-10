@@ -21,52 +21,6 @@ const AddNewPwh = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  // const initialFormData = {
-  //   id:"",
-  //   first_name:"",
-  //   last_name:"",
-  //   guardian_father_name:"",
-  //   mothers_name:"",
-    
-  //   dob:"",
-  //   gender:"",
-  //   religion:"",
-  //   caste:"",
-  //   pwh_address: {
-  //     line_1:"",
-  //     line_2:"",
-  //     line_3:"",
-  //     tahsil:"",
-  //     city:"",
-  //     district:"",
-  //     state:"",
-  //     pincode:"",
-  //   },
-  //   contact: {
-  //     mobile:"",
-  //     alternate_mobile:"",
-  //     email:"",
-  //   },
-  //   pwh_family:{
-  //     no_of_affected:"",
-  //     affected_nhr_id:"",family_income:"",is_bpl:"",bpl_ref_no:"",
-  //   },
-  //   pwh_medical:{
-  //     age_of_diagnosis:"",hospital_diagnosis:"",blood_group_with_rh:"",
-  //     factor_def:"",factor_level:"",others_def:"",is_deformity:"",
-  //     is_inhibitor_pos:"",is_hiv_pos:"",is_hcv_pos:"",
-  //   },
-  //   pwh_occupation:{
-  //     is_studying:"",highest_class:"",is_employed:"",employement_type:"",
-  //     is_reimbursed:"",emp_or_name:"",reimbursment_type:"",
-  //   },
-  //   pwh_membership:{
-  //     aadhar_member:"",aadhar_father:"",aadhar_mother:"",aadhar_spouce:"",
-  //   }
-
-  // };
-
-
 
 const {data,isSuccess, isLoading,isDataFetched, isError, message} = useSelector((state) =>state.createPwh)
 
@@ -93,7 +47,6 @@ const handleFocus = (e) => {
 };
 const onSubmit = (e) => {
     e.preventDefault();
-    console.log(addPwh);
 
 if(addPwh.id){
   dispatch(updatePwh(addPwh))
@@ -153,7 +106,7 @@ if(isLoading){
     <>
   <div className="container-form">
   <div className="close-div">
-      <button className='search-close'  onClick={() => navigate(-1)}>Back</button>
+      <button className='search-close'  onClick={() => navigate(-1,{ replace: true })}>Back</button>
       </div>
 
       <div className="form-left">
@@ -625,7 +578,8 @@ if(isLoading){
       <div className="flex">
         {/* <span onClick={onNext}>Next</span> */}
           <button type="submit" className="btn btn-submit">
-            {addPwh.id? "Update":"Add"}
+            {isLoading? 'Requesting' : addPwh.id? "Update":"Add"}
+            
             {/* Add */}
           </button>
       </div>
