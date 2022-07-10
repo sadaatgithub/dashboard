@@ -89,7 +89,7 @@ export const dataSlice = createSlice({
         console.log('sortin Z-A')
       }
       if(sortBy === "default"){
-        state.data = state.data.sort((a,b) => a['first_name'])
+        state.data = state.data.sort((a,b) => a.id - b.id)
         state.sortByName = "default"
 
         console.log('sortin default')

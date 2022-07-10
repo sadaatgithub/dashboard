@@ -384,9 +384,9 @@ tr:nth-child(even) {
 }
 
 .table-container {
-  min-width: 300px;
-  max-width: 600px;
-  min-height: 70vh;
+  /* min-width: 300px; */
+  max-width: 700px;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(126, 126, 126);
@@ -419,9 +419,16 @@ tr:nth-child(even) {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(12, 1fr); */
+  /* flex-direction: column; */
+  /* gap: 0.8rem; */
 
 }
+.pwh-info-div{display: flex;
+}
+.pwh-info-div > div{width: 50%;}
+/* .pwh-info  .pwh-info-label{width: 50%;} */
 .pwh-action button {
   /* display: block; */
   width: 100%;
@@ -786,13 +793,13 @@ input:invalid[focused="true"] ~ span {
 }
 .view-more{
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 1rem;
+  top: 0.5rem;
   border:1px solid rgb(139, 139, 139);
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 545px;
   box-shadow: 0px 10px 20px 0px hsla(209, 46%, 18%, 0.205);
 border-radius: 5px;
   /* padding: 1px; */

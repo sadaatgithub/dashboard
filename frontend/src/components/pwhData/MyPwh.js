@@ -34,7 +34,6 @@ const MyPwh = () => {
   
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  // const currentItem = data.filter((data) => { return data.first_name === 'Sadanand'})
   const currentItem = useMemo(() => data.filter((item) => {
     return Object.keys(item).
     some(key =>{
@@ -145,11 +144,11 @@ const handleClick = (e) =>{
     if(!user){
       navigate('/login')
     }
-    if(isSuccess){
+    // if(isSuccess){
     
-      console.log(currentItem);
+    //   console.log(currentItem);
 
-    }
+    // }
   },[user])
 
   if(isLoading){
@@ -192,8 +191,9 @@ if(!data){
           <td onClick={sortData} style={{cursor:'pointer'}}>First Name {sortNameIcon}</td>
           <td>Father Name</td>
           <td>Last Name</td>
-          <td>Factor Def</td>
-          <td>View</td>
+          <td>Factor</td>
+          <td>Assay</td>
+          <td>Details</td>
         </tr>
       </thead>
       <tbody>
@@ -206,6 +206,8 @@ if(!data){
           <td>{item.guardian_father_name}</td>
           <td>{item.last_name}</td>
           <td>{item.pwh_medical?.factor_def}</td>
+          <td>{item.pwh_medical?.factor_level}</td>
+          
       <td><button className='btn-more' value={item.id} onClick={viewMore}>View</button></td>
       
       </>
@@ -216,6 +218,7 @@ if(!data){
     </table>
     </div>
     <ul className='pagination-no-row'>
+      <li><p><small>Showing 1 to 10 of {data.length} entries</small> </p></li>
       <li><button onClick={handlePrevbtn} disabled={currentPage == pages[0]? true:false}>Prev</button></li>
       {pageDecrBtn}
       
