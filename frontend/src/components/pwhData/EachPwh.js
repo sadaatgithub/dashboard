@@ -171,15 +171,7 @@ useEffect(() =>{
            </div>
           </div>
         
-         
-          {/* <p><strong>Name :</strong> </p>
-          <p> <strong>Middle Name :</strong> {data.guardian_father_name}</p>
-          <p>Last Name: {data.last_name}</p>
-          <p>DOB: {data.dob}</p>
-          <p>Clinical : <strong>Factor</strong> {data.pwh_medical?.factor_def} <b>Blood Group</b> {data.pwh_medical?.blood_group_with_rh}</p>
-          <p>Address : {data.pwh_address?.line_1} ,<span>{data.pwh_address?.line_2}</span></p>
-          <p>Contact No : {data.contact?.mobile}</p>
-          <p>Email : {data.contact?.email}</p> */}
+       
         </div>
         <div className="pwh-info-pro-pic">
           {/* {isLoading? 'uploading':''} */}
@@ -212,9 +204,9 @@ useEffect(() =>{
         </div>
       </div>
       <div className="pwh-action">
-        {/* <Link to={`/edit/${data.id}`}> */}
-        <button value={data.id} onClick={fetchDataToUpdate}>Edit</button>
-        {/* </Link> */}
+        <Link to={`/edit/${data.id}`}>
+        <button value={data.id}>Edit</button>
+        </Link>
         {/* <Link to="/add/">
         <button>Add Pwh</button>
         </Link> */}
