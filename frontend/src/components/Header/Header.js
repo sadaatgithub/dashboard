@@ -15,7 +15,6 @@ const Header = () => {
   const dispatch = useDispatch()
   const {user} = useSelector((state) => state.auth)
 
-<<<<<<< HEAD
   const onLogout = () =>{
     dispatch(logout())
     dispatch(reset())
@@ -26,56 +25,6 @@ const Header = () => {
 
 
   
-=======
-  // const cleartime = () =>{
-  //   clearTimeout(logoutNow)
-  // }
-
-// const logoutNow = setTimeout(() => {
-//       console.log("autologout timer cancel")
-// }, autoLogoutTime);
-
-
-
- 
-
-
-  // if(user){
-  //   const accessToken = localStorage.getItem('user')
-  //   const tokenParts = JSON.parse(atob(accessToken.split('.')[1]));
-  //   const now = Math.ceil(Date.now() / 1000);
-  //   var autoLogoutTime = (tokenParts.exp - now) * 1000
-  // }
-
-// const autologout = () => {
-//   console.log('autologout')
-//   if(user){
-//   const accessToken = localStorage.getItem('user')
-//   if(accessToken){
-//     const tokenParts = JSON.parse(atob(accessToken.split('.')[1]));
-//     // console.log(tokenParts.exp)
-//     const now = Math.ceil(Date.now() / 1000);
-//     var autoLogoutTime = (tokenParts.exp - now) * 1000
-//     console.log(autoLogoutTime)}
-//     var logoutNow = setTimeout(() => {
-//       onLogout()
-//       console.log("autologout implemented")
-//     }, autoLogoutTime);
-//   }
-
-   
-  //   // return autoLogoutTime
-  // }
-// }
-
-const onLogout = () =>{
-  dispatch(logout())
-  dispatch(reset())
-  dispatch(resetUser())
-  dispatch(resetData())
-  // clearTimeout(logoutNow)
-}
->>>>>>> myworkspace1
 useEffect(() =>{
  
   if(user){

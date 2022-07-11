@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import dataService from "./dataService";
 import updateService from "./updateService";
-
+import { useSelector } from "react-redux";
+import { current } from "@reduxjs/toolkit";
 
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   isDataFetched : false,
+  isDataToUpdateSuccess:false,
   message:'',
   
 }
@@ -52,9 +54,11 @@ async (data, thunkAPI) =>{
 export const getPwhWithId = createAsyncThunk('get_data_id',
 async (id, thunkAPI) =>{
   try{
-   
+    const filterData =  thunkAPI.getState().data.data.filter((data) => data.id == id)
     // console.log(token);
-    return await updateService.getPwhWithId(id)
+    // return await updateService.getPwhWithId(id)
+    // console.log(filterData)
+    return filterData
   } catch (error){
     // console.log(error);
     const message =
@@ -79,7 +83,27 @@ export const addDataSlice = createSlice({
       state.message = ''
       state.isDataFetched = false
       state.data = []
-    }
+    },
+    resetUpdateId:(state)=>{
+      state.isDataFetched = false
+      // state.isDataToUpdateSuccess = false
+
+    },
+    updateFormdata:(state, action) =>{
+      const {name, value, level} = action.payload
+      state.data = level? ({...state.data,[level]
+        :{...state.data[level],[name]:value}}) 
+        :({...state.data,[name]:value})
+      
+    },
+    getDataFromDb:(state,action)=>{
+
+      const {id} = action.payload
+      // const {data} = useSelector(data)
+        // state.data = data
+
+
+    },
   }, extraReducers:(builder) =>{
     builder 
     .addCase(createPwh.pending, (state)=>{
@@ -89,21 +113,23 @@ export const addDataSlice = createSlice({
      .addCase(createPwh.fulfilled, (state,action)=>{
        state.isLoading = false
        state.isSuccess = true
-      //  console.log('fulfilled');
      })
      .addCase(createPwh.rejected, (state,action)=>{
+
       state.isLoading = false
       state.isError = true
       state.message = action.payload
      })
      .addCase(getPwhWithId.pending, (state)=>{
-      // state.isLoading = true
+      state.isLoading = true
     })
     .addCase(getPwhWithId.fulfilled, (state, action) =>{
-      // state.isLoading = false
+      // let {filterData} = action.payload
+      state.isLoading = false
       state.isDataFetched = true
-      // state.message = action.payload
+      state.isDataToUpdateSuccess = true
       state.data = action.payload
+      // console.log(current(state.data))
     })
     .addCase(getPwhWithId.rejected, (state, action) =>{
       // state.isLoading = false
@@ -127,5 +153,5 @@ export const addDataSlice = createSlice({
   }
 })
 
-export const {reset} = addDataSlice.actions
+export const {reset,updateFormdata,resetUpdateId,getDataFromDb} = addDataSlice.actions
 export default addDataSlice.reducer

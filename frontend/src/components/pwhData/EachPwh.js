@@ -73,15 +73,13 @@ const onManage = () =>{
 setManageModal(!manageModal)
 }
 useEffect(() =>{
-  if(isDataFetched){
-    navigate('/edit')
-  }
+ 
   if(isSuccess){
     dispatch(imageReset())
     window.location.reload()
     toast.success('Uploaded Successfully')
   }
-},[isDataFetched,isSuccess])
+},[isSuccess])
 
 // const onEdit = (e) =>{
 //   const id = e.target.value;
@@ -94,50 +92,50 @@ useEffect(() =>{
       <div className="pwh-div">
         <div className="pwh-info">
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Name :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.first_name + " " + data.last_name}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Guardian/Father Name :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.guardian_father_name + " " + data.last_name}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>D.O.B:</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.dob}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Clinical:</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>Factor {data.pwh_medical?.factor_def + " , " + data.pwh_medical?.factor_level + " , " + data.pwh_medical?.blood_group_with_rh} ve</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Age:</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>00</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Address :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.pwh_address?.line_1 + "," +data.pwh_address?.line_2  + "," +data.pwh_address?.line_2}</p>
             
             <p>{data.pwh_address?.line_3 + "," +data.pwh_address?.city}</p>
@@ -147,39 +145,32 @@ useEffect(() =>{
            </div>
           </div>
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Contact :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.contact?.mobile}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Email :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.contact?.email}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Chapter Membership :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>ABC12345678</p>
            </div>
           </div>
         
          
-          {/* <p><strong>Name :</strong> </p>
-          <p> <strong>Middle Name :</strong> {data.guardian_father_name}</p>
-          <p>Last Name: {data.last_name}</p>
-          <p>DOB: {data.dob}</p>
-          <p>Clinical : <strong>Factor</strong> {data.pwh_medical?.factor_def} <b>Blood Group</b> {data.pwh_medical?.blood_group_with_rh}</p>
-          <p>Address : {data.pwh_address?.line_1} ,<span>{data.pwh_address?.line_2}</span></p>
-          <p>Contact No : {data.contact?.mobile}</p>
-          <p>Email : {data.contact?.email}</p> */}
+      
         </div>
         <div className="pwh-info-pro-pic">
           {/* {isLoading? 'uploading':''} */}
@@ -212,9 +203,9 @@ useEffect(() =>{
         </div>
       </div>
       <div className="pwh-action">
-        {/* <Link to={`/edit/${data.id}`}> */}
-        <button value={data.id} onClick={fetchDataToUpdate}>Edit</button>
-        {/* </Link> */}
+        <Link to={`/edit/${data.id}`}>
+        <button value={data.id}>Edit</button>
+        </Link>
         {/* <Link to="/add/">
         <button>Add Pwh</button>
         </Link> */}
