@@ -15,7 +15,6 @@ const Header = () => {
   const dispatch = useDispatch()
   const {user} = useSelector((state) => state.auth)
 
-<<<<<<< HEAD
   const onLogout = () =>{
     dispatch(logout())
     dispatch(reset())
@@ -26,7 +25,6 @@ const Header = () => {
 
 
   
-=======
   // const cleartime = () =>{
   //   clearTimeout(logoutNow)
   // }
@@ -68,14 +66,7 @@ const Header = () => {
   // }
 // }
 
-const onLogout = () =>{
-  dispatch(logout())
-  dispatch(reset())
-  dispatch(resetUser())
-  dispatch(resetData())
-  // clearTimeout(logoutNow)
-}
->>>>>>> myworkspace1
+
 useEffect(() =>{
  
   if(user){
