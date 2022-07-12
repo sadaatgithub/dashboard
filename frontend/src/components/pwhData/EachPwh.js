@@ -167,12 +167,8 @@ useEffect(() =>{
            </div>
           </div>
         
-<<<<<<< HEAD
-       
-=======
          
       
->>>>>>> myexp1
         </div>
         <div className="pwh-info-pro-pic">
           {/* {isLoading? 'uploading':''} */}
@@ -205,11 +201,7 @@ useEffect(() =>{
         </div>
       </div>
       <div className="pwh-action">
-<<<<<<< HEAD
-        <Link to={`/edit/${data.id}`}>
-=======
         <Link to={"/edit/" + data.id}>
->>>>>>> myexp1
         <button value={data.id}>Edit</button>
         </Link>
         {/* <Link to="/add/">
