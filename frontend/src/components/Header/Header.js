@@ -25,6 +25,7 @@ const Header = () => {
 
 
   
+<<<<<<< HEAD
   // const cleartime = () =>{
   //   clearTimeout(logoutNow)
   // }
@@ -67,6 +68,8 @@ const Header = () => {
 // }
 
 
+=======
+>>>>>>> myexp1
 useEffect(() =>{
  
   if(user){

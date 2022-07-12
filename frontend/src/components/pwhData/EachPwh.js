@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import updateSlice from "../../features/data/getPwhSlice";
 // import { updateData, reset } from "../../features/data/getPwhSlice";
-import { getPwhWithId , reset} from "../../features/data/addNewPwhSlice";
+// import { getPwhWithId , reset} from "../../features/data/addNewPwhSlice";
 // import { getPwhWithId } from "../../features/data/getPwhSlice";
 import { deletePwh } from "../../features/data/deleteSlice";
 import DeleteModal from "../modal/DeleteModal";
@@ -45,9 +45,7 @@ const onDelete = (e) =>{
   dispatch(deletePwh(e.target.value))
   console.log(e.target.value);
 }
-const fetchDataToUpdate = () =>{
-  dispatch(getPwhWithId(data.id))
-}
+
 const onSubmit = (e) =>{
   e.preventDefault();
 
@@ -73,15 +71,13 @@ const onManage = () =>{
 setManageModal(!manageModal)
 }
 useEffect(() =>{
-  if(isDataFetched){
-    navigate('/edit')
-  }
+ 
   if(isSuccess){
     dispatch(imageReset())
-    window.location.reload()
     toast.success('Uploaded Successfully')
+    window.location.reload()
   }
-},[isDataFetched,isSuccess])
+},[isSuccess,dispatch])
 
 // const onEdit = (e) =>{
 //   const id = e.target.value;
@@ -94,50 +90,50 @@ useEffect(() =>{
       <div className="pwh-div">
         <div className="pwh-info">
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Name :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.first_name + " " + data.last_name}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Guardian/Father Name :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.guardian_father_name + " " + data.last_name}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>D.O.B:</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.dob}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Clinical:</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>Factor {data.pwh_medical?.factor_def + " , " + data.pwh_medical?.factor_level + " , " + data.pwh_medical?.blood_group_with_rh} ve</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Age:</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>00</p>
            </div>
           </div>
           <div className="pwh-info-div">
-          <div class="pwh-info-label">
+          <div className="pwh-info-label">
             <strong>Address :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.pwh_address?.line_1 + "," +data.pwh_address?.line_2  + "," +data.pwh_address?.line_2}</p>
             
             <p>{data.pwh_address?.line_3 + "," +data.pwh_address?.city}</p>
@@ -147,31 +143,36 @@ useEffect(() =>{
            </div>
           </div>
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Contact :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.contact?.mobile}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Email :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>{data.contact?.email}</p>
            </div>
           </div>
           <div className="pwh-info-div">
-           <div class="pwh-info-label">
+           <div className="pwh-info-label">
             <strong>Chapter Membership :</strong>
            </div>
-           <div class="pwh-info-value">
+           <div className="pwh-info-value">
             <p>ABC12345678</p>
            </div>
           </div>
         
+<<<<<<< HEAD
        
+=======
+         
+      
+>>>>>>> myexp1
         </div>
         <div className="pwh-info-pro-pic">
           {/* {isLoading? 'uploading':''} */}
@@ -204,7 +205,11 @@ useEffect(() =>{
         </div>
       </div>
       <div className="pwh-action">
+<<<<<<< HEAD
         <Link to={`/edit/${data.id}`}>
+=======
+        <Link to={"/edit/" + data.id}>
+>>>>>>> myexp1
         <button value={data.id}>Edit</button>
         </Link>
         {/* <Link to="/add/">

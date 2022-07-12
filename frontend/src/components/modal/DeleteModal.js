@@ -20,8 +20,8 @@ const navigate = useNavigate()
 
     if(isSuccess){
         // console.log('success');
-        window.location.reload();
         toast.success('Deleted...!')
+        window.location.reload();
     }
 // console.log(data_id);
   },[dispatch, isLoading,isSuccess, isError, message])
