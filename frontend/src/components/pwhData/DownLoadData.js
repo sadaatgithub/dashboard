@@ -21,7 +21,7 @@ const excelData = data.filter((data) => data).filter((data)=> data?.pwh_address?
 
 const notFctor = data.filter((data) => data.pwh_medical.factor_level === null)
   useEffect(() =>{
-   console.log(notFctor.length);
+  //  console.log(notFctor.length);
   },[excelData])
 
 if(isLoading){

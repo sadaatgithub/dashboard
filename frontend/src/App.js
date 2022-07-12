@@ -47,7 +47,7 @@ function App() {
                 }
               />
               <Route
-                path="/edit/:id/"
+                path="/edit/:id"
                 element={
                   <ProtectedRoute user={user}>
                     <AddNewPwh />

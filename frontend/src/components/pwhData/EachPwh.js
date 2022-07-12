@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import updateSlice from "../../features/data/getPwhSlice";
 // import { updateData, reset } from "../../features/data/getPwhSlice";
-import { getPwhWithId , reset} from "../../features/data/addNewPwhSlice";
+// import { getPwhWithId , reset} from "../../features/data/addNewPwhSlice";
 // import { getPwhWithId } from "../../features/data/getPwhSlice";
 import { deletePwh } from "../../features/data/deleteSlice";
 import DeleteModal from "../modal/DeleteModal";
@@ -45,9 +45,7 @@ const onDelete = (e) =>{
   dispatch(deletePwh(e.target.value))
   console.log(e.target.value);
 }
-const fetchDataToUpdate = () =>{
-  dispatch(getPwhWithId(data.id))
-}
+
 const onSubmit = (e) =>{
   e.preventDefault();
 
@@ -76,10 +74,10 @@ useEffect(() =>{
  
   if(isSuccess){
     dispatch(imageReset())
-    window.location.reload()
     toast.success('Uploaded Successfully')
+    window.location.reload()
   }
-},[isSuccess])
+},[isSuccess,dispatch])
 
 // const onEdit = (e) =>{
 //   const id = e.target.value;
@@ -203,7 +201,7 @@ useEffect(() =>{
         </div>
       </div>
       <div className="pwh-action">
-        <Link to={`/edit/${data.id}`}>
+        <Link to={"/edit/" + data.id}>
         <button value={data.id}>Edit</button>
         </Link>
         {/* <Link to="/add/">

@@ -119,6 +119,18 @@ const configImg = {
   const response = await axiosInstance.post(baseURL + id +"/patient_image/", formData, configImg)
   return response.data
 }
+const get = id =>{
+  // const config = {
+  //   headers: {
+  //     Authorization: localStorage.getItem('user')
+  //       ? 'JWT ' + localStorage.getItem('user')
+  //       : null,
+  //     'Content-Type': 'application/json',
+  //     accept: 'application/json',
+  //   }, 
+  // }
+  return axiosInstance.get(baseURL + id)
+}
 
 const dataService = {
   fetchData,
@@ -129,6 +141,7 @@ const dataService = {
   userUpdate,
   uploadImage,
   updateTag,
+  get,
  
 }
 

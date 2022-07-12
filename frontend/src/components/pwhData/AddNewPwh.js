@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+// import http from "../http-common";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,30 +7,27 @@ import "../pwhData/forms/form.css";
 import {
   createPwh,
   updatePwh,
-  getPwhWithId,
-  updateFormdata,
-  resetUpdateId,
-  getDataFromDb,
   reset,
 } from "../../features/data/addNewPwhSlice";
-import InputElement from "../InputElement";
 import { fetchData } from "../../features/data/dataSlice";
 import Spinner from "../Spinner";
 import Tabs from "./Tabs";
-import PersonalInputs from "./PersonalInputs";
-
+import updateService from "../../features/data/updateService";
 // import { } from "../../features/data/updatePwhSlice";
 
-const AddNewPwh = () => {
+const AddNewPwh = (props) => {
   // const { data } = useSelector((state) =>state.getPwh)
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data, isSuccess, isLoading, isDataFetched, isError, message ,isDataToUpdateSuccess} =
+  const { data, isSuccess, isDataFetched, isError, message ,isDataToUpdateSuccess} =
     useSelector((state) => state.createPwh);
+  const {data:allData, isLoading} =useSelector((state) => state.data)
+  
+  // const filterData = allData.filter((data) => data.id == id)
 
-  // const [addPwh, setAddPwh] = useState(data);
+  const [addPwh, setAddPwh] = useState();
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("Personal");
 
@@ -51,18 +48,19 @@ const AddNewPwh = () => {
     setFocused(true);
   };
 
-  // if(!isDataFetched){
+  // if(!data.id){
   //   dispatch(getPwhWithId(id))
   // }
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (data.id) {
-      dispatch(updatePwh(data));
+    if (id) {
+      dispatch(updatePwh(addPwh));
     } else {
-      dispatch(createPwh(data));
+      dispatch(createPwh(addPwh));
     }
+    console.log(addPwh)
   };
 
   const onFocus = (e) => {
@@ -70,68 +68,58 @@ const AddNewPwh = () => {
   };
 
   const onChange = (level) => (e) => {
-    
-    const name = e.target.name
-    const value = e.target.value
-    const formData = {
-      name,value,level
-    }
-    if (!level) {
-  
 
-    // console.log(name,value)
-      dispatch(updateFormdata(formData))
-      // setdata({...data,[e.target.name]:e.target.value})
-      // setdata((prevState) => {
-      //   return { ...prevState, [e.target.name]: e.target.value };
-      // });
+    if (!level) {
+      setAddPwh((prevState) => {
+        return { ...prevState, [e.target.name]: e.target.value };
+      });
 
     } else {
-      dispatch(updateFormdata(formData))
-
-      // setdata({
-      //   ...data,
-      //   [level]:{
-      //     ...data[level],
-      //     [e.target.name]:e.target.value
-      //   }
-      // })
-      // setdata((prevState) => {
-      //   return {
-      //     ...prevState,
-      //     [level]: {
-      //       ...prevState[level],
-      //       [e.target.name]: e.target.value,
-      //     },
-      //   };
-      // });
+      // dispatch(updateFormdata(formData))
+      setAddPwh((prevState) => {
+        return {
+          ...prevState,
+          [level]: {
+            ...prevState[level],
+            [e.target.name]: e.target.value,
+          },
+        };
+      });
     }
   };
 
-  useEffect(() => {
+  const getPwh = id =>{
+    updateService.getPwhWithId(id).then(response =>{
+      setAddPwh(response)
+      // console.log(response)
+    })
+    .catch(e =>{
+      console.log(e)
+    })
+  }
 
-    if(id && !isDataFetched){
-      dispatch(getPwhWithId(id))
-    }
-    console.log(data)
+  useEffect(() => {
+    if(id){
+    getPwh(id)
+  }
     if (isSuccess) {
       const msg = id? "Updated" : "Added"
       toast.success(` Successfully ${msg}....!`)
       dispatch(fetchData());
-      dispatch(resetUpdateId());
+      // dispatch(resetUpdateId());
       dispatch(reset());
       navigate("/pwh-data");
     }
     if (isError) {
       toast.error(message);
     }
-    return () => {
-      if(isDataFetched){
-      // dispatch(reset());
-      dispatch(resetUpdateId());
-    }
-    };
-  }, [dispatch,isSuccess,isDataFetched,isLoading]);
+    // return () => {
+    //   if(isDataFetched){
+    //   // dispatch(reset());
+    //   dispatch(resetUpdateId());
+    // }
+    // };
+  }, [id,dispatch,isSuccess]);
   // dispatch, isSuccess, isError, message, navigate
 
   if (isLoading) {
@@ -168,7 +156,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="first_name"
-                      value={data?.first_name}
+                      value={addPwh?.first_name}
                       onChange={onChange()}
                     />
                   </div>
@@ -179,7 +167,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="guardian_father_name"
-                      value={data.guardian_father_name}
+                      value={addPwh?.guardian_father_name}
                       onChange={onChange()}
                     />
                     {/* <span className="error-span"><p>Required</p></span> */}
@@ -189,7 +177,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="mothers_name"
-                      value={data.mothers_name}
+                      value={addPwh?.mothers_name}
                       onChange={onChange()}
                     />
                   </div>
@@ -198,7 +186,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="last_name"
-                      value={data.last_name}
+                      value={addPwh?.last_name}
                       onChange={onChange()}
                     />
                   </div>
@@ -208,7 +196,7 @@ const AddNewPwh = () => {
                       type="date"
                       name="dob"
                       // format
-                      value={data.dob}
+                      value={addPwh?.dob}
                       onChange={onChange()}
                     />
                   </div>
@@ -218,7 +206,7 @@ const AddNewPwh = () => {
                     <select
                       name="gender"
                       id="gender"
-                      value={data.gender}
+                      value={addPwh?.gender}
                       onChange={onChange()}
                     >
                       <option value="not selected">Select</option>
@@ -233,7 +221,7 @@ const AddNewPwh = () => {
                     <select
                       name="religion"
                       id="religion"
-                      value={data.religion}
+                      value={addPwh?.religion}
                       onChange={onChange()}
                     >
                       <option value="not selected">Select</option>
@@ -249,7 +237,7 @@ const AddNewPwh = () => {
                     <select
                       name="caste"
                       id="caste"
-                      value={data.caste}
+                      value={addPwh?.caste}
                       onChange={onChange()}
                     >
                       <option value="not selected">Select</option>
@@ -269,7 +257,7 @@ const AddNewPwh = () => {
                     <label htmlFor="line_1">Line 1</label>
                     <input
                       type="text"
-                      value={data.pwh_address?.line_1}
+                      value={addPwh?.pwh_address?.line_1}
                       name="line_1"
                       // onChange={onChange('pwh_address')}
                       onChange={onChange("pwh_address")}
@@ -280,7 +268,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="line_2"
-                      value={data.pwh_address?.line_2}
+                      value={addPwh?.pwh_address?.line_2}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
@@ -289,7 +277,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="line_3"
-                      value={data.pwh_address?.line_3}
+                      value={addPwh?.pwh_address?.line_3}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
@@ -298,7 +286,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="city"
-                      value={data.pwh_address?.city}
+                      value={addPwh?.pwh_address?.city}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
@@ -306,7 +294,7 @@ const AddNewPwh = () => {
                     <label htmlFor="tahsil">Tahsil</label>
                     <input
                       type="text"
-                      value={data.pwh_address?.tahsil}
+                      value={addPwh?.pwh_address?.tahsil}
                       name="tahsil"
                       onChange={onChange("pwh_address")}
                     />
@@ -316,7 +304,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="district"
-                      value={data.pwh_address?.district}
+                      value={addPwh?.pwh_address?.district}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
@@ -325,7 +313,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="state"
-                      value={data.pwh_address?.state}
+                      value={addPwh?.pwh_address?.state}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
@@ -334,7 +322,7 @@ const AddNewPwh = () => {
                     <input
                       type="number"
                       name="pincode"
-                      value={data.pwh_address?.pincode}
+                      value={addPwh?.pwh_address?.pincode}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
@@ -347,7 +335,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="mobile"
-                      value={data.contact?.mobile}
+                      value={addPwh?.contact?.mobile}
                       onChange={onChange("contact")}
                     />
                   </div>
@@ -356,7 +344,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="alternate_mobile"
-                      value={data.contact?.alternate_mobile}
+                      value={addPwh?.contact?.alternate_mobile}
                       onChange={onChange("contact")}
                     />
                   </div>
@@ -365,7 +353,7 @@ const AddNewPwh = () => {
                     <input
                       type="email"
                       name="email"
-                      value={data.contact?.email}
+                      value={addPwh?.contact?.email}
                       onChange={onChange("contact")}
                     />
                   </div>
@@ -408,7 +396,7 @@ const AddNewPwh = () => {
                       type="text"
                       name="highest_class"
                       id=""
-                      value={data.pwh_occupation?.highest_class}
+                      value={addPwh?.pwh_occupation?.highest_class}
                       onChange={onChange("pwh_occupation")}
                     />
                   </div>
@@ -443,7 +431,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="employement_type"
-                      value={data.pwh_occupation?.employement_type}
+                      value={addPwh?.pwh_occupation?.employement_type}
                       onChange={onChange("pwh_occupation")}
                     />
                   </div>
@@ -476,7 +464,7 @@ const AddNewPwh = () => {
                       type="text"
                       name="emp_or_name"
                       id=""
-                      value={data.pwh_occupation?.emp_or_name}
+                      value={addPwh?.pwh_occupation?.emp_or_name}
                       onChange={onChange("pwh_occupation")}
                     />
                   </div>
@@ -486,7 +474,7 @@ const AddNewPwh = () => {
                       type="text"
                       name="reimbursment_type"
                       id=""
-                      value={data.pwh_occupation?.reimbursment_type}
+                      value={addPwh?.pwh_occupation?.reimbursment_type}
                       onChange={onChange("pwh_occupation")}
                     />
                   </div>
@@ -501,7 +489,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="no_of_affected"
-                      value={data.pwh_family?.no_of_affected}
+                      value={addPwh?.pwh_family?.no_of_affected}
                       onChange={onChange("pwh_family")}
                     />
                   </div>
@@ -510,7 +498,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="affected_nhr_id"
-                      value={data.pwh_family?.affected_nhr_id}
+                      value={addPwh?.pwh_family?.affected_nhr_id}
                       onChange={onChange("pwh_family")}
                     />
                   </div>
@@ -519,7 +507,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="family_income"
-                      value={data.pwh_family?.family_income}
+                      value={addPwh?.pwh_family?.family_income}
                       onChange={onChange("pwh_family")}
                     />
                   </div>
@@ -529,10 +517,10 @@ const AddNewPwh = () => {
                       <select
                         name="is_bpl"
                         id=""
-                        value={data.pwh_family?.is_bpl}
+                        value={addPwh?.pwh_family?.is_bpl}
                         onChange={onChange("pwh_family")}
                       >
-                        <option value="">Select</option>
+                        <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                       </select>
@@ -543,7 +531,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="bpl_ref_no"
-                      value={data.pwh_family?.bpl_ref_no}
+                      value={addPwh?.pwh_family?.bpl_ref_no}
                       onChange={onChange("pwh_family")}
                     />
                   </div>
@@ -559,7 +547,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="age_of_diagnosis"
-                      value={data.pwh_medical?.age_of_diagnosis}
+                      value={addPwh?.pwh_medical?.age_of_diagnosis}
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
@@ -570,7 +558,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="hospital_diagnosis"
-                      value={data.pwh_medical?.hospital_diagnosis}
+                      value={addPwh?.pwh_medical?.hospital_diagnosis}
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
@@ -579,10 +567,10 @@ const AddNewPwh = () => {
                     <select
                       name="blood_group_with_rh"
                       id=""
-                      value={data.pwh_medical?.blood_group_with_rh}
+                      value={addPwh?.pwh_medical?.blood_group_with_rh}
                       onChange={onChange("pwh_medical")}
                     >
-                      <option value="">Select</option>
+                      <option value="null">Select</option>
                       <option value="O+">O +ve</option>
                       <option value="O-">O -ve</option>
                       <option value="A+">A +ve</option>
@@ -598,7 +586,7 @@ const AddNewPwh = () => {
                     <select
                       name="factor_def"
                       id=""
-                      value={data.pwh_medical?.factor_def}
+                      value={addPwh?.pwh_medical?.factor_def}
                       onChange={onChange("pwh_medical")}
                     >
                       <option value="null">Select</option>
@@ -622,7 +610,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="factor_level"
-                      value={data.pwh_medical?.factor_level}
+                      value={addPwh?.pwh_medical?.factor_level}
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
@@ -631,7 +619,7 @@ const AddNewPwh = () => {
                     <select
                       name="others_def"
                       id=""
-                      value={data.pwh_medical?.others_def}
+                      value={addPwh?.pwh_medical?.others_def}
                       onChange={onChange("pwh_medical")}
                     >
                       <option value="">Select</option>
@@ -657,7 +645,7 @@ const AddNewPwh = () => {
                         <input
                           type="radio"
                           name="is_inhibitor_pos"
-                          {...(data.pwh_medical?.is_inhibitor_pos === "true"
+                          {...(addPwh?.pwh_medical?.is_inhibitor_pos === "true"
                             ? "checked"
                             : "np")}
                           value="true"
@@ -756,7 +744,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="aadhar_member"
-                      value={data.pwh_membership?.aadhar_member}
+                      value={addPwh?.pwh_membership?.aadhar_member}
                       onChange={onChange("pwh_membership")}
                     />
                   </div>
@@ -765,7 +753,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="aadhar_father"
-                      value={data.pwh_membership?.aadhar_father}
+                      value={addPwh?.pwh_membership?.aadhar_father}
                       onChange={onChange("pwh_membership")}
                     />
                   </div>
@@ -774,7 +762,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="aadhar_mother"
-                      value={data.pwh_membership?.aadhar_mother}
+                      value={addPwh?.pwh_membership?.aadhar_mother}
                       onChange={onChange("pwh_membership")}
                     />
                   </div>
@@ -783,7 +771,7 @@ const AddNewPwh = () => {
                     <input
                       type="text"
                       name="aadhar_spouce"
-                      value={data.pwh_membership?.aadhar_spouce}
+                      value={addPwh?.pwh_membership?.aadhar_spouce}
                       onChange={onChange("pwh_membership")}
                     />
                   </div>
@@ -794,7 +782,7 @@ const AddNewPwh = () => {
             <div className="flex">
               {/* <span onClick={onNext}>Next</span> */}
               <button type="submit" className="btn btn-submit">
-                {isLoading ? "Requesting" : data.id ? "Update" : "Add"}
+                {isLoading ? "Requesting" : addPwh?.id? "Update" : "Add"}
 
                 {/* Add */}
               </button>

@@ -10,8 +10,6 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  isDataFetched : false,
-  isDataToUpdateSuccess:false,
   message:'',
   
 }
@@ -51,25 +49,25 @@ async (data, thunkAPI) =>{
   }
 })
 
-export const getPwhWithId = createAsyncThunk('get_data_id',
-async (id, thunkAPI) =>{
-  try{
-    const filterData =  thunkAPI.getState().data.data.filter((data) => data.id == id)
-    // console.log(token);
-    // return await updateService.getPwhWithId(id)
-    // console.log(filterData)
-    return filterData
-  } catch (error){
-    // console.log(error);
-    const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.detail) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-  }
-})
+// export const getPwhWithId = createAsyncThunk('get_data_id',
+// async (id, thunkAPI) =>{
+//   try{
+//     const filterData =  thunkAPI.getState().data.data.filter((data) => data.id == id)
+//     // console.log(token);
+//     // return await updateService.getPwhWithId(id)
+//     // console.log(filterData)
+//     return filterData
+//   } catch (error){
+//     // console.log(error);
+//     const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.detail) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//   }
+// })
 
 
 export const addDataSlice = createSlice({
@@ -81,29 +79,30 @@ export const addDataSlice = createSlice({
       state.isLoading = false
       state.isError = false
       state.message = ''
-      state.isDataFetched = false
       state.data = []
+      // state.isDataFetched = false
     },
-    resetUpdateId:(state)=>{
-      state.isDataFetched = false
-      // state.isDataToUpdateSuccess = false
+    // resetUpdateId:(state)=>{
+    //   state.isDataFetched = false
+    // state.isDataToUpdateSuccess = false
 
-    },
-    updateFormdata:(state, action) =>{
-      const {name, value, level} = action.payload
-      state.data = level? ({...state.data,[level]
-        :{...state.data[level],[name]:value}}) 
-        :({...state.data,[name]:value})
+    // },
+    // updateFormdata:(state, action) =>{
+    //   const {name, value, level} = action.payload
+     
+    //   state.data = level? ({...state.data,[level]
+    //     :{...state.data[level],[name]:value}}) 
+    //     :({...state.data,[name]:value})
       
-    },
-    getDataFromDb:(state,action)=>{
+    // },
+    // getDataFromDb:(state,action)=>{
 
-      const {id} = action.payload
-      // const {data} = useSelector(data)
-        // state.data = data
+    //   const {id} = action.payload
+    //   // const {data} = useSelector(data)
+    //     // state.data = data
 
 
-    },
+    // },
   }, extraReducers:(builder) =>{
     builder 
     .addCase(createPwh.pending, (state)=>{
@@ -120,22 +119,22 @@ export const addDataSlice = createSlice({
       state.isError = true
       state.message = action.payload
      })
-     .addCase(getPwhWithId.pending, (state)=>{
-      state.isLoading = true
-    })
-    .addCase(getPwhWithId.fulfilled, (state, action) =>{
-      // let {filterData} = action.payload
-      state.isLoading = false
-      state.isDataFetched = true
-      state.isDataToUpdateSuccess = true
-      state.data = action.payload
-      // console.log(current(state.data))
-    })
-    .addCase(getPwhWithId.rejected, (state, action) =>{
-      // state.isLoading = false
-      // state.isError = true
-      state.message = action.payload
-    })
+    //  .addCase(getPwhWithId.pending, (state)=>{
+    //   state.isLoading = true
+    // })
+    // .addCase(getPwhWithId.fulfilled, (state, action) =>{
+    //   let filterData = action.payload
+    //   state.isLoading = false
+    //   state.isDataFetched = true
+    //   state.isDataToUpdateSuccess = true
+    //   state.data = filterData
+    //   // console.log(current(state.data))
+    // })
+    // .addCase(getPwhWithId.rejected, (state, action) =>{
+    //   // state.isLoading = false
+    //   // state.isError = true
+    //   state.message = action.payload
+    // })
     .addCase(updatePwh.pending, (state)=>{
       state.isLoading = true
  
@@ -153,5 +152,5 @@ export const addDataSlice = createSlice({
   }
 })
 
-export const {reset,updateFormdata,resetUpdateId,getDataFromDb} = addDataSlice.actions
+export const { reset } = addDataSlice.actions
 export default addDataSlice.reducer
