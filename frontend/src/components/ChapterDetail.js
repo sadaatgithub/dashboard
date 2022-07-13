@@ -9,14 +9,11 @@ const {userDetail, isSuccess} = useSelector((state) => state.fetchUser)
 
 const [visible, setVisible] = useState(false)
 
-  const dispatch = useDispatch()
+
 const onClick = () =>{
     setVisible(!visible)
 }
-useEffect (() =>{
- 
 
-},[isSuccess])
 
   return (
     <>  
@@ -24,15 +21,16 @@ useEffect (() =>{
      { isSuccess? (
      <>
      <div className="chapter-name">
-     <p>Chapter Name : -</p><p>{userDetail?.first_name + "  " + userDetail?.last_name}</p>
+     <p>Chapter Name : -</p><p>{userDetail?.first_name + "  " + userDetail?.last_name} lorem ipsum</p>
      </div>
         <div className="chapter-address">
-        <p>Address : -</p>
+          <div className="chapter-address--title"><p>Address : -</p></div>
+        
         <div className="address-detail">
         <p className='text-sm'> {userDetail?.chapter_address?.line_1 +"," + userDetail.chapter_address?.line_2 + "," + userDetail.chapter_address?.line_3}</p> 
-        <p className='text-sm'> <strong>City :- </strong>{userDetail.chapter_address?.city}</p>
-        <p className='text-sm'><strong>Tah :- </strong>{userDetail.chapter_address?.tahsil} , <strong> Dist :- </strong>{userDetail.chapter_address?.district}</p>
-        <p className='text-sm'><strong>State :- </strong>{userDetail.chapter_address?.state + "," + " " + userDetail.chapter_address?.pincode}</p>
+        <p className='text-sm'> <span>City :- </span>{userDetail.chapter_address?.city}</p>
+        <p className='text-sm'><span>Tah :- </span>{userDetail.chapter_address?.tahsil} , <span> Dist :- </span>{userDetail.chapter_address?.district}</p>
+        <p className='text-sm'><span>State :- </span>{userDetail.chapter_address?.state + "," + " " + userDetail.chapter_address?.pincode}</p>
         </div>
         </div>
         <a className='text-sm chapter-edit-link' onClick={onClick}>Edit</a>

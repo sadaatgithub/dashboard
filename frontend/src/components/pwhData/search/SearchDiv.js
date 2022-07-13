@@ -26,8 +26,12 @@ const onChange = (e) =>{
   }))
 }
 const onClear = () =>{
-  setSearchData({full_name:'',
-  factor_def:'',})
+  setSearchData({
+    full_name:'',
+    factor_def:'',
+  })
+  setFilteredData('')
+
 }
 const onSubmit = (e) =>{
     e.preventDefault();
@@ -62,7 +66,7 @@ useEffect(() =>{
          <button type='submit'>Search</button>
        </div>
        <div className="form-group">
-         <div type='' onClick={onClear}>Clear</div>
+         <div type='button' onClick={onClear}>Clear</div>
        </div>
 
      </form>
