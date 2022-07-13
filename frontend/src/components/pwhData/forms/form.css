@@ -1,15 +1,17 @@
 
 .container-form {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  width: 100%;
   gap: 1rem;
   min-height: 90vh;
 
 }
 .form-left {
-  width: 100%;
-  /* min-width: 250px; */
+  /* width: 100%; */
+  min-width: 250px;
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   box-shadow: 0 1px 5px 0px rgba(31, 34, 77, 0.26);
 
@@ -19,6 +21,7 @@
   display: flex;
   gap: 0.25rem;
   width: 100%;
+  flex-direction: column;
   /* border-bottom: 1px solid rgb(173, 173, 173); */
   /* justify-content: space-between; */
   
@@ -28,7 +31,7 @@
   display: flex;
   /* border: 1px solid red; */
   flex-direction: column;
-  /* flex-grow: 1; */
+  flex-grow: 1;
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -36,17 +39,24 @@
   overflow: hidden;
 }
 .form-left button {
-  padding: 0.75rem;
+  padding: 0.7rem;
   cursor: pointer;
-  text-align: center;
-  border: 1px solid rgb(156, 156, 160);
-  border-radius: 3px;
-  background-color: rgb(255, 255, 255);
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-color: rgb(240, 240, 240);
   flex-grow: 1;
   font-weight: bold;
+  transition: border 0.3s ease-in-out;
+}
+.form-left button:hover{
+ border: 1px solid rgb(122, 122, 122);
+
 }
 .form-left button.active {
-  background-color: hsl(183, 67%, 84%);
+  background-color: rgb(134, 134, 134);
+  /* background:linear-gradient(rgb(24, 24, 236), rgb(55, 38, 206)); */
+  color: #ffff;
 
 }
 .form {

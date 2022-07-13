@@ -121,15 +121,18 @@ const AddNewPwh = (props) => {
 
   return (
     <>
-      <div className="container-form">
-        <div className="close-div">
+    <div className="close-div">
           <button
-            className="search-close"
+            className="back-btn"
             onClick={() => navigate(-1, { replace: true })}
           >
             Back
           </button>
         </div>
+        <br/>
+     
+      <div className="container-form">
+        
 
         <div className="form-left">
           <Tabs value={value} setValue={setValue} tabArray={tabArray} />
