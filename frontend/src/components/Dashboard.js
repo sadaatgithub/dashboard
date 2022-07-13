@@ -24,7 +24,7 @@ const Dashboard = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-
+const duplicate = data.filter((data) => data.tag === 'Duplicate').length
 
 useEffect(() =>{
 
@@ -40,7 +40,7 @@ if (isLoading) {
     <>
     <div className="action-container">
     <aside className="action-div">
-      <div className="action-div-top border">
+      <div className="action-div-top">
         <p>Welcome {userDetail?.first_name + ' ' + userDetail?.last_name}</p>
       </div>
         <DashboardNav />
@@ -50,19 +50,21 @@ if (isLoading) {
       </div>
     </aside>
     <section className="dashboard-container">
-  
-      <div className="dashboard-top">
-        <div className="info-row">
-          <p>Duplicate PwH</p>
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </div>
-      </div>
+    <div className="dashboard-top">
+    <div className="info-row">
+      <p>You have {duplicate} duplicate entr{`${duplicate > 1? "ies" : "y"}`}</p>
+      <p>Lorem ipsum dolor sit amet.</p>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+  </div>
+        
+      
       <div className="dashboard-middle">
         
         <div className="total-pwh">
-          <p>Total PwH</p>
-          <p>{data.filter((data) => data.tag !== 'Deceased').length}</p>
+          <p className='total-pwh-heading'>Total PwH</p>
+          <p className='total-pwh-count'>{data.filter((data) => data.tag !== 'Deceased').length}</p>
+          <small className='desclaimer'>* Deceased not included</small>
         </div>
           <FactorwiseCount />
        
