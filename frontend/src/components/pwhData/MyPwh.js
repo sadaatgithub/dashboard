@@ -159,8 +159,8 @@ if(!data){
   return (
     <>
     <div className="close-div">
-      <button className='search-close'  onClick={() => navigate(-1)}>Back</button>
-      <Link to="/add" className=''><button>Add new Pwh</button></Link>
+      <button className='back-btn'  onClick={() => navigate(-1)}>Back</button>
+      <Link to="/add"><button className='btn-add-pwh'>Add new Pwh</button></Link>
       </div>
    <div className="action-div">
    
@@ -171,9 +171,9 @@ if(!data){
     <div className="">
     <div className="flex table-search-div">
   
-  <input type="text" onChange={onChange} placeholder="Search"/>
+  <input type="text" onChange={onChange} placeholder="Search by Name"/>
 
-  <label htmlFor=""> <small>Entries to display </small>
+  <label htmlFor=""><small>Entries to display</small>
   <select name="" id="" className="search-by-entries" onChange={howMany}> 
     <option value="10">10</option>
     <option value="50">50</option>
@@ -214,8 +214,11 @@ if(!data){
     </tbody>
     </table>
     </div>
+    <div class="table-footer">
+    <p><small>Showing 1 to 10 of {data.length} entries</small> </p>
+
+    
     <ul className='pagination-no-row'>
-      <li><p><small>Showing 1 to 10 of {data.length} entries</small> </p></li>
       <li><button onClick={handlePrevbtn} disabled={currentPage == pages[0]? true:false}>Prev</button></li>
       {pageDecrBtn}
       
@@ -232,6 +235,7 @@ if(!data){
       <li><button onClick={handleNextbtn}
             disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</button> </li>
       </ul>
+      </div>
 </div>
 
       {visible? (<><div className="view-more">

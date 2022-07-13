@@ -481,21 +481,25 @@ form {
 }
 .pagination-no-row {
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
-  /* border: 1px solid red; */
-  /* align-self:stretch; */
-  /* align-items: space-around; */
+  flex-grow: 1;
+
+}
+.table-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .pagination-no-row li {
-  /* flex-grow: 1; */
-  display: flex;
-  align-items: center;
-  padding: 0.1rem 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 3px;
   cursor: pointer;
+
 }
 .pagination-no-row .active {
-  background-color: rgb(235, 235, 235);
-  /* border: 1px solid red; */
+ background-color: #e2e2e2;
+  border: 1px solid rgb(0, 68, 255);
 }
 .pagination-no-row button {
   padding: 0.5rem 0.85rem;
@@ -949,9 +953,34 @@ margin-left: auto;
   border-radius: 30px;
   font-size: 13px;
 }
+.btn-add-pwh{
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background-color: blue;
+  border-radius: 3px;
+}
 .table-search-div{
   background-color: rgb(141, 141, 141);
   padding: 0.25rem;
   color: rgb(241, 241, 241);
   font-weight: 200;
+}
+.table-search-div input{
+  border: none;
+  border-radius: 2px;
+  padding-left: 0.5rem;
+}
+.table-search-div input:focus{
+  outline: none;
+}
+.back-btn{
+  color: #fff;
+  background-color: rgb(151, 151, 151);
+  padding: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
