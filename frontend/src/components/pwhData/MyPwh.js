@@ -160,6 +160,7 @@ if(!data){
     <>
     <div className="close-div">
       <button className='search-close'  onClick={() => navigate(-1)}>Back</button>
+      <Link to="/add" className=''><button>Add new Pwh</button></Link>
       </div>
    <div className="action-div">
    

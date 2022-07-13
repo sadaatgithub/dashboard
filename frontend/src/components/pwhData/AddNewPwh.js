@@ -21,9 +21,9 @@ const AddNewPwh = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data, isSuccess, isDataFetched, isError, message ,isDataToUpdateSuccess} =
+  const { data, isSuccess, isError, message ,isLoading} =
     useSelector((state) => state.createPwh);
-  const {data:allData, isLoading} =useSelector((state) => state.data)
+  const {data:allData} =useSelector((state) => state.data)
   
   // const filterData = allData.filter((data) => data.id == id)
 
@@ -55,11 +55,13 @@ const AddNewPwh = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (id) {
-      dispatch(updatePwh(addPwh));
-    } else {
-      dispatch(createPwh(addPwh));
-    }
+    id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
+
+    // if (id) {
+    //   dispatch(updatePwh(addPwh));
+    // } else {
+    //   dispatch(createPwh(addPwh));
+    // }
     console.log(addPwh)
   };
 
@@ -104,7 +106,7 @@ const AddNewPwh = (props) => {
   }
     if (isSuccess) {
       const msg = id? "Updated" : "Added"
-      toast.success(` Successfully ${msg}....!`)
+      toast.success(`Successfully ${msg}....!`)
       dispatch(fetchData());
       // dispatch(resetUpdateId());
       dispatch(reset());
@@ -113,18 +115,9 @@ const AddNewPwh = (props) => {
     if (isError) {
       toast.error(message);
     }
-    // return () => {
-    //   if(isDataFetched){
-    //   // dispatch(reset());
-    //   dispatch(resetUpdateId());
-    // }
-    // };
-  }, [id,dispatch,isSuccess]);
-  // dispatch, isSuccess, isError, message, navigate
-
-  if (isLoading) {
-    return <Spinner />;
-  }
+  
+  }, [id,dispatch,isSuccess,isError,isLoading,navigate]);
+ 
 
   return (
     <>
@@ -782,7 +775,9 @@ const AddNewPwh = (props) => {
             <div className="flex">
               {/* <span onClick={onNext}>Next</span> */}
               <button type="submit" className="btn btn-submit">
-                {isLoading ? "Requesting" : addPwh?.id? "Update" : "Add"}
+                {/* {isLoading? 'Updating':addPwh?.id? "Update" : "Add"} */}
+                {addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' : 'Add'}
+                
 
                 {/* Add */}
               </button>
