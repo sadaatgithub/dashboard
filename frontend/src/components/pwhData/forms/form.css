@@ -17,6 +17,9 @@
 
   
 }
+@media only screen and (max-width: 768px) {
+  .form-left{min-width: 100px;}
+}
 .form-btn {
   display: flex;
   gap: 0.25rem;
