@@ -52,6 +52,9 @@ useEffect (() =>{
 },[isLoading,isError,isSuccess,message])
   return (
     <>
+    <div className="close-div">
+      <button className='back-btn'  onClick={() => navigate(-1)}>Back</button>
+      </div>
     <form className="pwd-form" onSubmit={onSubmit}>
       <div className="form-group">
       <label htmlFor="current_password">Enter Your Current Password</label>
