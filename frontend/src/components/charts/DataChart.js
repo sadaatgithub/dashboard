@@ -15,7 +15,7 @@ function DataChart() {
 
   return (
     <div className="inner-pie-chart">
-    <Pie 
+    <Pie className='pie-chart-img'
     data={{
    
       labels: [`FVIII ${f8}`, `FIX ${f9}`, `VwD ${vwd}`, `Other ${other}`],
