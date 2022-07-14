@@ -162,9 +162,7 @@ if(!data){
       <button className='back-btn'  onClick={() => navigate(-1)}>Back</button>
       <Link to="/add"><button className='btn-add-pwh'>Add new Pwh</button></Link>
       </div>
-   <div className="action-div">
-   
-   </div>
+ 
     <div className="container-pwh">
   
     <div className="table-container">

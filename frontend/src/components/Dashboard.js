@@ -11,6 +11,7 @@ import DataChart from './charts/DataChart';
 import SearchDiv from './pwhData/search/SearchDiv';
 import DashboardNav from './dashboardComponent/DashboardNav';
 import FactorwiseCount from './dashboardComponent/FactorwiseCount';
+import { FaBars, FaBullseye,FaTimes } from 'react-icons/fa';
 // import {ImAddressBook} from 'react-icons/fa'
 
 // const userDetail = localStorage.getItem('user_detail')
@@ -19,13 +20,16 @@ const Dashboard = () => {
   const {user} = useSelector((state)=>state.auth)
   const {data,isLoading,isError,isSuccess,isDataFetched} = useSelector((state)=>state.data)
   const {userDetail} = useSelector((state) => state.fetchUser)
-
+  const [isSideBarOpen,setSideBar] = useState(false)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
 const duplicate = data.filter((data) => data.tag === 'Duplicate').length
-
+const sidebarHandler = () =>{
+  setSideBar((state)=> state = !state)
+  console.log(isSideBarOpen)
+}
 useEffect(() =>{
 
 
@@ -38,8 +42,12 @@ if (isLoading) {
 }
   return (
     <>
+    <div className="burger-menu">
+      {isSideBarOpen? <FaTimes onClick={sidebarHandler}/>:<FaBars  onClick={sidebarHandler}/>}
+      
+      </div>
     <div className="action-container">
-    <aside className="action-div">
+    <aside className={` action-div ${isSideBarOpen? 'active':''}`}>
       <div className="action-div-top">
         <p>Welcome {userDetail?.first_name + ' ' + userDetail?.last_name}</p>
       </div>
