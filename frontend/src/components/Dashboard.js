@@ -49,7 +49,7 @@ if (isLoading) {
     <div className="action-container">
     <aside className={` action-div ${isSideBarOpen? 'active':''}`}>
       <div className="action-div-top">
-        <p>Welcome {userDetail?.first_name + ' ' + userDetail?.last_name}</p>
+        <p>Dashboard</p>
       </div>
         <DashboardNav />
       

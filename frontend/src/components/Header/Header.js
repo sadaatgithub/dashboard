@@ -39,7 +39,7 @@ useEffect(() =>{
   return (
     <header className="header">
       <div className="logo">
-        <Link to='/'><h3>National ******* Registry</h3></Link>
+        <Link to='/'><h3>National ABC Registry</h3></Link>
       </div>
       <ul>
       {user ? (
