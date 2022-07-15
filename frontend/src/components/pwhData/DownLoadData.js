@@ -32,10 +32,9 @@ if(isLoading){
     <>
     <main className="pwh-data-to-excel">
     <div className="close-div">
-      <button className='search-close'  onClick={() => navigate(-1)}>Back</button>
+      <button className='back-btn'  onClick={() => navigate(-1)}>Back</button>
       </div>
       <div className="excel-download-btn">
-     
        <div>
       <label htmlFor="report-factorwise">Select Factor </label>
       <select name="" id="report-factorwise"  onChange={(e)=>{setByFactor(e.target.value)}}>

@@ -142,8 +142,9 @@ border-bottom: 1px solid blue;
 .form-group label {
   text-align: left;
   display: block;
-  margin: 0 0 5px 3px;
+  margin: 0 0 2px 0;
   font-size: 14px;
+  color: rgb(82, 81, 81);
 }
 
 .btn {
@@ -429,7 +430,10 @@ tr:nth-child(even) {
 .pwh-info-div{display: flex;
 }
 .pwh-info-div > div{width: 50%;}
-/* .pwh-info  .pwh-info-label{width: 50%;} */
+.pwh-info-label strong{
+  color: rgb(56, 55, 55);
+}
+.pwh-info-value{font-size: 13px;font-weight: 300;}
 .pwh-action button {
   /* display: block; */
   width: 100%;
@@ -562,13 +566,13 @@ form {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ffff;
+  /* border: 1px solid #ffff; */
   border-radius: 5px;
   padding: 0.5rem;
+  box-shadow: 0px 10px 20px rgba(32, 37, 88, 0.247);
   background-color:rgb(255, 255, 255);
   backdrop-filter: blur(5px);
   color: blue;
-  box-shadow: 0px 10px 20px rgba(32, 37, 88, 0.247);
 
 }
 .total-pwh p{
@@ -660,15 +664,19 @@ input:invalid[focused="true"] ~ span {
 
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
 
   .action-div{
   position: absolute;
+  background-color:transparent;
   z-index: 1;
   left: 0;
-  bottom: 0;top: 20%;
-  transform: translateX(-100%);
+  bottom: 0;
+  top: 20%;
+  right: 50%;
+  transform: translateX(-110%);
   transition: transform 0.3s ease-in-out;
+  backdrop-filter: blur(50px);
 
 }
 .action-div.active{
@@ -682,7 +690,9 @@ input:invalid[focused="true"] ~ span {
   gap: 0;
   margin: 0;
   align-items:stretch;
+  background-color: transparent;
 }
+.action-div-bottom{background-color: transparent;}
 .action-div ul li{
   padding: 0.5rem;
   flex-direction: row;
@@ -692,13 +702,14 @@ input:invalid[focused="true"] ~ span {
   height: auto;
   justify-content: flex-start;
   box-shadow: none;
+  background-color:transparent;
+
 }
 .burger-menu{display: block;}
 .personal-info{overflow-y: scroll;}
 }
 .pie-chart {
-  /* width: 50%; */
-  min-width: 400px;
+  min-width: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -717,19 +728,16 @@ input:invalid[focused="true"] ~ span {
   display: flex;
 }
 .inner-pie-chart{
-  /* width: 100%; */
-  width: 50%;
+  width: 55%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-grow: 1; */
-  /* border: 1px solid red; */
+
 }
 .chapter-details {
   position: relative;
   background-color: #ffff;
   margin: 0 auto;
-  /* border: 1px solid rgb(64, 64, 161); */
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -741,7 +749,6 @@ input:invalid[focused="true"] ~ span {
 }
 .chapter-details-heading {
   padding: 0.5rem;
-  /* background-color: rgb(203, 213, 248); */
   font-size: 14px;
   font-weight: bold;
   border: 1px solid rgb(185, 185, 185);
@@ -799,13 +806,13 @@ input:invalid[focused="true"] ~ span {
   border: 1px solid rgb(150, 150, 150);
   top:-15%;
   right: 0;
-  bottom: 0;
-  background-color: rgb(237, 239, 245);
-  backdrop-filter: blur(5px);
+  /* bottom: 0; */
+  background-color: rgb(233, 233, 233);
+  backdrop-filter: blur(15px);
   display: flex;
   flex-flow: column;
-  border-radius: 4px;
-  padding: 0.5rem;
+  border-radius: 5px;
+  padding: 0.8rem;
 }
 .chapter-edit-close{
   padding: 0.25rem;
@@ -834,7 +841,7 @@ input:invalid[focused="true"] ~ span {
   border-radius: 3px;
   padding-left: 0.5rem;
   background-color: #ffffff;
-  color: rgb(146, 146, 146);
+  color: rgb(122, 122, 122);
 }
 .chapter-edit-input input:focus{
   outline: 1px solid skyblue;
@@ -936,8 +943,9 @@ min-height: 100vh;
   flex-direction: column;
   justify-content: center;
 }
-.factorwise-count{flex-wrap: wrap;}
+.foctorwise-count{flex-wrap: wrap;}
 .excel-download-btn{
+  margin-top: 0.5rem;
   /* border: 1px solid rgb(28, 63, 219); */
   background-color: rgb(73, 121, 255);
   display: flex;
@@ -1035,4 +1043,19 @@ margin-left: auto;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  margin-left: 0.5rem;
+}
+.pwh-action-link{width: 100%;display: flex;gap: 1px;}
+.pwh-action-link li{
+  background-color: rgb(31, 130, 175);
+  flex-grow: 1;padding: 0.5rem;
+  border-radius: 3px;
+  color: #ffff;
+  cursor: pointer;
+}
+.pwh-action-link li:last-child{
+  background-color: rgb(223, 13, 13);
+}
+.pwh-action-link li a{
+  color: #ffff;
 }

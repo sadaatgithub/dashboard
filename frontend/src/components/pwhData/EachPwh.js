@@ -182,7 +182,7 @@ useEffect(() =>{
                   id="image" accept="image/png, image/jpeg"
                   onChange={onChange}/>
                   <label htmlFor="image">Change Photo</label>
-                  {postImage.image? (<><input type="submit" value="Change Photo" htmlFor="image" /></>):(<><input type="submit" value="Change Photo" htmlFor="image" /></>)}
+                  {postImage.image? (<><input type="submit" value="Change Photo" htmlFor="image" /></>):(<></>)}
                   
 
                   </>):(<>
@@ -201,20 +201,28 @@ useEffect(() =>{
         </div>
       </div>
       <div className="pwh-action">
-        <Link to={"/edit/" + data.id}>
+        <ul className="pwh-action-link">
+        <li><Link to={"/edit/" + data.id}>Edit</Link></li>
+          <li onClick={onManage}>Manage</li>
+
+          <li>Attach</li>
+          <li>Download</li>
+          <li onClick={onClick}>Delete</li>
+        </ul>
+        {/* <Link to={"/edit/" + data.id}>
         <button value={data.id}>Edit</button>
-        </Link>
+        </Link> */}
         {/* <Link to="/add/">
         <button>Add Pwh</button>
         </Link> */}
       
-        <button onClick={onClick}>Delete</button>
+        {/* <button onClick={onClick}>Delete</button> */}
     
-        <button onClick={onManage} className="btn-manage">Manage
-        </button>
-        {manageModal? (<ManageModal showModal={onClick}  hideModal={hideModal} id={data.id} />) :(null)}
-        <button>Attach</button>
-        <button>Download</button>
+        {/* <button  className="btn-manage">Manage
+        </button> */}
+    {manageModal? (<ManageModal showModal={onClick}  hideModal={hideModal} id={data.id} />) :(null)}
+           {/*  <button>Attach</button>
+        <button>Download</button> */}
       </div>
       
       {modal? (<DeleteModal showModal={onClick} hideModal={hideModal} id={data.id} />) :(null)}
