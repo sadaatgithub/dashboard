@@ -30,6 +30,7 @@ const AddNewPwh = (props) => {
   const [addPwh, setAddPwh] = useState();
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("Personal");
+  const [counter, setCounter] = useState(1)
 
   // const tabArray = ['tab1','tab2','tab3','tab4','tab5']
   const tabArray = [
@@ -52,16 +53,28 @@ const AddNewPwh = (props) => {
   //   dispatch(getPwhWithId(id))
   // }
 
+  const onNext = () =>{
+    if(counter < tabArray.length){
+      setValue(tabArray[counter])
+      setCounter((counter) => counter ++)
+      return
+
+    } else setCounter(1)
+  }
+const onPrev = () =>{
+  console.log("dec")
+  if(counter <= tabArray.length){
+    setCounter((counter) => counter - 1)
+    setValue(tabArray[counter])
+
+  
+  }
+
+}
   const onSubmit = (e) => {
     e.preventDefault();
 
     id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
-
-    // if (id) {
-    //   dispatch(updatePwh(addPwh));
-    // } else {
-    //   dispatch(createPwh(addPwh));
-    // }
     console.log(addPwh)
   };
 
@@ -101,6 +114,8 @@ const AddNewPwh = (props) => {
   }
 
   useEffect(() => {
+    console.log(counter)
+
     if(id){
     getPwh(id)
   }
@@ -116,7 +131,7 @@ const AddNewPwh = (props) => {
       toast.error(message);
     }
   
-  }, [id,dispatch,isSuccess,isError,isLoading,navigate]);
+  }, [id,dispatch,isSuccess,isError,isLoading,navigate,counter,value]);
  
 
   return (
@@ -776,16 +791,14 @@ const AddNewPwh = (props) => {
             </div>
 
             <div className="flex">
-              {/* <span onClick={onNext}>Next</span> */}
-              <button type="submit" className="btn btn-submit">
-                {/* {isLoading? 'Updating':addPwh?.id? "Update" : "Add"} */}
+              {/* <button type="submit" className="btn btn-submit">
                 {addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' : 'Add'}
-                
-
-                {/* Add */}
-              </button>
+              </button> */}
             </div>
           </form>
+          <button onClick={onPrev}>Prev</button>
+          <button onClick={onNext}>Next</button>
+
         </div>
       </div>
     </>
