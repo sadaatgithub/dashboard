@@ -7,11 +7,9 @@ import Header from "./components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyPwh from "./components/pwhData/MyPwh";
-
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
-
 const DownLoadData = lazy(() => import("./components/pwhData/DownLoadData"));
 const SearchDiv = lazy(() => import("./components/pwhData/search/SearchDiv"));
 const AddNewPwh = lazy(() => import("./components/pwhData/AddNewPwh"));

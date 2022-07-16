@@ -9,7 +9,6 @@ import userUpdateSliceReducer from "../features/user/userUpdateSlice";
 import uploadImageSliceReducer from "../features/data/uploadImageSlice"
 import updatePwhSliceReducer from "../features/data/updatePwhSlice"
 
-
 export const store = configureStore({
   reducer:{
     auth:authReducer,

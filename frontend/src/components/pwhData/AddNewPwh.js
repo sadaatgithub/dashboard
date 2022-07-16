@@ -13,6 +13,7 @@ import { fetchData } from "../../features/data/dataSlice";
 import Spinner from "../Spinner";
 import Tabs from "./Tabs";
 import updateService from "../../features/data/updateService";
+import PwhDetailForm from "./forms/PwhDetailForm";
 // import { } from "../../features/data/updatePwhSlice";
 
 const AddNewPwh = (props) => {
@@ -30,44 +31,47 @@ const AddNewPwh = (props) => {
   const [addPwh, setAddPwh] = useState();
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("Personal");
+  const [counter, setCounter] = useState(1);
+  const [formSteps, setFormSteps] = useState(0)
 
-  // const tabArray = ['tab1','tab2','tab3','tab4','tab5']
+
   const tabArray = [
-    "Personal",
-    "Educational",
-    "Family",
-    "Medical",
-    "Membership",
-  ];
+       "Personal",
+      "Educational",
+      "Family",
+      "Medical",
+      "Membership"
+  ]
 
-  const index = tabArray.indexOf(value);
-  const [tab, setTab] = useState(index);
+
 
 
   const handleFocus = (e) => {
     setFocused(true);
   };
 
-  // if(!data.id){
-  //   dispatch(getPwhWithId(id))
-  // }
+
+  const onNext = () =>{
+    setFormSteps(prevStep => prevStep + 1)
+    console.log(formSteps)
+
+  }
+
+const onPrev = () =>{
+  setFormSteps(prevStep => prevStep - 1)
+    console.log(formSteps)
+
+}
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
-
-    // if (id) {
-    //   dispatch(updatePwh(addPwh));
-    // } else {
-    //   dispatch(createPwh(addPwh));
-    // }
     console.log(addPwh)
   };
 
-  const onFocus = (e) => {
+const onFocus = (e) => {
     e.target.name === e.target.value && setFocused(true);
-  };
+};
 
   const onChange = (level) => (e) => {
 
@@ -75,15 +79,10 @@ const AddNewPwh = (props) => {
       setAddPwh((prevState) => {
         return { ...prevState, [e.target.name]: e.target.value };
       });
-
     } else {
-      // dispatch(updateFormdata(formData))
       setAddPwh((prevState) => {
         return {
-          ...prevState,
-          [level]: {
-            ...prevState[level],
-            [e.target.name]: e.target.value,
+          ...prevState,[level]: {...prevState[level],[e.target.name]: e.target.value,
           },
         };
       });
@@ -93,7 +92,6 @@ const AddNewPwh = (props) => {
   const getPwh = id =>{
     updateService.getPwhWithId(id).then(response =>{
       setAddPwh(response)
-      // console.log(response)
     })
     .catch(e =>{
       console.log(e)
@@ -101,6 +99,9 @@ const AddNewPwh = (props) => {
   }
 
   useEffect(() => {
+    if(formSteps > 4){
+      setFormSteps(0)
+    }
     if(id){
     getPwh(id)
   }
@@ -108,7 +109,6 @@ const AddNewPwh = (props) => {
       const msg = id? "Updated" : "Added"
       toast.success(`Successfully ${msg}....!`)
       dispatch(fetchData());
-      // dispatch(resetUpdateId());
       dispatch(reset());
       navigate("/pwh-data");
     }
@@ -116,7 +116,7 @@ const AddNewPwh = (props) => {
       toast.error(message);
     }
   
-  }, [id,dispatch,isSuccess,isError,isLoading,navigate]);
+  }, [id,dispatch,isSuccess,isError,isLoading,navigate,formSteps]);
  
 
   return (
@@ -135,14 +135,15 @@ const AddNewPwh = (props) => {
         
 
         <div className="form-left">
-          <Tabs value={value} setValue={setValue} tabArray={tabArray} />
+          <Tabs formSteps={formSteps} setFormSteps={setFormSteps} tabArray={tabArray} />
         </div>
 
         <div className="form-right">
+      
           <form className="form" onSubmit={onSubmit}>
             <div className="form-section">
               <div
-                className={`${value === "Personal" ? "show" : ""} form-div" `}
+                className={`${formSteps === 0 ? "show" : ""} form-div" `}
               >
                 <p>Personal</p>
                
@@ -358,7 +359,7 @@ const AddNewPwh = (props) => {
 
               <div
                 className={`${
-                  value === "Educational" ? "show" : ""
+                  formSteps === 1 ? "show" : ""
                 } form-div" `}
               >
                 <p>Educational</p>
@@ -477,7 +478,7 @@ const AddNewPwh = (props) => {
                 </div>
               </div>
 
-              <div className={`${value === "Family" ? "show" : ""} form-div" `}>
+              <div className={`${formSteps === 2 ? "show" : ""} form-div" `}>
                 <p>Family History</p>
                 <div className="family-history">
                   <div className="form-group">
@@ -534,7 +535,7 @@ const AddNewPwh = (props) => {
                 </div>
               </div>
               <div
-                className={`${value === "Medical" ? "show" : ""} form-div" `}
+                className={`${formSteps === 3? "show" : ""} form-div" `}
               >
                 <p>Medical History</p>
                 <div className="medical-history">
@@ -731,7 +732,7 @@ const AddNewPwh = (props) => {
                 </div>
               </div>
               <div
-                className={`${value === "Membership" ? "show" : ""} form-div" `}
+                className={`${formSteps === 4 ? "show" : ""} form-div" `}
               >
                 <p>Membership</p>
                 <div className="membership">
@@ -776,16 +777,19 @@ const AddNewPwh = (props) => {
             </div>
 
             <div className="flex">
-              {/* <span onClick={onNext}>Next</span> */}
-              <button type="submit" className="btn btn-submit">
-                {/* {isLoading? 'Updating':addPwh?.id? "Update" : "Add"} */}
+              {/* <button type="submit" className="btn btn-submit">
                 {addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' : 'Add'}
-                
-
-                {/* Add */}
-              </button>
+              </button> */}
+            <input type='button' disabled={formSteps <= 0} className="btn btn-submit" 
+                      value="Prev" onClick={onPrev}/>
+                      
+            <input type={formSteps > 4? "submit":"button"}  className="btn btn-submit" 
+                      value={formSteps >= 4? "Submit":"Next"} onClick={onNext}/>
             </div>
           </form>
+          {/* <button onClick={onPrev}>Prev</button>
+          <button onClick={onNext}>Next</button> */}
+
         </div>
       </div>
     </>
