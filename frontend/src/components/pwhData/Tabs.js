@@ -1,14 +1,14 @@
 import React from 'react'
 
 const Tabs = (props) => {
-  const {value,setValue, tabArray} = props
+  const {formSteps,setFormSteps, tabArray} = props
 
 
   return (
     <>
     <div className="form-btn">
-      {tabArray.map((tabs) =>{
-        return (<button key={tabs} className={value === tabs? 'active': ''} onClick={(e) =>{setValue(tabs)}} >{tabs}</button>)
+      {tabArray.map((step,index) =>{
+        return (<button key={index} className={formSteps === index? 'active': ''} onClick={(e) =>{setFormSteps(index)}} >{step}</button>)
       })}
      </div>
      </>

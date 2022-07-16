@@ -18,7 +18,8 @@ const DashboardNav = () => {
         <Link to="/search"> <li><FaSearch color="blue" size="15"/>Search</li></Link>
         <li><FaHospital color="blue" size="15" />HTC Center</li>
         <li><FaPhone color="blue" size="15" />Contact Us</li>
-    
+        
+
     </ul>
 </>
   )
