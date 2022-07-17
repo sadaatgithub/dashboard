@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import http from "../http-common";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -111,7 +110,6 @@ const onFocus = (e) => {
     if (isError) {
       toast.error(message);
     }
-console.log(addPwh)
   
   }, [id,dispatch,isSuccess,isError,isLoading,navigate]);
  
@@ -146,8 +144,9 @@ console.log(addPwh)
             </div>
 
             <div className="form-btn-nxt-prev">
-            <input type='button' disabled={formSteps <= 0} className="btn-submit" 
-                      value="Prev" onClick={onPrev}/>
+              {formSteps > 0 && <input type='button' className="btn-submit" 
+                      value="Prev" onClick={onPrev}/>}
+            
                       
             <input type={formSteps > 4? "submit":"button"}  className="btn-submit" 
                   value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' 
@@ -155,8 +154,6 @@ console.log(addPwh)
                   : 'Add':"Next"} onClick={onNext}/>
             </div>
           </form>
-  
-
         </div>
       </div>
     </>

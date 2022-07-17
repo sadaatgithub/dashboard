@@ -105,98 +105,43 @@ const MedicalDetails = (props) => {
                 </div>
                 <div className="deformity">
                   <div className="form-group">
-                    <p>Inhibitor?</p>
+                  <label for="is_studying">Inhibitor Status</label>
                     <div className="form-control flex">
-                      <label htmlFor="is_inhibitor_pos">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_inhibitor_pos"
-                          {...(addPwh?.pwh_medical?.is_inhibitor_pos === "true"
-                            ? "checked"
-                            : "np")}
-                          value="true"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
-                      <label htmlFor="is_inhibitor_pos">
-                        No
-                        <input
-                          type="radio"
-                          name="is_inhibitor_pos"
-                          value="false"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
+                      <select name="is_inhibitor_pos" id="" value={addPwh?.pwh_medical?.is_inhibitor_pos}  onChange={onChange("pwh_medical")}>
+                        <option value="null">Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                   <div className="form-group">
-                    <p>HCV?</p>
+                  <label for="is_studying">HCV ?</label>
                     <div className="form-control flex">
-                      <label htmlFor="is_hcv_pos">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_hcv_pos"
-                          value="true"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
-                      <label htmlFor="is_hcv_pos">
-                        No
-                        <input
-                          type="radio"
-                          name="is_hcv_pos"
-                          value="false"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
+                      <select name="is_hcv_pos" id="" value={addPwh?.pwh_medical?.is_hcv_pos}  onChange={onChange("pwh_medical")}>
+                        <option value="null">Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                   <div className="form-group">
-                    <p>HIV?</p>
+                  <label for="is_studying">HIV ?</label>
                     <div className="form-control flex">
-                      <label htmlFor="is_hiv_pos">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_hiv_pos"
-                          value="true"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
-                      <label htmlFor="is_hiv_pos">
-                        No
-                        <input
-                          type="radio"
-                          name="is_hiv_pos"
-                          value="false"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
+                      <select name="is_hiv_pos" id="" value={addPwh?.pwh_medical?.is_hiv_pos}  onChange={onChange("pwh_medical")}>
+                        <option value="null">Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                   <div className="form-group">
-                    <p>Deformity?</p>
+                  <label for="is_studying">Deformity</label>
                     <div className="form-control flex">
-                      <label htmlFor="is_deformity">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_deformity"
-                          value="true"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
-                      <label htmlFor="is_deformity">
-                        No
-                        <input
-                          type="radio"
-                          name="is_deformity"
-                          value="false"
-                          onChange={onChange("pwh_medical")}
-                        />
-                      </label>
+                      <select name="is_deformity" id="" value={addPwh?.pwh_medical?.is_deformity}  onChange={onChange("pwh_medical")}>
+                        <option value="null">Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                 </div>

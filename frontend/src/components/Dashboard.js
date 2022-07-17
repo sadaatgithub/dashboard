@@ -1,25 +1,18 @@
-import React,{useEffect,useState}from 'react'
+import {useEffect,useState}from 'react'
 import { useNavigate ,Link} from 'react-router-dom';
 import { useSelector,useDispatch} from 'react-redux';
-import { fetchData , reset} from '../features/data/dataSlice';
-import { fetchUser, reset as resetUser } from '../features/user/userSlice';
 import Spinner from './Spinner';
 import {FcSettings} from 'react-icons/fc'
 import ChapterDetail from './ChapterDetail';
-import { getPwhWithId , reset as resetUpdateId} from "../features/data/addNewPwhSlice";
 import DataChart from './charts/DataChart';
-import SearchDiv from './pwhData/search/SearchDiv';
 import DashboardNav from './dashboardComponent/DashboardNav';
 import FactorwiseCount from './dashboardComponent/FactorwiseCount';
-import { FaBars, FaBullseye,FaTimes } from 'react-icons/fa';
-// import {ImAddressBook} from 'react-icons/fa'
+import { FaBars,FaTimes } from 'react-icons/fa';
 
-// const userDetail = localStorage.getItem('user_detail')
 
 const Dashboard = () => {
   const {user} = useSelector((state)=>state.auth)
   const {data,isLoading,isError,isSuccess,isDataFetched} = useSelector((state)=>state.data)
-  const {userDetail} = useSelector((state) => state.fetchUser)
   const [isSideBarOpen,setSideBar] = useState(false)
 
   const navigate = useNavigate()

@@ -3,8 +3,8 @@ import React from 'react'
 const EducationalDetails = (props) => {
     const {addPwh,onChange} = props
 
-    const studyingCheckedTrue = addPwh.pwh_occupation.is_studying === 'true'? 'true':''
-    const studyingCheckedFalse = addPwh.pwh_occupation.is_studying === 'false'? 'true':''
+    const studyingCheckedTrue = addPwh?.pwh_occupation?.is_studying === 'true'? 'true':''
+    const studyingCheckedFalse = addPwh?.pwh_occupation?.is_studying === 'false'? 'true':''
 
   return (
     <>
@@ -13,29 +13,14 @@ const EducationalDetails = (props) => {
     <p>Educational</p>
                 <div className="educational">
                   <div className="form-group">
-                    <p>Studying?</p>
+                    {/* <p>Studying?</p> */}
+                      <label for="is_studying">Studying</label>
                     <div className="form-control flex">
-                     
-                      <label htmlFor="is_studying">
-                        No
-                        <input
-                          type="radio"
-                          name="is_studying"
-                          value="false"
-                          checked={studyingCheckedFalse}
-                          onChange={onChange("pwh_occupation")}
-                        />
-                      </label>
-                      <label htmlFor="is_studying">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_studying"
-                          value="true"
-                          checked={studyingCheckedTrue}
-                          onChange={onChange("pwh_occupation")}
-                        />
-                      </label>
+                      <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_studying}  onChange={onChange("pwh_occupation")}>
+                        <option value="null">Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                   <div className="form-group">
@@ -52,26 +37,14 @@ const EducationalDetails = (props) => {
                 <p>Occupational</p>
                 <div className="occupational">
                   <div className="form-group">
-                    <p>Employed?</p>
+                  <label for="is_studying">Employed</label>
                     <div className="form-control flex">
-                      <label htmlFor="is_employed">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_employed"
-                          value="true"
-                          onChange={onChange("pwh_occupation")}
-                        />
-                      </label>
-                      <label htmlFor="is_employed">
-                        No
-                        <input
-                          type="radio"
-                          name="is_employed"
-                          value="false"
-                          onChange={onChange("pwh_occupation")}
-                        />
-                      </label>
+                      <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_employed}  
+                          onChange={onChange("pwh_occupation")}>
+                        <option value="null">Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                   <div className="form-group">
@@ -84,26 +57,13 @@ const EducationalDetails = (props) => {
                     />
                   </div>
                   <div className="form-group">
-                    <p>Reimbursment?</p>
+                     <label for="is_studying">Reimbursment</label>
                     <div className="form-control flex">
-                      <label htmlFor="is_reimbursed">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_reimbursed"
-                          value="true"
-                          onChange={onChange("pwh_occupation")}
-                        />
-                      </label>
-                      <label htmlFor="is_reimbursed">
-                        No
-                        <input
-                          type="radio"
-                          name="is_reimbursed"
-                          value="false"
-                          onChange={onChange("pwh_occupation")}
-                        />
-                      </label>
+                      <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_reimbursed}  onChange={onChange("pwh_occupation")}>
+                        <option value="null">Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                   <div className="form-group">
