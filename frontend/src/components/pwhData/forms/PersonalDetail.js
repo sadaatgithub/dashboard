@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const PersonalDetail = (props) => {
     const {addPwh,onChange} = props
+
+
+
   return (
     <>
     <div className="form-div">

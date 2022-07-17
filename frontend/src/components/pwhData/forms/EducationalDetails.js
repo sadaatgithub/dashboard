@@ -3,6 +3,9 @@ import React from 'react'
 const EducationalDetails = (props) => {
     const {addPwh,onChange} = props
 
+    const studyingCheckedTrue = addPwh.pwh_occupation.is_studying === 'true'? 'true':''
+    const studyingCheckedFalse = addPwh.pwh_occupation.is_studying === 'false'? 'true':''
+
   return (
     <>
     <div className="form-div">
@@ -12,21 +15,24 @@ const EducationalDetails = (props) => {
                   <div className="form-group">
                     <p>Studying?</p>
                     <div className="form-control flex">
-                      <label htmlFor="is_studying">
-                        Yes
-                        <input
-                          type="radio"
-                          name="is_studying"
-                          value="true"
-                          onChange={onChange("pwh_occupation")}
-                        />
-                      </label>
+                     
                       <label htmlFor="is_studying">
                         No
                         <input
                           type="radio"
                           name="is_studying"
                           value="false"
+                          checked={studyingCheckedFalse}
+                          onChange={onChange("pwh_occupation")}
+                        />
+                      </label>
+                      <label htmlFor="is_studying">
+                        Yes
+                        <input
+                          type="radio"
+                          name="is_studying"
+                          value="true"
+                          checked={studyingCheckedTrue}
                           onChange={onChange("pwh_occupation")}
                         />
                       </label>

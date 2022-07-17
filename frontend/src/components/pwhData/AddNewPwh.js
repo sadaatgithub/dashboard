@@ -63,7 +63,7 @@ const onPrev = () =>{
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
+    id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
     console.log(addPwh)
   };
 
@@ -74,12 +74,11 @@ const onFocus = (e) => {
   const onChange = (level) => (e) => {
     if (!level) {
       setAddPwh((prevState) => {
-        return { ...prevState, [e.target.name]: e.target.value };
+        return {...prevState, [e.target.name]: e.target.value };
       });
     } else {
       setAddPwh((prevState) => {
-        return {
-          ...prevState,[level]: {...prevState[level],[e.target.name]: e.target.value,
+        return {...prevState,[level]: {...prevState[level],[e.target.name]: e.target.value,
           },
         };
       });
@@ -96,9 +95,9 @@ const onFocus = (e) => {
   }
 
   useEffect(() => {
-    if(formSteps > 4){
-      setFormSteps(0)
-    }
+    // if(formSteps > 4){
+    //   setFormSteps(0)
+    // }
     if(id){
     getPwh(id)
   }
@@ -112,9 +111,9 @@ const onFocus = (e) => {
     if (isError) {
       toast.error(message);
     }
-
+console.log(addPwh)
   
-  }, [id,dispatch,isSuccess,isError,isLoading,navigate,formSteps]);
+  }, [id,dispatch,isSuccess,isError,isLoading,navigate]);
  
 
   return (
@@ -127,7 +126,6 @@ const onFocus = (e) => {
             Back
           </button>
         </div>
-        <br/>
      
       <div className="container-form">
         
@@ -140,58 +138,24 @@ const onFocus = (e) => {
       
           <form className="form" onSubmit={onSubmit}>
             <div className="form-section">
-              {formSteps === 0 &&  
-                <PersonalDetail addPwh={addPwh} onChange={onChange}/>
-              }
-              {formSteps === 1 &&  
-                <EducationalDetails addPwh={addPwh} onChange={onChange}/>
-              }
-              {formSteps === 2 &&  
-                <FamilyDetails addPwh={addPwh} onChange={onChange}/>
-              }
-              {formSteps === 3 &&  
-                <MedicalDetails addPwh={addPwh} onChange={onChange}/>
-              }
-              {formSteps === 4 &&  
-                <MembershipDetails addPwh={addPwh} onChange={onChange}/>
-              }
-            
-
-              {/* <div className={`${
-                  formSteps === 1 ? "show" : ""
-                } form-div" `}>
-                <EducationalDetails addPwh={addPwh} onChange={onChange} />
-                
-              </div> */}
-
-              {/* <div className={`${formSteps === 2 ? "show" : ""} form-div" `}>
-              <FamilyDetails addPwh={addPwh} onChange={onChange} />
-              </div> */}
-              {/* <div
-                className={`${formSteps === 3? "show" : ""} form-div" `}
-              >
-            <MedicalDetails addPwh={addPwh} onChange={onChange}/>
-              </div> */}
-              {/* <div
-                className={`${formSteps === 4 ? "show" : ""} form-div" `}
-              >
-           <MembershipDetails addPwh={addPwh} onChange={onChange}/>
-              </div> */}
+              {formSteps === 0 &&  <PersonalDetail addPwh={addPwh} onChange={onChange}/>}
+              {formSteps === 1 &&  <EducationalDetails addPwh={addPwh} onChange={onChange}/>}
+              {formSteps === 2 &&  <FamilyDetails addPwh={addPwh} onChange={onChange}/>}
+              {formSteps === 3 &&  <MedicalDetails addPwh={addPwh} onChange={onChange}/>}
+              {formSteps === 4 &&  <MembershipDetails addPwh={addPwh} onChange={onChange}/>}
             </div>
 
-            <div className="flex">
-              {/* <button type="submit" className="btn btn-submit">
-                {addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' : 'Add'}
-              </button> */}
-            <input type='button' disabled={formSteps <= 0} className="btn btn-submit" 
+            <div className="form-btn-nxt-prev">
+            <input type='button' disabled={formSteps <= 0} className="btn-submit" 
                       value="Prev" onClick={onPrev}/>
                       
-            <input type={formSteps > 4? "submit":"button"}  className="btn btn-submit" 
-                      value={formSteps >= 4? "Submit":"Next"} onClick={onNext}/>
+            <input type={formSteps > 4? "submit":"button"}  className="btn-submit" 
+                  value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' 
+                  : isLoading? 'Sending' 
+                  : 'Add':"Next"} onClick={onNext}/>
             </div>
           </form>
-          {/* <button onClick={onPrev}>Prev</button>
-          <button onClick={onNext}>Next</button> */}
+  
 
         </div>
       </div>
