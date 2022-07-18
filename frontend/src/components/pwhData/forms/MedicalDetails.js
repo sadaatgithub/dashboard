@@ -105,7 +105,7 @@ const MedicalDetails = (props) => {
                 </div>
                 <div className="deformity">
                   <div className="form-group">
-                  <label for="is_studying">Inhibitor Status</label>
+                  <label htmlFor="is_studying">Inhibitor Status</label>
                     <div className="form-control flex">
                       <select name="is_inhibitor_pos" id="" value={addPwh?.pwh_medical?.is_inhibitor_pos}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
@@ -115,7 +115,7 @@ const MedicalDetails = (props) => {
                     </div>
                   </div>
                   <div className="form-group">
-                  <label for="is_studying">HCV ?</label>
+                  <label htmlFor="is_studying">HCV ?</label>
                     <div className="form-control flex">
                       <select name="is_hcv_pos" id="" value={addPwh?.pwh_medical?.is_hcv_pos}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
@@ -125,7 +125,7 @@ const MedicalDetails = (props) => {
                     </div>
                   </div>
                   <div className="form-group">
-                  <label for="is_studying">HIV ?</label>
+                  <label htmlFor="is_studying">HIV ?</label>
                     <div className="form-control flex">
                       <select name="is_hiv_pos" id="" value={addPwh?.pwh_medical?.is_hiv_pos}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
@@ -135,7 +135,7 @@ const MedicalDetails = (props) => {
                     </div>
                   </div>
                   <div className="form-group">
-                  <label for="is_studying">Deformity</label>
+                  <label htmlFor="is_studying">Deformity</label>
                     <div className="form-control flex">
                       <select name="is_deformity" id="" value={addPwh?.pwh_medical?.is_deformity}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>

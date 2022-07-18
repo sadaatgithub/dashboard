@@ -806,6 +806,7 @@ input:invalid[focused="true"] ~ span {
   border: 1px solid rgb(150, 150, 150);
   top:-15%;
   right: 0;
+  min-width: 300px;
   /* bottom: 0; */
   background-color: rgb(233, 233, 233);
   backdrop-filter: blur(15px);

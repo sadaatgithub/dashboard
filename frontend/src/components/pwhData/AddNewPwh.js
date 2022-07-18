@@ -23,13 +23,16 @@ const AddNewPwh = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data, isSuccess, isError, message ,isLoading} =
-    useSelector((state) => state.createPwh);
-  const {data:allData} =useSelector((state) => state.data)
+  const {isSuccess, isError, message ,isLoading} = useSelector((state) => state.createPwh);
   
-  // const filterData = allData.filter((data) => data.id == id)
+  const initialPersonalState = {
+    first_name:false,guardian_father_name:false,last_name:false,city:false,district:false,mobile:false,
+    pincode:false,email:false
+  }
 
-  const [addPwh, setAddPwh] = useState();
+  const [isPersonalInfo,setPersonalInfo] = useState(initialPersonalState)
+  const [isPersonalInfovalid, setPersonalInfoValid] =useState(false)
+  const [addPwh, setAddPwh] = useState({});
   const [focused, setFocused] = useState(false);
   const [formSteps, setFormSteps] = useState(0)
 
@@ -43,7 +46,7 @@ const AddNewPwh = () => {
   ]
 
 
-
+const isValid = Object.values(isPersonalInfo).every(value => value === true)
 
   const handleFocus = (e) => {
     setFocused(true);
@@ -69,19 +72,44 @@ const onPrev = () =>{
 const onFocus = (e) => {
     e.target.name === e.target.value && setFocused(true);
 };
+const onBlur = (name,value) =>{
+if(name === 'email'){
+  if(value.includes('@')){
+    setPersonalInfo((prevState) => {return {...prevState,[name]:true}})
 
+  } else {
+    setPersonalInfo((prevState) => {return {...prevState,[name]:false}})
+
+  }
+} else{
+  if(value){
+    setPersonalInfo((prevState) => {return {...prevState,[name]:true}})
+  } else{
+    setPersonalInfo((prevState) => {return {...prevState,[name]:false}})
+
+  }
+}
+}
   const onChange = (level) => (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    const required = e.target.required
     if (!level) {
       setAddPwh((prevState) => {
         return {...prevState, [e.target.name]: e.target.value };
       });
+
     } else {
-      setAddPwh((prevState) => {
+      setAddPwh((prevState) => { 
         return {...prevState,[level]: {...prevState[level],[e.target.name]: e.target.value,
           },
         };
       });
     }
+    if(required && !id){
+      onBlur(name,value)
+    }
+
   };
 
   const getPwh = id =>{
@@ -94,9 +122,8 @@ const onFocus = (e) => {
   }
 
   useEffect(() => {
-    // if(formSteps > 4){
-    //   setFormSteps(0)
-    // }
+    // console.log(isPersonalInfo)
+      console.log(isValid)
     if(id){
     getPwh(id)
   }
@@ -111,7 +138,7 @@ const onFocus = (e) => {
       toast.error(message);
     }
   
-  }, [id,dispatch,isSuccess,isError,isLoading,navigate]);
+  }, [id,dispatch,isSuccess,isError,isLoading,navigate,isValid,message]);
  
 
   return (
@@ -136,7 +163,7 @@ const onFocus = (e) => {
       
           <form className="form" onSubmit={onSubmit}>
             <div className="form-section">
-              {formSteps === 0 &&  <PersonalDetail addPwh={addPwh} onChange={onChange}/>}
+              {formSteps === 0 &&  <PersonalDetail addPwh={addPwh} onChange={onChange} valid={isPersonalInfo}/>}
               {formSteps === 1 &&  <EducationalDetails addPwh={addPwh} onChange={onChange}/>}
               {formSteps === 2 &&  <FamilyDetails addPwh={addPwh} onChange={onChange}/>}
               {formSteps === 3 &&  <MedicalDetails addPwh={addPwh} onChange={onChange}/>}
@@ -153,6 +180,7 @@ const onFocus = (e) => {
                   : isLoading? 'Sending' 
                   : 'Add':"Next"} onClick={onNext}/>
             </div>
+            {isValid? "valid":"not Valid"}
           </form>
         </div>
       </div>

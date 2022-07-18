@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const PersonalDetail = (props) => {
-    const {addPwh,onChange} = props
+    const {addPwh,onChange,valid} = props
 
 
 
@@ -12,23 +12,28 @@ const PersonalDetail = (props) => {
                
     <div className="personal-info">
       <div className="form-group">
-        <label htmlFor="first_name">First Name</label>
+        <label htmlFor="first_name">First Name<sup>*</sup></label>
         <input
           type="text"
           name="first_name"
-          value={addPwh?.first_name}
+          value={addPwh?.first_name || ''}
           onChange={onChange()}
+          required
+          // placeholder=
+        
         />
+        <small>{valid.first_name === false? "Required" :""}</small>
       </div>
       <div className="form-group">
         <label htmlFor="guardian_father_name">
-          Guardian/Father Name
+          Guardian/Father Name<sup>*</sup>
         </label>
         <input
           type="text"
           name="guardian_father_name"
-          value={addPwh?.guardian_father_name}
+          value={addPwh?.guardian_father_name || ''}
           onChange={onChange()}
+          required
         />
         {/* <span className="error-span"><p>Required</p></span> */}
       </div>
@@ -37,17 +42,18 @@ const PersonalDetail = (props) => {
         <input
           type="text"
           name="mothers_name"
-          value={addPwh?.mothers_name}
+          value={addPwh?.mothers_name || ''}
           onChange={onChange()}
         />
       </div>
       <div className="form-group">
-        <label htmlFor="last_name">Last Name</label>
+        <label htmlFor="last_name">Last Name<sup>*</sup></label>
         <input
           type="text"
           name="last_name"
-          value={addPwh?.last_name}
+          value={addPwh?.last_name || ''}
           onChange={onChange()}
+          required
         />
       </div>
       <div className="form-group">
@@ -56,7 +62,7 @@ const PersonalDetail = (props) => {
           type="date"
           name="dob"
           // format
-          value={addPwh?.dob}
+          value={addPwh?.dob || ''}
           onChange={onChange()}
         />
       </div>
@@ -66,7 +72,7 @@ const PersonalDetail = (props) => {
         <select
           name="gender"
           id="gender"
-          value={addPwh?.gender}
+          value={addPwh?.gender || ''}
           onChange={onChange()}
         >
           <option value="not selected">Select</option>
@@ -81,7 +87,7 @@ const PersonalDetail = (props) => {
         <select
           name="religion"
           id="religion"
-          value={addPwh?.religion}
+          value={addPwh?.religion || ''}
           onChange={onChange()}
         >
           <option value="not selected">Select</option>
@@ -97,7 +103,7 @@ const PersonalDetail = (props) => {
         <select
           name="caste"
           id="caste"
-          value={addPwh?.caste}
+          value={addPwh?.caste || ''}
           onChange={onChange()}
         >
           <option value="not selected">Select</option>
@@ -117,7 +123,7 @@ const PersonalDetail = (props) => {
                     <label htmlFor="line_1">Line 1</label>
                     <input
                       type="text"
-                      value={addPwh?.pwh_address?.line_1}
+                      value={addPwh?.pwh_address?.line_1 || ''}
                       name="line_1"
                       // onChange={onChange('pwh_address')}
                       onChange={onChange("pwh_address")}
@@ -128,7 +134,7 @@ const PersonalDetail = (props) => {
                     <input
                       type="text"
                       name="line_2"
-                      value={addPwh?.pwh_address?.line_2}
+                      value={addPwh?.pwh_address?.line_2 || ''}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
@@ -137,35 +143,38 @@ const PersonalDetail = (props) => {
                     <input
                       type="text"
                       name="line_3"
-                      value={addPwh?.pwh_address?.line_3}
+                      value={addPwh?.pwh_address?.line_3 || ''}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="city">City</label>
+                    <label htmlFor="city">City<sup>*</sup></label>
                     <input
                       type="text"
                       name="city"
-                      value={addPwh?.pwh_address?.city}
+                      value={addPwh?.pwh_address?.city || ''}
                       onChange={onChange("pwh_address")}
+                      required
+
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="tahsil">Tahsil</label>
                     <input
                       type="text"
-                      value={addPwh?.pwh_address?.tahsil}
+                      value={addPwh?.pwh_address?.tahsil || ''}
                       name="tahsil"
                       onChange={onChange("pwh_address")}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="district">District</label>
+                    <label htmlFor="district">District<sup>*</sup></label>
                     <input
                       type="text"
                       name="district"
-                      value={addPwh?.pwh_address?.district}
+                      value={addPwh?.pwh_address?.district || ''}
                       onChange={onChange("pwh_address")}
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -173,48 +182,58 @@ const PersonalDetail = (props) => {
                     <input
                       type="text"
                       name="state"
-                      value={addPwh?.pwh_address?.state}
+                      value={addPwh?.pwh_address?.state || ''}
                       onChange={onChange("pwh_address")}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="pincode">Pincode</label>
+                    <label htmlFor="pincode">Pincode<sup>*</sup></label>
                     <input
                       type="number"
                       name="pincode"
-                      value={addPwh?.pwh_address?.pincode}
+                      value={addPwh?.pwh_address?.pincode || ''}
                       onChange={onChange("pwh_address")}
+                      required
+                      placeholder='000000'
+
                     />
                   </div>
                 </div>
                 <p>Contact Info</p>
                 <div className="contact-info">
                   <div className="form-group">
-                    <label htmlFor="mobile">Mobile</label>
+                    <label htmlFor="mobile">Mobile<sup>*</sup></label>
                     <input
-                      type="text"
+                      type="number"
                       name="mobile"
-                      value={addPwh?.contact?.mobile}
+                      value={addPwh?.contact?.mobile || ''}
                       onChange={onChange("contact")}
+                      required
+
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="alternate_mobile">Alternate Mobile</label>
                     <input
-                      type="text"
+                      type="number"
+                      pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
                       name="alternate_mobile"
-                      value={addPwh?.contact?.alternate_mobile}
+                      value={addPwh?.contact?.alternate_mobile || ''}
                       onChange={onChange("contact")}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email<sup>*</sup></label>
                     <input
                       type="email"
                       name="email"
-                      value={addPwh?.contact?.email}
+                      value={addPwh?.contact?.email || ''}
                       onChange={onChange("contact")}
+                      required
+
                     />
+
+        <small>{valid.email === false? "Enter Correct email address" :""}</small>
                   </div>
                 </div>
                 </div>

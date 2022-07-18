@@ -3,8 +3,7 @@ import React from 'react'
 const EducationalDetails = (props) => {
     const {addPwh,onChange} = props
 
-    const studyingCheckedTrue = addPwh?.pwh_occupation?.is_studying === 'true'? 'true':''
-    const studyingCheckedFalse = addPwh?.pwh_occupation?.is_studying === 'false'? 'true':''
+
 
   return (
     <>
@@ -14,7 +13,7 @@ const EducationalDetails = (props) => {
                 <div className="educational">
                   <div className="form-group">
                     {/* <p>Studying?</p> */}
-                      <label for="is_studying">Studying</label>
+                      <label htmlFor="is_studying">Studying</label>
                     <div className="form-control flex">
                       <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_studying}  onChange={onChange("pwh_occupation")}>
                         <option value="null">Select</option>
@@ -37,7 +36,7 @@ const EducationalDetails = (props) => {
                 <p>Occupational</p>
                 <div className="occupational">
                   <div className="form-group">
-                  <label for="is_studying">Employed</label>
+                  <label htmlFor="is_studying">Employed</label>
                     <div className="form-control flex">
                       <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_employed}  
                           onChange={onChange("pwh_occupation")}>
@@ -57,7 +56,7 @@ const EducationalDetails = (props) => {
                     />
                   </div>
                   <div className="form-group">
-                     <label for="is_studying">Reimbursment</label>
+                     <label htmlFor="is_studying">Reimbursment</label>
                     <div className="form-control flex">
                       <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_reimbursed}  onChange={onChange("pwh_occupation")}>
                         <option value="null">Select</option>
