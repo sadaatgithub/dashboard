@@ -55,6 +55,7 @@ const MedicalDetails = (props) => {
                       id=""
                       value={addPwh?.pwh_medical?.factor_def}
                       onChange={onChange("pwh_medical")}
+                      required
                     >
                       <option value="null">Select</option>
                       <option value="1">F1</option>

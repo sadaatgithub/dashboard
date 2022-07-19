@@ -212,7 +212,7 @@ if(!data){
     </tbody>
     </table>
     </div>
-    <div class="table-footer">
+    <div className="table-footer">
     <p><small>Showing 1 to 10 of {data.length} entries</small> </p>
 
     

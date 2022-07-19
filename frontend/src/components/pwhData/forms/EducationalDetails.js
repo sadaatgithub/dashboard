@@ -15,7 +15,7 @@ const EducationalDetails = (props) => {
                     {/* <p>Studying?</p> */}
                       <label htmlFor="is_studying">Studying</label>
                     <div className="form-control flex">
-                      <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_studying}  onChange={onChange("pwh_occupation")}>
+                      <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_studying}  onChange={onChange("pwh_occupation")} requireed>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>

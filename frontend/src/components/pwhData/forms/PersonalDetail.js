@@ -19,21 +19,18 @@ const PersonalDetail = (props) => {
           value={addPwh?.first_name || ''}
           onChange={onChange()}
           required
-          // placeholder=
-        
         />
-        <small>{valid.first_name === false? "Required" :""}</small>
+       {/* <small>{valid.first_name? "":"Required"}</small> */}
       </div>
       <div className="form-group">
         <label htmlFor="guardian_father_name">
-          Guardian/Father Name<sup>*</sup>
+          Guardian/Father Name
         </label>
         <input
           type="text"
           name="guardian_father_name"
           value={addPwh?.guardian_father_name || ''}
           onChange={onChange()}
-          required
         />
         {/* <span className="error-span"><p>Required</p></span> */}
       </div>
@@ -148,13 +145,12 @@ const PersonalDetail = (props) => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="city">City<sup>*</sup></label>
+                    <label htmlFor="city">City</label>
                     <input
                       type="text"
                       name="city"
                       value={addPwh?.pwh_address?.city || ''}
                       onChange={onChange("pwh_address")}
-                      required
 
                     />
                   </div>
@@ -233,7 +229,6 @@ const PersonalDetail = (props) => {
 
                     />
 
-        <small>{valid.email === false? "Enter Correct email address" :""}</small>
                   </div>
                 </div>
                 </div>

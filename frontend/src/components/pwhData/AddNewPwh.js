@@ -25,14 +25,18 @@ const AddNewPwh = () => {
 
   const {isSuccess, isError, message ,isLoading} = useSelector((state) => state.createPwh);
   
+  const initialData = {contact:{},pwh_occupation:{},
+                      pwh_educational:{},pwh_medical:{},pwh_membership:{},
+                      pwh_address:{},pwh_family:{}}
+
+
   const initialPersonalState = {
-    first_name:false,guardian_father_name:false,last_name:false,city:false,district:false,mobile:false,
-    pincode:false,email:false
+    first_name:false,last_name:false,district:false,mobile:false,
+    pincode:false,email:false,factor_def:false
   }
 
   const [isPersonalInfo,setPersonalInfo] = useState(initialPersonalState)
-  const [isPersonalInfovalid, setPersonalInfoValid] =useState(false)
-  const [addPwh, setAddPwh] = useState({});
+  const [addPwh, setAddPwh] = useState(initialData);
   const [focused, setFocused] = useState(false);
   const [formSteps, setFormSteps] = useState(0)
 
@@ -46,7 +50,8 @@ const AddNewPwh = () => {
   ]
 
 
-const isValid = Object.values(isPersonalInfo).every(value => value === true)
+let isFormValid = Object.values(isPersonalInfo).every(value => value === true)
+// const isFormValid = true
 
   const handleFocus = (e) => {
     setFocused(true);
@@ -54,7 +59,11 @@ const isValid = Object.values(isPersonalInfo).every(value => value === true)
 
 
   const onNext = () =>{
-    setFormSteps(prevStep => prevStep + 1)
+    if(formSteps > 4) {
+      setFormSteps(0)
+    } else {
+      setFormSteps((prevState) => prevState + 1)
+    }
 
   }
 
@@ -63,15 +72,23 @@ const onPrev = () =>{
 
 }
 
+const onAlert = () =>{
+  if(!isFormValid){
+    toast.info('Please Fill the required fields')
+  }
+}
   const onSubmit = (e) => {
     e.preventDefault();
     id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
-    console.log(addPwh)
+
   };
 
 const onFocus = (e) => {
     e.target.name === e.target.value && setFocused(true);
 };
+if(id){
+  isFormValid = true
+}
 const onBlur = (name,value) =>{
 if(name === 'email'){
   if(value.includes('@')){
@@ -81,7 +98,7 @@ if(name === 'email'){
     setPersonalInfo((prevState) => {return {...prevState,[name]:false}})
 
   }
-} else{
+} else{ 
   if(value){
     setPersonalInfo((prevState) => {return {...prevState,[name]:true}})
   } else{
@@ -94,6 +111,7 @@ if(name === 'email'){
     const name = e.target.name
     const value = e.target.value
     const required = e.target.required
+
     if (!level) {
       setAddPwh((prevState) => {
         return {...prevState, [e.target.name]: e.target.value };
@@ -122,10 +140,14 @@ if(name === 'email'){
   }
 
   useEffect(() => {
-    // console.log(isPersonalInfo)
-      console.log(isValid)
+
+    if(formSteps > 4){
+      setFormSteps(0)
+    }
+  
     if(id){
     getPwh(id)
+
   }
     if (isSuccess) {
       const msg = id? "Updated" : "Added"
@@ -138,10 +160,13 @@ if(name === 'email'){
       toast.error(message);
     }
   
-  }, [id,dispatch,isSuccess,isError,isLoading,navigate,isValid,message]);
- 
+  }, [id,dispatch,isSuccess,isError,isLoading,isFormValid,navigate,message]);
 
+if(isLoading){
+  <Spinner />
+}
   return (
+   
     <>
     <div className="close-div">
           <button
@@ -156,7 +181,10 @@ if(name === 'email'){
         
 
         <div className="form-left">
+        <div className="form-btn">
           <Tabs formSteps={formSteps} setFormSteps={setFormSteps} tabArray={tabArray} />
+       
+        </div>
         </div>
 
         <div className="form-right">
@@ -174,13 +202,12 @@ if(name === 'email'){
               {formSteps > 0 && <input type='button' className="btn-submit" 
                       value="Prev" onClick={onPrev}/>}
             
-                      
-            <input type={formSteps > 4? "submit":"button"}  className="btn-submit" 
+               {/* <input type="submit"/>        */}
+            <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="btn-submit" 
                   value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' 
                   : isLoading? 'Sending' 
-                  : 'Add':"Next"} onClick={onNext}/>
+                  : 'Add':"Next"} onClick={formSteps > 3 && isFormValid === false ? onAlert:onNext}/>
             </div>
-            {isValid? "valid":"not Valid"}
           </form>
         </div>
       </div>
