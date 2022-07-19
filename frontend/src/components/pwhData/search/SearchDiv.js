@@ -55,12 +55,12 @@ useEffect(() =>{
      <form className="search-div" onSubmit={onSubmit}>
        <div className="form-group">
          <label htmlFor="">Name</label>
-       <input type="text" name="full_name" required value={full_name} onChange={onChange}/>
+       <input type="search" name="full_name" required value={full_name} onChange={onChange}/>
        </div>
        <div className="form-group">
 
        <label htmlFor="">Factor
-       <input type="text" name="factor_def" required value={factor_def} onChange={onChange}/></label>
+       <input type="search" name="factor_def" required value={factor_def} onChange={onChange}/></label>
        </div>
        <div className="form-group">
          <button type='submit'>Search</button>

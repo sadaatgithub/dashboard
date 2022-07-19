@@ -169,7 +169,7 @@ if(!data){
     <div className="">
     <div className="flex table-search-div">
   
-  <input type="text" onChange={onChange} placeholder="Search by Name"/>
+  <input type="search" onChange={onChange} placeholder="Search by Name"/>
 
   <label htmlFor=""><small>Entries to display</small>
   <select name="" id="" className="search-by-entries" onChange={howMany}> 
@@ -212,7 +212,7 @@ if(!data){
     </tbody>
     </table>
     </div>
-    <div class="table-footer">
+    <div className="table-footer">
     <p><small>Showing 1 to 10 of {data.length} entries</small> </p>
 
     
