@@ -13,6 +13,8 @@ import { FaBars,FaTimes } from 'react-icons/fa';
 const Dashboard = () => {
   const {user} = useSelector((state)=>state.auth)
   const {data,isLoading,isError,isSuccess,isDataFetched} = useSelector((state)=>state.data)
+  // const {userDetail} = useSelector((state) => state.fetchUser)
+
   const [isSideBarOpen,setSideBar] = useState(false)
 
   const navigate = useNavigate()
@@ -53,9 +55,16 @@ if (isLoading) {
     <section className="dashboard-container">
     <div className="dashboard-top">
     <div className="info-row">
-      <p>You have {duplicate} duplicate entr{`${duplicate > 1? "ies" : "y"}`}</p>
+      <div className="welcome-div">
+        <h5>Hii</h5>
+        <h4>Welcome back Mr/Mrs keyperson</h4>
+      </div>
+      <div className="notification-div">
+      <p>You have {duplicate} duplicate entr{`${duplicate > 1? "ies" : "y"}`} <Link to="">View</Link></p>
       <p>Lorem ipsum dolor sit amet.</p>
       <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+    
     </div>
   </div>
         
