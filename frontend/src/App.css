@@ -123,7 +123,7 @@ border-bottom: 1px solid blue;
 
 .form,
 .content {
-  width: 70%;
+  width: 30%;
   margin: 0 auto;
 }
 
@@ -632,8 +632,7 @@ width: 320px;
   background-color: #fff;
   padding: 1rem;
  
-  display: flex;
-  justify-content: center;
+ 
   gap: 5rem;
   /* border: 1px solid red; */
 }
