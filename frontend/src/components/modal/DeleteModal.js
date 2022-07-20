@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { deletePwh } from "../../features/data/deleteSlice";
+import { fetchData } from '../../features/data/dataSlice';
 
 const DeleteModal = ({onClick, hideModal, id}) => {
 const {isSuccess, isLoading, isError, message} = useSelector((state) =>state.deletePwh)
@@ -11,7 +12,6 @@ const navigate = useNavigate()
 
   const onDelete = (e) =>{
     dispatch(deletePwh(id))
-    console.log(id);
   }
   useEffect (() =>{
     if(isError){
@@ -21,7 +21,8 @@ const navigate = useNavigate()
     if(isSuccess){
         // console.log('success');
         toast.success('Deleted...!')
-        window.location.reload();
+        hideModal()
+        dispatch(fetchData())
     }
 // console.log(data_id);
   },[dispatch, isLoading,isSuccess, isError, message])

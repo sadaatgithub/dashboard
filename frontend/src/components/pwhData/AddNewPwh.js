@@ -80,6 +80,7 @@ const onAlert = () =>{
   const onSubmit = (e) => {
     e.preventDefault();
     id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
+    console.log(addPwh)
 
   };
 
@@ -141,29 +142,26 @@ if(name === 'email'){
 
   useEffect(() => {
 
-    if(formSteps > 4){
-      setFormSteps(0)
-    }
   
     if(id){
     getPwh(id)
 
   }
     if (isSuccess) {
+      navigate("/pwh-data");
       const msg = id? "Updated" : "Added"
       toast.success(`Successfully ${msg}....!`)
       dispatch(fetchData());
       dispatch(reset());
-      navigate("/pwh-data");
     }
     if (isError) {
       toast.error(message);
     }
   
-  }, [id,dispatch,isSuccess,isError,isLoading,isFormValid,navigate,message]);
+  }, [id,dispatch,isSuccess,isError,isLoading,navigate,message]);
 
 if(isLoading){
-  <Spinner />
+  <h1>Loading.......</h1>
 }
   return (
    
@@ -203,9 +201,9 @@ if(isLoading){
                       value="Prev" onClick={onPrev}/>}
             
                {/* <input type="submit"/>        */}
+               {isLoading? <Spinner />:""}
             <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="btn-submit" 
-                  value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' 
-                  : isLoading? 'Sending' 
+                  value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' 
                   : 'Add':"Next"} onClick={formSteps > 3 && isFormValid === false ? onAlert:onNext}/>
             </div>
           </form>

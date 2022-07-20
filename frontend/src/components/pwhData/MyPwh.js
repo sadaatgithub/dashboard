@@ -241,7 +241,7 @@ if(!data){
           setVisible(false)
         }} >X</button>
       
-    {filterData?.map((data, index) =><EachPwh key={index} data={data}/>)}
+    {filterData?.map((data, index) =><EachPwh key={index} data={data} setVisible={setVisible}/>)}
     </div></>) : ''}
 </div>
 {/* </>)} */}

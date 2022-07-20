@@ -16,7 +16,8 @@ import ManageModal from "../modal/ManageModal";
 
 
 const EachPwh = (props) => {
-  const {data} =props
+
+  const {data,setVisible} =props
 const data_id = data.id
 
 const [postImage,setPostImage] = useState({
@@ -27,9 +28,8 @@ const [postImage,setPostImage] = useState({
 const {id,image} = postImage
 const dispatch = useDispatch()
 const navigate = useNavigate()
-const {isDataFetched } = useSelector((state) =>state.createPwh)
 
-// const {isSuccess, isLoading, isError} = useSelector((state) =>state.deletePwh)
+// const {data} = useSelector((state) =>state.data)
 const {isSuccess,isError,isLoading} = useSelector((state) => state.uploadImage)
 const [modal,setModal] = useState(false)
 const [manageModal, setManageModal] = useState(false)
@@ -41,10 +41,10 @@ const hideModal = () =>{
   setModal(false)
   setManageModal(false)
 }
-const onDelete = (e) =>{
-  dispatch(deletePwh(e.target.value))
-  console.log(e.target.value);
-}
+// const onDelete = (e) =>{
+//   dispatch(deletePwh(e.target.value))
+//   console.log(e.target.value);
+// }
 
 const onSubmit = (e) =>{
   e.preventDefault();
@@ -91,7 +91,7 @@ useEffect(() =>{
         <div className="pwh-info">
           <div className="pwh-info-div">
            <div className="pwh-info-label">
-            <strong>Name :</strong>
+            <h5>Name :</h5>
            </div>
            <div className="pwh-info-value">
             <p>{data.first_name + " " + data.last_name}</p>
@@ -99,7 +99,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
           <div className="pwh-info-label">
-            <strong>Guardian/Father Name :</strong>
+            <h5>Guardian/Father Name :</h5>
            </div>
            <div className="pwh-info-value">
             <p>{data.guardian_father_name + " " + data.last_name}</p>
@@ -107,7 +107,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
           <div className="pwh-info-label">
-            <strong>D.O.B:</strong>
+            <h5>D.O.B:</h5>
            </div>
            <div className="pwh-info-value">
             <p>{data.dob}</p>
@@ -115,7 +115,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
           <div className="pwh-info-label">
-            <strong>Clinical:</strong>
+            <h5>Clinical:</h5>
            </div>
            <div className="pwh-info-value">
             <p>Factor {data.pwh_medical?.factor_def + " , " + data.pwh_medical?.factor_level + " , " + data.pwh_medical?.blood_group_with_rh} ve</p>
@@ -123,7 +123,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
           <div className="pwh-info-label">
-            <strong>Age:</strong>
+            <h5>Age:</h5>
            </div>
            <div className="pwh-info-value">
             <p>00</p>
@@ -131,7 +131,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
           <div className="pwh-info-label">
-            <strong>Address :</strong>
+            <h5>Address :</h5>
            </div>
            <div className="pwh-info-value">
             <p>{data.pwh_address?.line_1 + "," +data.pwh_address?.line_2  + "," +data.pwh_address?.line_2}</p>
@@ -144,7 +144,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
            <div className="pwh-info-label">
-            <strong>Contact :</strong>
+            <h5>Contact :</h5>
            </div>
            <div className="pwh-info-value">
             <p>{data.contact?.mobile}</p>
@@ -152,7 +152,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
            <div className="pwh-info-label">
-            <strong>Email :</strong>
+            <h5>Email :</h5>
            </div>
            <div className="pwh-info-value">
             <p>{data.contact?.email}</p>
@@ -160,7 +160,7 @@ useEffect(() =>{
           </div>
           <div className="pwh-info-div">
            <div className="pwh-info-label">
-            <strong>Chapter Membership :</strong>
+            <h5>Chapter Membership :</h5>
            </div>
            <div className="pwh-info-value">
             <p>ABC12345678</p>
@@ -202,24 +202,14 @@ useEffect(() =>{
       </div>
       <div className="pwh-action">
         <ul className="pwh-action-link">
-        <li><Link to={"/edit/" + data.id}>Edit</Link></li>
+       <Link to={"/edit/" + data.id}><li>Edit</li></Link>
           <li onClick={onManage}>Manage</li>
 
           <li>Attach</li>
           <li>Download</li>
           <li onClick={onClick}>Delete</li>
         </ul>
-        {/* <Link to={"/edit/" + data.id}>
-        <button value={data.id}>Edit</button>
-        </Link> */}
-        {/* <Link to="/add/">
-        <button>Add Pwh</button>
-        </Link> */}
-      
-        {/* <button onClick={onClick}>Delete</button> */}
     
-        {/* <button  className="btn-manage">Manage
-        </button> */}
     {manageModal? (<ManageModal showModal={onClick}  hideModal={hideModal} id={data.id} />) :(null)}
            {/*  <button>Attach</button>
         <button>Download</button> */}
