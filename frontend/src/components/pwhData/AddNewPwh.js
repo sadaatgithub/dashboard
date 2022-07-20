@@ -80,6 +80,7 @@ const onAlert = () =>{
   const onSubmit = (e) => {
     e.preventDefault();
     id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
+    console.log(addPwh)
 
   };
 

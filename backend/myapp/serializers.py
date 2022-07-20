@@ -140,6 +140,7 @@ class PwhSerializer(serializers.ModelSerializer):
         instance.mothers_name = validated_data.get('mothers_name', instance.mothers_name)
         instance.gender = validated_data.get('gender', instance.gender)
         instance.caste = validated_data.get('caste', instance.caste)
+        instance.dob = validated_data.get('dob', instance.dob)
         instance.religion = validated_data.get('religion', instance.religion)
         instance.save()
         if pwhadress.objects.filter(patient=pwh_id,id=add_id).exists():

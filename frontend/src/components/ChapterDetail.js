@@ -17,9 +17,9 @@ const onClick = () =>{
 
   return (
     <>  
-    <div className="chapter-details-heading"><p>Chapter Details</p></div>
      { isSuccess? (
      <>
+     <div class="chapter-detail">
      <div className="chapter-name">
      <p>Chapter Name : -</p><p>{userDetail?.first_name + "  " + userDetail?.last_name} lorem ipsum</p>
      </div>
@@ -35,9 +35,10 @@ const onClick = () =>{
         </div>
         <a className='text-sm chapter-edit-link' onClick={onClick}>Edit</a>
        {visible? (<ChapterEdit onClick={onClick}/>):('')} 
-    </>) :(<>No data</>)}
+       </div></>) :(<>No data</>)}
     <h5>Key Person:</h5>
     <h5>co-ordinator</h5>
+    
     </>
   )
 }

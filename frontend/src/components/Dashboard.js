@@ -7,7 +7,8 @@ import ChapterDetail from './ChapterDetail';
 import DataChart from './charts/DataChart';
 import DashboardNav from './dashboardComponent/DashboardNav';
 import FactorwiseCount from './dashboardComponent/FactorwiseCount';
-import { FaBars,FaTimes } from 'react-icons/fa';
+import { FaBars,FaTimes,FaSortDown,FaSortUp } from 'react-icons/fa';
+import IncompleteData from './pwhData/IncompleteData';
 
 
 const Dashboard = () => {
@@ -16,6 +17,8 @@ const Dashboard = () => {
   // const {userDetail} = useSelector((state) => state.fetchUser)
 
   const [isSideBarOpen,setSideBar] = useState(false)
+  const [isIncompleteDataOpen,setIncopleteDataOpen] = useState(false)
+  const [isChapterDetailOpen, setChapterDetailOpen] =useState(true)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -24,6 +27,19 @@ const duplicate = data.filter((data) => data.tag === 'Duplicate').length
 const sidebarHandler = () =>{
   setSideBar((state)=> state = !state)
   console.log(isSideBarOpen)
+}
+
+
+const incompleteDataHandler = () =>{
+ 
+  setIncopleteDataOpen(!isIncompleteDataOpen)
+  setChapterDetailOpen(false)
+
+}
+const chapterDetailHandler = () =>{
+  setChapterDetailOpen(!isChapterDetailOpen)
+  setIncopleteDataOpen(false)
+
 }
 useEffect(() =>{
 
@@ -61,8 +77,7 @@ if (isLoading) {
       </div>
       <div className="notification-div">
       <p>You have {duplicate} duplicate entr{`${duplicate > 1? "ies" : "y"}`} <Link to="">View</Link></p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
+    
       </div>
     
     </div>
@@ -84,8 +99,14 @@ if (isLoading) {
         <div className="pie-chart">
           <DataChart />
         </div>
-        <div className="chapter-details">
-          <ChapterDetail />
+        <div className="other-detail">
+          <div class="other-detail-tabs">
+        <div onClick={incompleteDataHandler} className={isIncompleteDataOpen? "active":""}><p>Incomplete Data {isIncompleteDataOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
+        <div onClick={chapterDetailHandler} className={isChapterDetailOpen? "active":""}><p>Chapter Detail {isChapterDetailOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
+        </div>
+          
+          {isIncompleteDataOpen && <IncompleteData />}
+          {isChapterDetailOpen && <ChapterDetail /> }
         </div>
       </div>
     
