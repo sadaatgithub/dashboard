@@ -19,7 +19,7 @@ const onClick = () =>{
     <>  
      { isSuccess? (
      <>
-     <div class="chapter-detail">
+     <div className="chapter-detail">
      <div className="chapter-name">
      <p>Chapter Name : -</p><p>{userDetail?.first_name + "  " + userDetail?.last_name} lorem ipsum</p>
      </div>

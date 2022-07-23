@@ -43,7 +43,9 @@ const chapterDetailHandler = () =>{
 }
 useEffect(() =>{
 
-
+if(!user){
+  navigate('/login')
+}
  
  
 },[user,isSuccess,navigate])
@@ -100,7 +102,7 @@ if (isLoading) {
           <DataChart />
         </div>
         <div className="other-detail">
-          <div class="other-detail-tabs">
+          <div className="other-detail-tabs">
         <div onClick={incompleteDataHandler} className={isIncompleteDataOpen? "active":""}><p>Incomplete Data {isIncompleteDataOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
         <div onClick={chapterDetailHandler} className={isChapterDetailOpen? "active":""}><p>Chapter Detail {isChapterDetailOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
         </div>

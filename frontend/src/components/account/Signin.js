@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import { FaUser } from "react-icons/fa";
 import { login, reset } from "../../features/auth/authSlice";
-import Spinner from '../Spinner'
-import { fetchUser } from "../../features/user/userSlice";
-import { fetchData } from "../../features/data/dataSlice";
+
 
 const Signin = () => {
   
+  const { user, isLoading, isError, message } = useSelector(
+    (state) => state.auth
+  )
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -25,10 +26,6 @@ const onChange = (e) =>{
     [e.target.name]: e.target.value,
   }))
 }
-const { user, isLoading, isError, isSuccess, message } = useSelector(
-  (state) => state.auth
-)
-const {isDataFetched} = useSelector((state) => state.data)
 
 
 
@@ -53,7 +50,7 @@ useEffect(() =>{
        navigate('/')
   }
     // dispatch(reset())
-},[user,isLoading,isError,navigate,dispatch])
+},[user,isLoading,isError,navigate,dispatch,message])
 
 
 
