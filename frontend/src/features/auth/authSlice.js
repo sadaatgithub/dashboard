@@ -32,7 +32,9 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', 
                       async () => await authService.logout())
 
-
+export const autoLogout = createAsyncThunk('auto-logout', 
+                    async () => await authService.autoLogout()
+)
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -69,6 +71,8 @@ export const authSlice = createSlice({
 
         // state.message = "Logged Out Successfully...!"
       })
+      // .addCase(autoLogout.fulfilled, (state) => {
+      //   state.user = null})
   },
 });
 

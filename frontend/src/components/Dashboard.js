@@ -46,7 +46,7 @@ useEffect(() =>{
 if(!user){
   navigate('/login')
 }
- 
+ console.log('render')
  
 },[user,isSuccess,navigate])
 
