@@ -14,7 +14,7 @@ const MedicalDetails = (props) => {
                     <input
                       type="text"
                       name="age_of_diagnosis"
-                      value={addPwh?.pwh_medical?.age_of_diagnosis}
+                      value={addPwh?.pwh_medical?.age_of_diagnosis || ''}
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
@@ -25,7 +25,7 @@ const MedicalDetails = (props) => {
                     <input
                       type="text"
                       name="hospital_diagnosis"
-                      value={addPwh?.pwh_medical?.hospital_diagnosis}
+                      value={addPwh?.pwh_medical?.hospital_diagnosis || ''}
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
@@ -34,7 +34,7 @@ const MedicalDetails = (props) => {
                     <select
                       name="blood_group_with_rh"
                       id=""
-                      value={addPwh?.pwh_medical?.blood_group_with_rh}
+                      value={addPwh?.pwh_medical?.blood_group_with_rh || ''}
                       onChange={onChange("pwh_medical")}
                     >
                       <option value="null">Select</option>
@@ -53,7 +53,7 @@ const MedicalDetails = (props) => {
                     <select
                       name="factor_def"
                       id=""
-                      value={addPwh?.pwh_medical?.factor_def}
+                      value={addPwh?.pwh_medical?.factor_def || ''}
                       onChange={onChange("pwh_medical")}
                       required
                     >
@@ -78,7 +78,7 @@ const MedicalDetails = (props) => {
                     <input
                       type="text"
                       name="factor_level"
-                      value={addPwh?.pwh_medical?.factor_level}
+                      value={addPwh?.pwh_medical?.factor_level || ''}
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
@@ -87,7 +87,7 @@ const MedicalDetails = (props) => {
                     <select
                       name="others_def"
                       id=""
-                      value={addPwh?.pwh_medical?.others_def}
+                      value={addPwh?.pwh_medical?.others_def || ''}
                       onChange={onChange("pwh_medical")}
                     >
                       <option value="">Select</option>
@@ -108,7 +108,7 @@ const MedicalDetails = (props) => {
                   <div className="form-group">
                   <label htmlFor="is_studying">Inhibitor Status</label>
                     <div className="form-control flex">
-                      <select name="is_inhibitor_pos" id="" value={addPwh?.pwh_medical?.is_inhibitor_pos}  onChange={onChange("pwh_medical")}>
+                      <select name="is_inhibitor_pos" id="" value={addPwh?.pwh_medical?.is_inhibitor_pos || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -118,7 +118,7 @@ const MedicalDetails = (props) => {
                   <div className="form-group">
                   <label htmlFor="is_studying">HCV ?</label>
                     <div className="form-control flex">
-                      <select name="is_hcv_pos" id="" value={addPwh?.pwh_medical?.is_hcv_pos}  onChange={onChange("pwh_medical")}>
+                      <select name="is_hcv_pos" id="" value={addPwh?.pwh_medical?.is_hcv_pos || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -128,7 +128,7 @@ const MedicalDetails = (props) => {
                   <div className="form-group">
                   <label htmlFor="is_studying">HIV ?</label>
                     <div className="form-control flex">
-                      <select name="is_hiv_pos" id="" value={addPwh?.pwh_medical?.is_hiv_pos}  onChange={onChange("pwh_medical")}>
+                      <select name="is_hiv_pos" id="" value={addPwh?.pwh_medical?.is_hiv_pos || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -138,7 +138,7 @@ const MedicalDetails = (props) => {
                   <div className="form-group">
                   <label htmlFor="is_studying">Deformity</label>
                     <div className="form-control flex">
-                      <select name="is_deformity" id="" value={addPwh?.pwh_medical?.is_deformity}  onChange={onChange("pwh_medical")}>
+                      <select name="is_deformity" id="" value={addPwh?.pwh_medical?.is_deformity || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>

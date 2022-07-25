@@ -196,7 +196,7 @@ if(!data){
         return(
         <tr key={index}>
         <>
-          <td>{index + 1}</td>
+          <td>{item.SrNo}</td>
           <td key="index">{item.first_name}</td>
           <td>{item.guardian_father_name}</td>
           <td>{item.last_name}</td>

@@ -104,11 +104,15 @@ extraReducers:(builder) =>{
       state.isLoading = true
     })
     .addCase(fetchData.fulfilled, (state, action) =>{
+      const rData = action.payload.map((data,index) =>({
+        ...data,SrNo: index + 1
+      }))
+      console.log(rData)
       state.isLoading = false
       state.isSuccess = true
       state.isDataFetched = true
       // state.message = action.payload
-      state.data = action.payload
+      state.data = rData
     })
     .addCase(fetchData.rejected, (state, action) =>{
       state.isLoading = false
