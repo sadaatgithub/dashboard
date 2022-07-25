@@ -75,7 +75,6 @@ export const dataSlice = createSlice({
             let fa = a['first_name'].toLowerCase(),
             fb = b['first_name'].toLowerCase();
             return fa < fb ? '-1': fa > fb? '1': '0'})
-        console.log('sortin A-Z')
         state.sortByName = "down"
       }
 
@@ -86,13 +85,11 @@ export const dataSlice = createSlice({
             return fa > fb ? '-1': fa < fb? '1': '0'})
         state.sortByName = "up"
 
-        console.log('sortin Z-A')
       }
       if(sortBy === "default"){
         state.data = state.data.sort((a,b) => a.id - b.id)
         state.sortByName = "default"
 
-        console.log('sortin default')
       }
 
         // console.log(data)

@@ -12,7 +12,7 @@ import { fetchUser } from '../../features/user/userSlice';
 // import Spinner from './Spinner';
 
 const MyPwh = () => {
-  const {data,isLoading,isSuccess,sortByName,sortByNammeDsc} = useSelector((state)=>state.data)
+  const {data,isLoading,isSuccess,sortByName} = useSelector((state)=>state.data)
   const {user} = useSelector((state) => state.auth)
   const [search, setSearch] =  useState('')
   const [visible,setVisible] = useState(false)
@@ -213,7 +213,7 @@ if(!data){
     </table>
     </div>
     <div className="table-footer">
-    <p><small>Showing 1 to 10 of {data.length} entries</small> </p>
+    <p><small>Showing {indexOfFirstItem + 1} to {indexOfLastItem > data.length? data.length:indexOfLastItem} of {data.length} entries</small> </p>
 
     
     <ul className='pagination-no-row'>

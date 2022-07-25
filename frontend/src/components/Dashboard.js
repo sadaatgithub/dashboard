@@ -26,7 +26,6 @@ const Dashboard = () => {
 const duplicate = data.filter((data) => data.tag === 'Duplicate').length
 const sidebarHandler = () =>{
   setSideBar((state)=> state = !state)
-  console.log(isSideBarOpen)
 }
 
 
@@ -46,7 +45,6 @@ useEffect(() =>{
 if(!user){
   navigate('/login')
 }
- console.log('render')
  
 },[user,isSuccess,navigate])
 

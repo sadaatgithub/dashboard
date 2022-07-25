@@ -484,6 +484,7 @@ form {
   justify-content: space-between;
   align-items: center;
 }
+.table-footer p{margin-left: 0.5rem;}
 .pagination-no-row li {
   padding: 0.4rem 1rem;
   border-radius: 3px;
