@@ -1,6 +1,6 @@
 import {useEffect,useState}from 'react'
 import { useNavigate ,Link} from 'react-router-dom';
-import { useSelector,useDispatch} from 'react-redux';
+import { useSelector} from 'react-redux';
 import Spinner from './Spinner';
 import {FcSettings} from 'react-icons/fc'
 import ChapterDetail from './ChapterDetail';
@@ -9,27 +9,30 @@ import DashboardNav from './dashboardComponent/DashboardNav';
 import FactorwiseCount from './dashboardComponent/FactorwiseCount';
 import { FaBars,FaTimes,FaSortDown,FaSortUp } from 'react-icons/fa';
 import IncompleteData from './pwhData/IncompleteData';
+import DuplicatePwh from './pwhData/DuplicatePwh';
 
 
 const Dashboard = () => {
   const {user} = useSelector((state)=>state.auth)
-  const {data,isLoading,isError,isSuccess,isDataFetched} = useSelector((state)=>state.data)
+  const {data,isLoading,isSuccess} = useSelector((state)=>state.data)
   // const {userDetail} = useSelector((state) => state.fetchUser)
+  const [duplicateModal,setDuplicateModal] = useState(false)
 
   const [isSideBarOpen,setSideBar] = useState(false)
   const [isIncompleteDataOpen,setIncopleteDataOpen] = useState(false)
-  const [isChapterDetailOpen, setChapterDetailOpen] =useState(true)
+  const [isChapterDetailOpen, setChapterDetailOpen] = useState(true)
 
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
-const duplicate = data.filter((data) => data.tag === 'Duplicate').length
+const duplicate = data.filter((data) => data.tag === 'Duplicate')
 const sidebarHandler = () =>{
   setSideBar((state)=> state = !state)
-  console.log(isSideBarOpen)
 }
 
-
+const duplicateModalHandler = () =>{
+    console.log("clicked")
+    setDuplicateModal(true)
+}
 const incompleteDataHandler = () =>{
  
   setIncopleteDataOpen(!isIncompleteDataOpen)
@@ -46,7 +49,6 @@ useEffect(() =>{
 if(!user){
   navigate('/login')
 }
- console.log('render')
  
 },[user,isSuccess,navigate])
 
@@ -74,15 +76,15 @@ if (isLoading) {
     <div className="dashboard-top">
     <div className="info-row">
       <div className="welcome-div">
-        <h5>Hii</h5>
-        <h4>Welcome back Mr/Mrs keyperson</h4>
+        <h4>Hii</h4>
+        <h5>Welcome back Mr/Mrs keyperson</h5>
       </div>
       <div className="notification-div">
-      <p>You have {duplicate} duplicate entr{`${duplicate > 1? "ies" : "y"}`} <Link to="">View</Link></p>
+      <p>You have {duplicate.length} duplicate entr{`${duplicate.length > 1? "ies" : "y"}`} <span onClick={duplicateModalHandler}>View</span></p>
     
       </div>
-    
     </div>
+      {duplicateModal && <DuplicatePwh data={duplicate} setDuplicateModal={setDuplicateModal}/>}
   </div>
         
       
