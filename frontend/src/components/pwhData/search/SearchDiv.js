@@ -35,18 +35,20 @@ const onClear = () =>{
 }
 const onSubmit = (e) =>{
     e.preventDefault();
-  const filterData = data.filter((data) =>{
-    return data.first_name.toLowerCase().includes(first_name) || data.last_name.toLowerCase().includes(last_name)})
-    .filter((data)=>data.pwh_medical.factor_def === factor_def)
-  setFilteredData(filterData)
-setLoading(true)
+  
+  const filterData = data.filter((data) => {
+    return data.first_name?.toLowerCase().includes(first_name) || data.last_name?.toLowerCase().includes(last_name)})
+            .filter((data)=> data.pwh_medical?.factor_def === factor_def)
+    setFilteredData(filterData)
+    setLoading(true)
 }
 
 useEffect(() =>{
+console.log(filteredData)
   if(!data){
   dispatch(fetchData())
   }
-},[data,dispatch])
+},[data,dispatch,filteredData])
   return (
     <div className='search-container'>
       <div className="close-div">
@@ -86,7 +88,7 @@ useEffect(() =>{
             <tbody>
       {filteredData?.map((data,index) =>{
         return (
-        <tr key={index}><td></td>
+        <tr key={index}><td>{index + 1}</td>
               <td>{data.first_name + data.last_name}</td>
               <td>{data.guardian_father_name}</td>
               <td>{data.pwh_medical.factor_def}</td>

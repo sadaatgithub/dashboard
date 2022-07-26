@@ -104,7 +104,6 @@ extraReducers:(builder) =>{
       const rData = action.payload.map((data,index) =>({
         ...data,SrNo: index + 1
       }))
-      console.log(rData)
       state.isLoading = false
       state.isSuccess = true
       state.isDataFetched = true
