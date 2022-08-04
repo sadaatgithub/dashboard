@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 const DownLoadData = () => {
 
 const navigate = useNavigate()
-const {data, isSuccess,isLoading, isDataFetched} = useSelector((state) => state.data)
+const {data, isSuccess,isLoading} = useSelector((state) => state.data)
 
 const factorList = [...new Set(data.map((item) => item.pwh_medical.factor_def))]
 
@@ -16,10 +16,14 @@ const districtList = [...new Set(data.map((item) => item.pwh_address.district))]
 const [byDistrict, setByDistrict] = useState('')
 const [byFactor, setByFactor] = useState('')
 
-const excelData = data.filter((data) => data).filter((data)=> data?.pwh_address?.district?.includes(byDistrict)).filter((data) => data?.pwh_medical?.factor_def?.includes(byFactor))
+const excelData = data.map((data) => data).filter((data)=> data?.pwh_address?.district?.includes(byDistrict)).filter((data) => data?.pwh_medical?.factor_def?.includes(byFactor))
 // const dispatch = useDispatch()
 
-const notFctor = data.filter((data) => data.pwh_medical.factor_level === null)
+// const notFctor = data.filter((data) => data.pwh_medical.factor_level === null)
+const distList = districtList.map((district,index) =>{
+  if(district){
+  return (<option key={index} value={district}>{district}</option> )}
+})
   useEffect(() =>{
   //  console.log(notFctor.length);
   },[excelData])
@@ -51,10 +55,7 @@ if(isLoading){
       <select name="" id="report-districtwise" onChange={(e)=>{setByDistrict(e.target.value)}}>
 
         <option value="" >All</option>
-        {districtList.map((district,index) =>{
-          if(district){
-          return (<option key={index} value={district}>{district}</option> )}
-        })}
+        {distList}
       </select>
       </div>
       <ReactHTMLTableToExcel 

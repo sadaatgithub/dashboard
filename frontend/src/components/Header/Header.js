@@ -12,7 +12,6 @@ import { reset as resetData } from '../../features/data/dataSlice'
 
 const Header = () => {
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const {user} = useSelector((state) => state.auth)
