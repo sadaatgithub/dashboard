@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import updateSlice from "../../features/data/getPwhSlice";
-// import { updateData, reset } from "../../features/data/getPwhSlice";
-// import { getPwhWithId , reset} from "../../features/data/addNewPwhSlice";
-// import { getPwhWithId } from "../../features/data/getPwhSlice";
-import { deletePwh } from "../../features/data/deleteSlice";
+import { Link } from "react-router-dom";
 import DeleteModal from "../modal/DeleteModal";
 import { uploadImage, reset as imageReset } from "../../features/data/uploadImageSlice";
-import { fetchData } from "../../features/data/dataSlice";
 import { toast } from "react-toastify";
 import {FaUser} from 'react-icons/fa'
 import ManageModal from "../modal/ManageModal";
@@ -16,8 +10,8 @@ import ManageModal from "../modal/ManageModal";
 
 
 const EachPwh = (props) => {
-
-  const {data,setVisible} =props
+const {isSuccess:isDeleteSuccess} = useSelector((state) => state.deletePwh)
+const {data,setVisible} =props
 const data_id = data.id
 
 const [postImage,setPostImage] = useState({
@@ -25,9 +19,9 @@ const [postImage,setPostImage] = useState({
   image:null,
 })
 
-const {id,image} = postImage
+// const {id,image} = postImage
 const dispatch = useDispatch()
-const navigate = useNavigate()
+// const navigate = useNavigate()
 
 // const {data} = useSelector((state) =>state.data)
 const {isSuccess,isError,isLoading} = useSelector((state) => state.uploadImage)
@@ -77,7 +71,10 @@ useEffect(() =>{
     toast.success('Uploaded Successfully')
     window.location.reload()
   }
-},[isSuccess,dispatch])
+  if(isDeleteSuccess){
+    setVisible(false)
+  }
+},[isSuccess,dispatch,isDeleteSuccess])
 
 // const onEdit = (e) =>{
 //   const id = e.target.value;

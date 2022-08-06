@@ -55,7 +55,7 @@ const onSubmit = (e) =>{
     <form className='chapter-edit' onSubmit={onSubmit}>
     <button className='chapter-edit-close' onClick={onClick}>X</button>
       <div className="chapter-edit-heading">
-       <strong> Edit Chapter Details</strong>
+       <strong>Edit Chapter Address</strong>
       </div>
       <div className="chapter-edit-input">
         <div className="edit-form-group">

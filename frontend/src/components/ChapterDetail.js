@@ -1,6 +1,5 @@
-import React ,{useEffect, useState} from 'react'
-import { useDispatch , useSelector} from 'react-redux'
-import { fetchUser, reset as resetUser } from '../features/user/userSlice';
+import React ,{ useState} from 'react'
+import {  useSelector} from 'react-redux'
 import ChapterEdit from './pwhData/ChapterEdit';
 
 const ChapterDetail = () => {
@@ -27,17 +26,19 @@ const onClick = () =>{
           <div className="chapter-address--title"><p>Address : -</p></div>
         
         <div className="address-detail">
-        <p className='text-sm'> {userDetail?.chapter_address?.line_1 +"," + userDetail.chapter_address?.line_2 + "," + userDetail.chapter_address?.line_3}</p> 
+        <p className='text-sm'> {userDetail?.chapter_address?.line_1 + "," + userDetail.chapter_address?.line_2 + "," + userDetail.chapter_address?.line_3}</p> 
         <p className='text-sm'> <span>City :- </span>{userDetail.chapter_address?.city}</p>
         <p className='text-sm'><span>Tah :- </span>{userDetail.chapter_address?.tahsil} , <span> Dist :- </span>{userDetail.chapter_address?.district}</p>
         <p className='text-sm'><span>State :- </span>{userDetail.chapter_address?.state + "," + " " + userDetail.chapter_address?.pincode}</p>
         </div>
         </div>
-        <a className='text-sm chapter-edit-link' onClick={onClick}>Edit</a>
+        <button className='text-sm chapter-edit-link' onClick={onClick}>Edit</button>
        {visible? (<ChapterEdit onClick={onClick}/>):('')} 
        </div></>) :(<>No data</>)}
     <h5>Key Person:</h5>
+    <p><small>Lorem ipsum dolor sit amet.</small></p>
     <h5>co-ordinator</h5>
+    <p><small>Lorem ipsum dolor sit amet.</small></p>
     
     </>
   )
