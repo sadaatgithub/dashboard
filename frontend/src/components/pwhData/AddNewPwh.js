@@ -37,7 +37,6 @@ const AddNewPwh = () => {
 
   const [isPersonalInfo,setPersonalInfo] = useState(initialPersonalState)
   const [addPwh, setAddPwh] = useState(initialData);
-  const [focused, setFocused] = useState(false);
   const [formSteps, setFormSteps] = useState(0)
 
 
@@ -53,9 +52,7 @@ const AddNewPwh = () => {
 let isFormValid = Object.values(isPersonalInfo).every(value => value === true)
 // const isFormValid = true
 
-  const handleFocus = (e) => {
-    setFocused(true);
-  };
+
 
 
   const onNext = () =>{
@@ -84,9 +81,7 @@ const onAlert = () =>{
 
   };
 
-const onFocus = (e) => {
-    e.target.name === e.target.value && setFocused(true);
-};
+
 if(id){
   isFormValid = true
 }
@@ -200,7 +195,6 @@ if(isLoading){
               {formSteps > 0 && <input type='button' className="btn-submit" 
                       value="Prev" onClick={onPrev}/>}
             
-               {/* <input type="submit"/>        */}
                {isLoading? <Spinner />:""}
             <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="btn-submit" 
                   value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' 

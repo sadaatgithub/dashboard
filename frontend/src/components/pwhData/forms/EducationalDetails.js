@@ -36,9 +36,9 @@ const EducationalDetails = (props) => {
                 <p>Occupational</p>
                 <div className="occupational">
                   <div className="form-group">
-                  <label htmlFor="is_studying">Employed</label>
+                  <label htmlFor="is_employed">Employed</label>
                     <div className="form-control flex">
-                      <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_employed}  
+                      <select name="is_employed" id="" value={addPwh?.pwh_occupation?.is_employed}  
                           onChange={onChange("pwh_occupation")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
@@ -56,9 +56,9 @@ const EducationalDetails = (props) => {
                     />
                   </div>
                   <div className="form-group">
-                     <label htmlFor="is_studying">Reimbursment</label>
+                     <label htmlFor="is_reimbursed">Reimbursment</label>
                     <div className="form-control flex">
-                      <select name="is_studying" id="" value={addPwh?.pwh_occupation?.is_reimbursed}  onChange={onChange("pwh_occupation")}>
+                      <select name="is_reimbursed" id="" value={addPwh?.pwh_occupation?.is_reimbursed}  onChange={onChange("pwh_occupation")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>

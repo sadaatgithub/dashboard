@@ -7,6 +7,8 @@
 }
 :root{
   --primary-color: #672ab8;
+  --font-size-sm:clamp(0.8rem, 0.17vw + 0.76rem,0.89rem);
+  --font-size-base:clamp(1rem, 0.34vw + 0.91rem,1.19rem)
 
 }
 
@@ -612,8 +614,11 @@ width: 320px;
 .total-pwh-each {
   flex-grow: 1;
   border-radius: 5px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 20px 40px rgba(32, 37, 88, 0.137);
 
@@ -686,6 +691,10 @@ input:invalid[focused="true"] ~ span {
   }
 }
 @media only screen and (max-width: 768px) {
+  body{
+  font-size: var(--font-size-sm);
+
+  }
 
   .action-div{
   position: absolute;
@@ -732,6 +741,7 @@ input:invalid[focused="true"] ~ span {
 .action-div-top p {
   text-align: left;
   padding-left: 2.8rem;
+  font-size: var(--font-size-sm);
 
 }
 }
@@ -776,10 +786,14 @@ input:invalid[focused="true"] ~ span {
 .other-detail-tabs{
   display: flex;
   color: #ffff;
+  border: 1px solid rgb(187, 187, 187);
+  border-radius: 3px;
+
+
 }
 .other-detail-tabs div{
-  background-color: rgb(207, 207, 207);
-
+  background-color: rgb(255, 255, 255);
+border-radius: 3px;
   padding: 0.5rem;
 flex-grow: 1;
 font-size: 13px;
@@ -788,9 +802,10 @@ color: #000;
 
 }
 .other-detail-tabs div.active{
-  background:linear-gradient(rgb(34, 122, 255),rgb(10, 20, 168));
+  /* background:linear-gradient(rgb(34, 122, 255),rgb(10, 20, 168)); */
+  background-color: blue;
 color: #fff;
-border-radius: 2px;
+border-radius: 3px;
 }
 
 .other-detail-heading {
@@ -864,6 +879,16 @@ border-radius: 2px;
   text-decoration: underline;
   color: rgb(24, 24, 209);
   cursor: pointer;
+  width: auto;
+  padding: 0.25rem;
+  border: none;
+  align-self: flex-end;
+  margin-left: 0.25rem;
+}
+.chapter-edit-heading{
+  color: #fff;
+  font-weight: 400;
+
 }
 .chapter-edit{
   position: absolute;
@@ -872,7 +897,7 @@ border-radius: 2px;
   right: 0;
   min-width: 300px;
   /* bottom: 0; */
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(99, 119, 236);
   backdrop-filter: blur(15px);
   display: flex;
   flex-flow: column;
@@ -939,8 +964,9 @@ border-radius: 2px;
   font-size: 14px;
   align-self: start;
   margin-left: 1.2rem;
-  color: rgb(3, 47, 189);
+  color: rgb(245, 245, 245);
   margin-bottom: -0.5rem;
+  font-weight: 300;
 }
 .view-more{
   position: absolute;
@@ -1004,18 +1030,34 @@ min-height: 100vh;
   display: flex;
   gap: 1rem;
 }
-.factorwise-count li{
+.factor-wise ul li{
   display: flex;
-  flex-direction: column;
+  gap: 0.5rem;
   justify-content: center;
+  background-color: rgb(236, 235, 235);
+  color: rgb(95, 95, 97);
+  font-weight: 300;
+  padding: 0.5rem;
+  border-radius: 2px;
+  flex-grow: 1;
+
+}
+.factor-wise ul{
+  display: flex;
+  /* justify-content: space-evenly; */
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  flex-wrap: wrap;
+}
+.factor-wise ul li span{
+  color: rgb(71, 63, 67);
+  font-weight: 600;
 }
 .foctorwise-count{flex-wrap: wrap;}
 .excel-download-btn{
   margin-top: 0.5rem;
-  /* border: 1px solid rgb(28, 63, 219); */
   background-color: rgb(73, 121, 255);
   display: flex;
-  /* justify-content: space-between; */
   gap: 2rem;
   padding: 0.5rem;
   border-radius: 4px;
@@ -1073,12 +1115,12 @@ margin-left: auto;
   backdrop-filter: blur(5px);
 }
 .btn-manage{position: relative;}
-.foctorwise-count li p{
+/* .foctorwise-count li p{
   background-color: rgb(227, 225, 250);
   padding: 0.25rem 0.5rem;
   border-radius: 30px;
   font-size: 13px;
-}
+} */
 .btn-add-pwh{
   padding: 0.5rem;
   margin-left: 0.5rem;

@@ -13,14 +13,13 @@ const FactorwiseCount = () => {
     <div className="total-pwh-each">
     <p>PWH count Factor wise</p>
     <div className="factor-wise">
-      <ul className='flex foctorwise-count'>
-        <li><p>Factor VIII</p>
-        {isFactor8? data.filter((data) =>data.pwh_medical?.factor_def === "8").length : "0"}
+      <ul className='foctorwise-count'>
+        <li>FVIII<span>{isFactor8? data.filter((data) =>data.pwh_medical?.factor_def === "8").length : "0"}</span>
         </li>
-        <li><p>Factor IX</p>{isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "9").length : "0"} </li>
-        <li><p>VwD</p>{isVwD?  data.filter((data) =>data.pwh_medical?.others_def === "VwD").length : "0"}</li>
-        <li><p>Other</p>{isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "").length : "0"}</li> 
-        <li><p>Deceased</p>{isDeceased? data.filter((data) =>data.tag === "Deceased").length : "0"}</li> 
+        <li>FIX <span> {isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "9").length : "0"}</span></li>
+        <li>VwD <span> {isVwD?  data.filter((data) =>data.pwh_medical?.others_def === "VwD").length : "0"}</span></li>
+        <li>Other <span> {isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "").length : "0"}</span></li> 
+        <li>Deceased <span> {isDeceased? data.filter((data) =>data.tag === "Deceased").length : "0"}</span></li> 
       </ul>
      
     </div>

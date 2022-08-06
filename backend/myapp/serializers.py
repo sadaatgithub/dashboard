@@ -93,7 +93,6 @@ class PwhSerializer(serializers.ModelSerializer):
         # fields = '__all__'
     
     def create(self, validated_data):
-        print(validated_data)
         address_data = validated_data.pop('pwh_address')
         contact_data = validated_data.pop('contact')
         family_data = validated_data.pop('pwh_family')

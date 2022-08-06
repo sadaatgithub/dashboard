@@ -95,11 +95,8 @@ export const addDataSlice = createSlice({
     //     :({...state.data,[name]:value})
       
     // },
-    // getDataFromDb:(state,action)=>{
 
-    //   const {id} = action.payload
-    //   // const {data} = useSelector(data)
-    //     // state.data = data
+  
 
 
     // },
