@@ -10,7 +10,6 @@ import ManageModal from "../modal/ManageModal";
 
 
 const EachPwh = (props) => {
-const {isSuccess:isDeleteSuccess} = useSelector((state) => state.deletePwh)
 const {data,setVisible} =props
 const data_id = data.id
 
@@ -71,10 +70,10 @@ useEffect(() =>{
     toast.success('Uploaded Successfully')
     window.location.reload()
   }
-  if(isDeleteSuccess){
-    setVisible(false)
-  }
-},[isSuccess,dispatch,isDeleteSuccess])
+
+    // setVisible(false)
+  
+},[isSuccess,dispatch])
 
 // const onEdit = (e) =>{
 //   const id = e.target.value;
@@ -212,7 +211,7 @@ useEffect(() =>{
         <button>Download</button> */}
       </div>
       
-      {modal? (<DeleteModal showModal={onClick} hideModal={hideModal} id={data.id} />) :(null)}
+      {modal? (<DeleteModal showModal={onClick} hideModal={hideModal} id={data.id} setVisible={setVisible} />) :(null)}
       
     </div>
   );
