@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { deletePwh } from "../../features/data/deleteSlice";
 import { fetchData } from '../../features/data/dataSlice';
 
-const DeleteModal = ({onClick, hideModal, id}) => {
+const DeleteModal = ({onClick, hideModal, id,setVisible}) => {
 const {isSuccess, isLoading, isError, message} = useSelector((state) =>state.deletePwh)
 const dispatch = useDispatch()
 const navigate = useNavigate()
@@ -22,6 +22,7 @@ const navigate = useNavigate()
         // console.log('success');
         toast.success('Deleted...!')
         hideModal()
+        // setVisible(false)
         dispatch(fetchData())
     }
 // console.log(data_id);

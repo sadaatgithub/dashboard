@@ -90,7 +90,7 @@ useEffect(() =>{
           />
           </div>
           <div className="form-group">
-            <button type="submit" className="btn-login">{isLoading? 'Requesting' : 'Login'}</button>
+            <button type="submit" className="btn-login">{isLoading? 'Authorizing' : 'Login'}</button>
           </div>
         </form>
       </section>

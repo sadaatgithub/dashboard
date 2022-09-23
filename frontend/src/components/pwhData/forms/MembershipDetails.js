@@ -1,4 +1,3 @@
-import React from 'react'
 
 const MembershipDetails = (props) => {
     const {addPwh,onChange} = props
