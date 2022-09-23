@@ -2,7 +2,10 @@ import React from 'react'
 
 const MedicalDetails = (props) => {
     const {addPwh,onChange} = props
-
+    const factorArray = ['1','2','3','4','5','6','7','8','9','10','11','12','13']
+    const factorArrayList = factorArray.map((data =>{
+      return <option key={data} value={data}>F{data}</option>
+    }))
   return (
     <>
     <div className="form-div">
@@ -58,7 +61,7 @@ const MedicalDetails = (props) => {
                       required
                     >
                       <option value="null">Select</option>
-                      <option value="1">F1</option>
+                      {/* <option value="1">F1</option>
                       <option value="2">F2</option>
                       <option value="3">F3</option>
                       <option value="4">F4</option>
@@ -70,7 +73,8 @@ const MedicalDetails = (props) => {
                       <option value="10">F10</option>
                       <option value="11">F11</option>
                       <option value="12">F12</option>
-                      <option value="13">F13</option>
+                      <option value="13">F13</option> */}
+                      {factorArrayList}
                     </select>
                   </div>
                   <div className="form-group">
