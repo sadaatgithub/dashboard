@@ -1,4 +1,4 @@
-import "./App.css";
+import "./index.css";
 import { Suspense, lazy } from "react";
 import Signin from "./components/account/Signin";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -10,6 +10,7 @@ import MyPwh from "./components/pwhData/MyPwh";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
+
 const DownLoadData = lazy(() => import("./components/pwhData/DownLoadData"));
 const SearchDiv = lazy(() => import("./components/pwhData/search/SearchDiv"));
 const AddNewPwh = lazy(() => import("./components/pwhData/AddNewPwh"));
@@ -24,7 +25,7 @@ function App() {
     <>
       <Router>
         <Suspense fallback={<Spinner />}>
-          <div className="container">
+          <div className="container mx-auto sm:px-8 min-h-[100vh] flex flex-col overflow-hidden">
             <Header />
             <Routes>
               <Route

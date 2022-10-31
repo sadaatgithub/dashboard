@@ -20,16 +20,16 @@
 @media only screen and (max-width: 768px) {
   .form-left{min-width: 100px;}
 }
-.form-btn {
+/* .form-btn {
   display: flex;
   gap: 0.25rem;
   width: 100%;
   flex-direction: column;
-  /* border-bottom: 1px solid rgb(173, 173, 173); */
-  /* justify-content: space-between; */
+  border-bottom: 1px solid rgb(173, 173, 173);
+  justify-content: space-between;
   
 
-}
+} */
 .form-right {
   display: flex;
   /* border: 1px solid red; */
@@ -41,7 +41,7 @@
   position: relative;
   overflow: hidden;
 }
-.form-left button {
+/* .form-left button {
   padding: 0.7rem;
   cursor: pointer;
   text-align: left;
@@ -51,15 +51,15 @@
   flex-grow: 1;
   font-weight: bold;
   transition: border 0.3s ease-in-out;
-}
+} */
 .form-left button:hover{
  border: 1px solid rgb(54, 164, 197);
 
 }
 .form-left button.active {
-  background-color: rgb(54, 164, 197);
+  /* background-color: rgb(54, 164, 197); */
   /* background:linear-gradient(rgb(24, 24, 236), rgb(55, 38, 206)); */
-  color: #ffff;
+  /* color: #ffff; */
 
 }
 .form {

@@ -10,19 +10,17 @@ const FactorwiseCount = () => {
   const isDeceased = data.map((data) => data.tag).includes("Deceased")
 
   return (
-    <div className="total-pwh-each">
-    <p>PWH count Factor wise</p>
-    <div className="factor-wise">
-      <ul className='foctorwise-count'>
-        <li>FVIII<span>{isFactor8? data.filter((data) =>data.pwh_medical?.factor_def === "8").length : "0"}</span>
+    <div className="flex flex-col justify-center items-center py-4 gap-y-6 bg-white sm:col-span-2 shadow-md rounded-md">
+    <h3 className="text-2xl font-semibold text-gray-600">PWH count Factor wise</h3>
+      <ul className="flex w-full justify-around text-gray-700">
+        <li>FVIII <span className="ml-2 p-1 bg-blue-100">{isFactor8? data.filter((data) =>data.pwh_medical?.factor_def === "8").length : "0"}</span>
         </li>
-        <li>FIX <span> {isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "9").length : "0"}</span></li>
-        <li>VwD <span> {isVwD?  data.filter((data) =>data.pwh_medical?.others_def === "VwD").length : "0"}</span></li>
-        <li>Other <span> {isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "").length : "0"}</span></li> 
-        <li>Deceased <span> {isDeceased? data.filter((data) =>data.tag === "Deceased").length : "0"}</span></li> 
+        <li>FIX <span className="ml-2 px-3 py-1 rounded-sm bg-blue-100"> {isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "9").length : "0"}</span></li>
+        <li>VwD <span className="ml-2 px-3 py-1 rounded-sm bg-blue-100"> {isVwD?  data.filter((data) =>data.pwh_medical?.others_def === "VwD").length : "0"}</span></li>
+        <li>Other <span className="ml-2 px-3 py-1 rounded-sm bg-blue-100"> {isFactor9?  data.filter((data) =>data.pwh_medical?.factor_def === "").length : "0"}</span></li> 
+        <li>Deceased <span className="ml-2 px-3 py-1 rounded-sm bg-blue-100"> {isDeceased? data.filter((data) =>data.tag === "Deceased").length : "0"}</span></li> 
       </ul>
      
-    </div>
   </div>
   )
 }

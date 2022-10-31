@@ -163,27 +163,27 @@ if(isLoading){
     <>
     <div className="close-div">
           <button
-            className="back-btn"
+            className="bg-gray-600 text-white py-1 px-2 rounded"
             onClick={() => navigate(-1, { replace: true })}
           >
             Back
           </button>
         </div>
      
-      <div className="container-form">
+      <div className="flex gap-1 border mt-1 w-full h-[80vh]">
         
 
-        <div className="form-left">
-        <div className="form-btn">
+        <div className="w-1/5">
+        <div className="">
           <Tabs formSteps={formSteps} setFormSteps={setFormSteps} tabArray={tabArray} />
        
         </div>
         </div>
 
-        <div className="form-right">
+        <div className="w-4/5">
       
-          <form className="form" onSubmit={onSubmit}>
-            <div className="form-section">
+          <form className="relative w-full flex h-full flex-col" onSubmit={onSubmit}>
+            <div className="relative flex-grow text-left">
               {formSteps === 0 &&  <PersonalDetail addPwh={addPwh} onChange={onChange} valid={isPersonalInfo}/>}
               {formSteps === 1 &&  <EducationalDetails addPwh={addPwh} onChange={onChange}/>}
               {formSteps === 2 &&  <FamilyDetails addPwh={addPwh} onChange={onChange}/>}

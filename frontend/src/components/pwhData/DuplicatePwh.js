@@ -6,7 +6,7 @@ const DuplicatePwh = ({data,setDuplicateModal}) => {
   
   return (
     <>
-    <div className="duplicate-pwh">
+    <div className="absolute top-0 right-0 bottom-0 bg-sky-100 shadow-lg w-[400px] h-[200px] p-4">
         <FaTimes onClick={() => setDuplicateModal(false)}/>
 
         <table>

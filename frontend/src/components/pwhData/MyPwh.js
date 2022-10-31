@@ -158,32 +158,33 @@ if(!data){
 }
   return (
     <>
-    <div className="close-div">
-      <button className='back-btn'  onClick={() => navigate(-1)}>Back</button>
-      <Link to="/add"><button className='btn-add-pwh'>Add new Pwh</button></Link>
+    <div className="flex gap-4 mt-2">
+      <button className="bg-gray-600 text-white py-1 px-2 rounded"  onClick={() => navigate(-1)}>Back</button>
+      <Link to="/add"><button className="bg-sky-600 text-white py-1 px-2 rounded">Add new Pwh</button></Link>
       </div>
  
-    <div className="container-pwh">
+    <div className="rounded mt-2 w-full flex">
   
-    <div className="table-container">
+    <div className="flex flex-col rounded shadow-md gap-4 h-[80vh] w-full md:w-2/3  overflow-x-auto">
     <div className="">
-    <div className="flex table-search-div">
+    <div className="flex justify-end gap-2 items-center bg-sky-700 p-1">
   
-  <input type="search" onChange={onChange} placeholder="Search by Name"/>
+  <input type="search" onChange={onChange} placeholder="Search by Name" className="border p-1 rounded-sm"/>
 
-  <label htmlFor=""><small>Entries to display</small>
-  <select name="" id="" className="search-by-entries" onChange={howMany}> 
-    <option value="10">10</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
-  </select></label>
+        <label htmlFor=""><small className="text-white mr-2 ">Entries to display</small>
+            <select name="" id="" className="p-1 rounded-sm" onChange={howMany}> 
+          <option value="10">10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+            </select>
+        </label>
   </div>
    
-    <table className='table-pwh' id="table-to-xls">
-      <thead>
-        <tr>
-          <td>S No</td>
-          <td onClick={sortData} style={{cursor:'pointer'}}>First Name {sortNameIcon}</td>
+    <table className="w-full" id="table-to-xls">
+      <thead className="bg-sky-600 text-white ">
+        <tr className="[&>*]:p-2">
+          <td>S.No.</td>
+          <td onClick={sortData} className="cursor-pointer flex justify-start items-center gap-3">First Name {sortNameIcon}</td>
           <td>Father Name</td>
           <td>Last Name</td>
           <td>Factor</td>
@@ -194,16 +195,16 @@ if(!data){
       <tbody>
       {currentItem.map((item,index)=>{
         return(
-        <tr key={index}>
+        <tr key={index} className="[&>*]:p-2 [&:nth-child(even)]:bg-gray-100 text-sm text-gray-700">
         <>
           <td>{item.SrNo}</td>
-          <td key="index">{item.first_name}</td>
+          <td>{item.first_name}</td>
           <td>{item.guardian_father_name}</td>
           <td>{item.last_name}</td>
           <td>{item.pwh_medical?.factor_def}</td>
           <td>{item.pwh_medical?.factor_level}</td>
           
-      <td><button className='btn-more' value={item.id} onClick={viewMore}>View</button></td>
+      <td><button className="text-blue-700 font-semibold hover:underline" value={item.id} onClick={viewMore}>View</button></td>
       
       </>
         </tr>
@@ -212,12 +213,12 @@ if(!data){
     </tbody>
     </table>
     </div>
-    <div className="table-footer">
-    <p><small>Showing {indexOfFirstItem + 1} to {indexOfLastItem > data.length? data.length:indexOfLastItem} of {data.length} entries</small> </p>
+    <div className="mt-auto flex gap-x-8 items-center bg-gray-100 p-1">
+    <p className="p-1 w-1/3"><small>Showing {indexOfFirstItem + 1} to {indexOfLastItem > data.length? data.length:indexOfLastItem} of {data.length} entries</small> </p>
 
     
-    <ul className='pagination-no-row'>
-      <li><button onClick={handlePrevbtn} disabled={currentPage == pages[0]? true:false}>Prev</button></li>
+    <ul className="flex flex-grow justify-between items-center">
+      <li><button onClick={handlePrevbtn} disabled={currentPage == pages[0]? true:false} className={`${currentPage == pages[0]? "bg-gray-100 text-gray-400":"bg-blue-600 text-white"} border border-blue-500 p-1 px-2 rounded-sm`}>Prev</button></li>
       {pageDecrBtn}
       
     {pages.map((number) =>{
@@ -225,24 +226,22 @@ if(!data){
         return(
           <li key={number} id={number} 
           onClick={handleClick}
-          className= {currentPage == number ? "active" : null}>{number}</li>
+          className= {`${currentPage == number ? "bg-blue-300" : null} px-3 py-1 cursor-pointer rounded-sm`}>{number}</li>
           )
         }
       })}
       {pageIncrBtn}
       <li><button onClick={handleNextbtn}
-            disabled={currentPage === pages[pages.length - 1] ? true : false}>Next</button> </li>
+            disabled={currentPage === pages[pages.length - 1] ? true : false} className={`${currentPage === pages[pages.length - 1] ? "bg-gray-100 text-gray-400" : "bg-blue-600 text-white"} border border-blue-500 p-1 px-2 rounded-sm `}>Next</button> </li>
       </ul>
       </div>
 </div>
 
-      {visible? (<><div className="view-more">
-        <button onClick={() =>{
-          setVisible(false)
-        }} >X</button>
-      
-    {filterData?.map((data, index) =><EachPwh key={index} data={data} setVisible={setVisible}/>)}
-    </div></>) : ''}
+      {visible? (<><div className={`${visible? "translate-x-0":"translate-x-[500px]"} transform border absolute inset-0 h-full bg-white  transition-all md:w-1/3 flex flex-col bg-white md:static`}>
+        <button onClick={() =>{setVisible(false)}} className="ml-auto bg-gray-600 text-white px-2 rounded-sm" >X</button>
+
+              {filterData?.map((data, index) =><EachPwh key={index} data={data} setVisible={setVisible}/>)}
+        </div></>) : ''}
 </div>
 {/* </>)} */}
       </>

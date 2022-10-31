@@ -7,17 +7,20 @@ const PersonalDetail = (props) => {
 
   return (
     <>
-    <div className="form-div">
+    <div className="bg-white text-gray-800 absolute flex flex-col gap-2 transition-all z-10 rounded-sm p-2
+    [&>p]:text-red-500 [&>p]:text-xl">
     <p>Personal</p>
                
-    <div className="personal-info">
-      <div className="form-group">
-        <label htmlFor="first_name">First Name<sup>*</sup></label>
+    <div className="flex items-center gap-2 flex-wrap [&>div>input]:border [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    [&>div>input]:p-1 [&>div>label]:text-base">
+      <div className="flex gap-1 flex-col">
+        <label htmlFor="first_name">First Name</label>
         <input
           type="text"
           name="first_name"
           value={addPwh?.first_name || ''}
           onChange={onChange()}
+          // className="border"
           required
         />
        {/* <small>{valid.first_name? "":"Required"}</small> */}
@@ -53,12 +56,13 @@ const PersonalDetail = (props) => {
           required
         />
       </div>
-      <div className="form-group">
+      <div className="">
         <label htmlFor="dob">DOB</label>
         <input
           type="date"
           name="dob"
           // format
+          className="w-full"
           value={addPwh?.dob || ''}
           onChange={onChange()}
         />

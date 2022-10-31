@@ -47,14 +47,15 @@ useEffect(() =>{
   }
 },[user,dispatch])
   return (
-    <header className="header">
-      <div className="logo">
-        <Link to='/'><h3>National ABC Registry</h3></Link>
+    <header className="p-2 shadow-sm flex justify-between bg-white">
+      <div className="">
+        <Link to='/'><h3 className="text-xl md:text-2xl font-bold">National ABC Registry</h3></Link>
       </div>
       <ul>
       {user ? (
           <li>
-            <button className='btn-logout' onClick={onLogout}>
+            <button className="flex justify-center items-center gap-x-1 text-white bg-sky-600
+            px-3 py-2 rounded" onClick={onLogout}>
               <FaSignOutAlt /> Logout
             </button>
           </li>
