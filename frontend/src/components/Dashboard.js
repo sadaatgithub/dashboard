@@ -78,7 +78,7 @@ if (isLoading) {
       </div>
     </aside>
     <section className="flex flex-col gap-y-4 md:col-span-3 sm:w-full">
-    <div className="relative flex flex-col sm:flex-row gap-y-2  md:flex-row gap-3">
+    <div className="flex flex-col sm:flex-row gap-y-2  gap-3">
       <div className="py-4 flex flex-col gap-y-3 [&>*]:pl-2 p-4 bg-white shadow-md rounded-md">
         <h4 className="text-3xl font-semibold text-blue-700">Hii,</h4>
         <h5 className="text-base font-normal text-gray-500">Welcome back Mr/Mrs keyperson</h5>
