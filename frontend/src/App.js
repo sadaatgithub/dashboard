@@ -25,7 +25,7 @@ function App() {
     <>
       <Router>
         <Suspense fallback={<Spinner />}>
-          <div className="container mx-auto sm:px-8 min-h-[100vh] flex flex-col overflow-hidden">
+          <div className="container mx-auto min-h-[90vh] flex flex-col overflow-hidden bg-gray-100">
             <Header />
             <Routes>
               <Route

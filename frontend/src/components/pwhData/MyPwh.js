@@ -180,7 +180,7 @@ if(!data){
         </label>
   </div>
    
-    <table className="w-full" id="table-to-xls">
+    <table className="w-full bg-white" id="table-to-xls">
       <thead className="bg-sky-600 text-white ">
         <tr className="[&>*]:p-2">
           <td>S.No.</td>
