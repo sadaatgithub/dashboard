@@ -82,11 +82,11 @@ useEffect(() =>{
 // }
   
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col  flex-grow h-full">
       <div className="flex flex-col gap-y-2">
       <div className="flex flex-col justify-center items-center">
           {/* {isLoading? 'uploading':''} */}
-        {data.pwh_images[0]?.image? (<><img src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`} alt="img" className="w-[100px] h-auto" /></>):(<> <FaUser size={100}/></>)}
+        {data.pwh_images[0]?.image? (<><img src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`} alt="img" className="w-[100px] h-[100px] rounded-full object-cover" /></>):(<> <FaUser size={100}/></>)}
             
         
           <form onSubmit={onSubmit} className="">
@@ -105,7 +105,7 @@ useEffect(() =>{
                   id="image-upload" accept="image/png, image/jpeg"
                   onChange={onChange}/>
                     <label htmlFor="image-upload">Upload Photo</label>
-                    {postImage.image? (<><input type="submit" value="Upload Photo" /></>):(<></>)}
+                    {postImage.image? (<><input type="submit" value="Upload Photo" className="text-blue-600" /></>):(<></>)}
 
 
                   </>)}
@@ -177,7 +177,7 @@ useEffect(() =>{
         
       </div>
       <div className="flex mt-3">
-        <ul className="flex justify-between border w-full [&>*]:bg-blue-600 [&>*]:text-white [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
+        <ul className="flex justify-between [&>*]:rounded-sm w-full [&>*]:bg-blue-600 [&>*]:text-white [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
        <Link to={"/edit/" + data.id}><li>Edit</li></Link>
           <li onClick={onManage} className="">Manage</li>
 
