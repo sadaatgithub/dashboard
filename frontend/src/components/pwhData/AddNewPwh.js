@@ -156,45 +156,46 @@ if(name === 'email'){
   }, [id,dispatch,isSuccess,isError,isLoading,navigate,message]);
 
 if(isLoading){
-  <h1>Loading.......</h1>
+  <h1><Spinner/></h1>
 }
   return (
+
    
     <>
-    <div className="close-div">
+    <div className="close-div bg-white py-2">
           <button className="bg-gray-600 text-white py-1 px-2 rounded" onClick={() => navigate(-1, { replace: true })}>Back</button>
     </div>
      
-      <div className="flex gap-1 mt-1 w-full h-[80vh] ">
+      <div className="flex md:flex-row flex-col gap-1 w-full h-[80vh] border shadow-sm ">
         
 
-        <div className="w-1/5 bg-white">
+        <div className="md:w-1/5 bg-white">
           <Tabs formSteps={formSteps} setFormSteps={setFormSteps} tabArray={tabArray} />
-       
         </div>
 
-        <div className="w-4/5 bg-white">
       
-          <form className="relative w-full flex h-full flex-col" onSubmit={onSubmit}>
-            <div className="relative flex-grow text-left overflow-y-scroll">
-              {formSteps === 0 &&  <PersonalDetail addPwh={addPwh} onChange={onChange} valid={isPersonalInfo}/>}
-              {formSteps === 1 &&  <EducationalDetails addPwh={addPwh} onChange={onChange}/>}
-              {formSteps === 2 &&  <FamilyDetails addPwh={addPwh} onChange={onChange}/>}
-              {formSteps === 3 &&  <MedicalDetails addPwh={addPwh} onChange={onChange}/>}
-              {formSteps === 4 &&  <MembershipDetails addPwh={addPwh} onChange={onChange}/>}
+          <form className="md:w-4/5 flex h-full flex-col  bg-white" onSubmit={onSubmit}>
+            <div className="relative flex-grow text-left overflow-y-auto">
+              
+              {
+                formSteps === 0 ? <PersonalDetail addPwh={addPwh} onChange={onChange} valid={isPersonalInfo}/>
+                :formSteps === 1 ? <EducationalDetails addPwh={addPwh} onChange={onChange}/>
+                :formSteps === 2 ? <FamilyDetails addPwh={addPwh} onChange={onChange}/>
+                :formSteps === 3 ?  <MedicalDetails addPwh={addPwh} onChange={onChange}/>
+                :<MembershipDetails addPwh={addPwh} onChange={onChange}/>
+              }
+            
             </div>
 
-            <div className="z-10 self-center flex gap-x-4">
+            <div className="z-10 self-center flex gap-x-4 mb-2">
               {formSteps > 0 && <input type='button' className="bg-blue-600 text-white px-2 py-1 rounded-sm cursor-pointer" 
                       value="Prev" onClick={onPrev}/>}
             
-               {isLoading? <Spinner />:""}
             <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="bg-blue-600 text-white px-2 py-1 rounded-sm cursor-pointer" 
                   value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' 
                   : 'Add':"Next"} onClick={formSteps > 3 && isFormValid === false ? onAlert:onNext}/>
             </div>
           </form>
-        </div>
       </div>
     </>
   );

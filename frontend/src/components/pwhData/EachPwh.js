@@ -113,52 +113,36 @@ useEffect(() =>{
           
           </form>
         </div>
-        <div className="flex flex-col gap-2 [&>*]:flex [&>*]:gap-2 [&>*]:pl-2 [&>div>div>h5]:font-semibold [&>div>div>h5]:text-sm [&>div>div:nth-child(2)]:text-sm">
-          <div className="">
+        <div className="flex flex-col gap-2 [&>*]:flex [&>*]:gap-2 [&>*]:pl-2 [&>div>h5]:font-semibold [&>div>h5]:text-gray-800 [&>div]:text-sm [&>div>div:nth-child(2)]:text-sm">
            <div className="">
             <h5>Name :</h5>
-           </div>
-           <div className="">
             <p>{data.first_name + " " + data.last_name}</p>
-           </div>
           </div>
-          <div className="">
           <div className="">
             <h5>Guardian/Father Name :</h5>
-           </div>
-           <div className="">
             <p>{data.guardian_father_name + " " + data.last_name}</p>
-           </div>
           </div>
-          <div className="">
           <div className="">
             <h5>D.O.B:</h5>
-           </div>
-           <div className="">
             <p>{data.dob}</p>
+
            </div>
-          </div>
-          <div className="">
+          
           <div className="">
             <h5>Clinical:</h5>
-           </div>
-           <div className="">
             <p>Factor {data.pwh_medical?.factor_def + " , " + data.pwh_medical?.factor_level + " , " + data.pwh_medical?.blood_group_with_rh} ve</p>
+
            </div>
-          </div>
-          <div className="">
+           
           <div className="">
             <h5>Age:</h5>
-           </div>
-           <div className="">
             <p>00</p>
+
            </div>
-          </div>
-          <div className="">
-          <div className="">
-            <h5>Address :</h5>
-           </div>
-           <div className="">
+          
+          <div className="flex">
+            <h5 className="min-w-fit">Address :</h5>
+            <div className="">
             <p>{data.pwh_address?.line_1 + "," +data.pwh_address?.line_2  + "," +data.pwh_address?.line_2}</p>
             
             <p>{data.pwh_address?.line_3 + "," +data.pwh_address?.city}</p>
@@ -166,30 +150,25 @@ useEffect(() =>{
             <p>{data.pwh_address?.state + "," +data.pwh_address?.pincode}</p>
 
            </div>
-          </div>
-          <div className="">
+           </div>
+          
            <div className="">
             <h5>Contact :</h5>
-           </div>
-           <div className="">
             <p>{data.contact?.mobile}</p>
+
            </div>
-          </div>
-          <div className="">
+         
            <div className="">
             <h5>Email :</h5>
-           </div>
-           <div className="">
             <p>{data.contact?.email}</p>
-           </div>
+
+          
           </div>
-          <div className="">
            <div className="">
             <h5>Chapter Membership :</h5>
-           </div>
-           <div className="">
             <p>ABC12345678</p>
-           </div>
+
+          
           </div>
         
          
@@ -198,7 +177,7 @@ useEffect(() =>{
         
       </div>
       <div className="flex mt-3">
-        <ul className="flex justify-between border w-full [&>*]:bg-blue-400 [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
+        <ul className="flex justify-between border w-full [&>*]:bg-blue-600 [&>*]:text-white [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
        <Link to={"/edit/" + data.id}><li>Edit</li></Link>
           <li onClick={onManage} className="">Manage</li>
 
@@ -208,8 +187,7 @@ useEffect(() =>{
         </ul>
     
     {manageModal? (<ManageModal showModal={onClick}  hideModal={hideModal} id={data.id} />) :(null)}
-           {/*  <button>Attach</button>
-        <button>Download</button> */}
+          
       </div>
       
       {modal? (<DeleteModal showModal={onClick} hideModal={hideModal} id={data.id} setVisible={setVisible} />) :(null)}

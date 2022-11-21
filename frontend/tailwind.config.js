@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily:{
-        'nunito-sans':'Nunito Sans'
+        'poppins':'Poppins,sans-serif',
       }
     },
   },
