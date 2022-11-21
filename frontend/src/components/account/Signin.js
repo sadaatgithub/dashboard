@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import { FaUser } from "react-icons/fa";
 import { login, reset } from "../../features/auth/authSlice";
+import {ImSpinner8} from "react-icons/im"
 
 
 const Signin = () => {
@@ -63,9 +64,9 @@ useEffect(() =>{
       <section className="flex-grow flex justify-center items-center bg-gray-100">
      
         {/* <p>Please Login</p> */}
-      <div className="w-full sm:w-2/3 flex flex-col items-center py-12 sm:py-20 bg-white rounded-md shadow-md">
-      <FaUser size={30}/>
-        <h1 className="text-xl font-medium text-sky-700 mt-2">Login</h1>
+      <div className="w-full sm:w-2/3 flex flex-col items-center py-12 sm:py-20 bg-white rounded-lg shadow-md">
+      <FaUser className="text-blue-700" size={30}/>
+        <h1 className="text-2xl font-medium text-sky-700 mt-2">Login</h1>
         <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-10 w-2/3 lg:w-2/5">
           <div className="flex flex-col gap-1">
             <label forhtml="username" className="text-sm text-gray-600">Username</label>
@@ -92,7 +93,7 @@ useEffect(() =>{
             onChange={onChange}
           />
           </div>
-          <button type="submit" className="bg-sky-800 mt-12 text-white p-2 rounded-sm hover:bg-sky-700 transition-all">{isLoading? 'Authorizing' : 'Login'}</button>
+          <button type="submit" className="flex justify-center bg-sky-800 mt-12 text-white p-2 rounded-sm hover:bg-sky-700 transition-all">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
         </form>
       </div>
       </section>

@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import '../search/search.css'
+// import '../search/search.css'
 import { fetchData } from '../../../features/data/dataSlice'
 import { useNavigate } from 'react-router-dom'
 
@@ -50,26 +50,26 @@ console.log(filteredData)
   }
 },[data,dispatch,filteredData])
   return (
-    <div className='search-container'>
-      <div className="close-div">
-      <button className='search-close'  onClick={() => navigate(-1)}>Back</button>
+    <div className='h-[80vh] flex flex-col'>
+      <div className="">
+      <button className="bg-gray-600 text-white py-1 px-2 rounded mt-2" onClick={() => navigate(-1)}>Back</button>
       </div>
-     <form className="search-div" onSubmit={onSubmit}>
-       <div className="form-group">
+     <form className="bg-white w-full md:w-2/3 flex flex-col justify-center items-center p-8 m-auto gap-y-4" onSubmit={onSubmit}>
+       <div className="flex flex-col gap-y-1">
          <label htmlFor="">Name</label>
-       <input type="search" name="full_name" required value={full_name} onChange={onChange}/>
+       <input type="search" name="full_name" className="border py-1 outline-none" required value={full_name} onChange={onChange}/>
        </div>
-       <div className="form-group">
+       <div className="flex flex-col gap-y-1">
 
-       <label htmlFor="">Factor
-       <input type="search" name="factor_def" required value={factor_def} onChange={onChange}/></label>
+       <label htmlFor="">Factor</label>
+       <input type="search" name="factor_def" className="border py-1 outline-none" required value={factor_def} onChange={onChange}/>
        </div>
-       <div className="form-group">
-         <button type='submit'>Search</button>
+       <div className="flex gap-x-4">
+         <button type='submit' className="border py-1 px-3 bg-blue-600 rounded text-white">Search</button>
+         <button type='reset' onClick={onClear} className="border py-1 px-3 ">Clear</button>
+
        </div>
-       <div className="form-group">
-         <div type='button' onClick={onClear}>Clear</div>
-       </div>
+       
 
      </form>
      <div className="search-result">

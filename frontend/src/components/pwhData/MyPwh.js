@@ -8,11 +8,10 @@ import { FaAngleUp, FaAngleDown ,FaArrowDown, FaSortAlphaDown, FaSortAlphaUp, Fa
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Spinner from '../Spinner';
 import EachPwh from './EachPwh';
-import { fetchUser } from '../../features/user/userSlice';
 // import Spinner from './Spinner';
 
 const MyPwh = () => {
-  const {data,isLoading,isSuccess,sortByName} = useSelector((state)=>state.data)
+  const {data,isLoading,sortByName} = useSelector((state)=>state.data)
   const {user} = useSelector((state) => state.auth)
   const [search, setSearch] =  useState('')
   const [visible,setVisible] = useState(false)
@@ -38,8 +37,7 @@ const MyPwh = () => {
     return Object.keys(item).
     some(key =>{
       if(typeof item[key] === 'object'){
-      // console.log('oc');
-      // return Object.keys(item.key).some(val =>item.key[val].toString().toLowerCase().includes(search))
+    
       }
       if (typeof item[key] === 'string'){
         return item[key].toString().toLowerCase().includes(search)
@@ -50,8 +48,6 @@ const MyPwh = () => {
 
   // const currentItem = useMemo(() => data.filter((item) => {
   //   return Object.keys(item).some(key => item[key].toString().toLowerCase().includes(search))}).slice(indexOfFirstItem, indexOfLastItem))
- 
- 
  
   // const currentItem = useMemo(() => data.filter(({first_name}) => first_name.toLowerCase().includes(search),[search, data]).slice(indexOfFirstItem, indexOfLastItem))
 
@@ -115,6 +111,7 @@ const sortData = () =>{
 
 
   }
+
 const sortNameIcon = sortByName === "default"? <><FaSort  size={15}/></>
                     : sortByName === "down"? <FaSortDown size={15}/> 
                     : sortByName === "up"? <FaSortUp size={15}/> :''
@@ -158,16 +155,15 @@ if(!data){
 }
   return (
     <>
-    <div className="flex gap-4 mt-2">
+    <div className="flex gap-4 bg-white py-4">
       <button className="bg-gray-600 text-white py-1 px-2 rounded"  onClick={() => navigate(-1)}>Back</button>
-      <Link to="/add"><button className="bg-sky-600 text-white py-1 px-2 rounded">Add new Pwh</button></Link>
+      <Link to="/add"><button className="bg-sky-600 text-white py-1 px-2 rounded">Add New PwH</button></Link>
       </div>
  
-    <div className="rounded mt-2 w-full flex">
-  
-    <div className="flex flex-col rounded shadow-md gap-4 h-[80vh] w-full md:w-2/3  overflow-x-auto">
+    <div className="rounded  w-full flex bg-white ">
+    <div className="flex flex-col rounded shadow-xl gap-4 h-[80vh] w-full md:w-2/3  overflow-x-auto border">
     <div className="">
-    <div className="flex justify-end gap-2 items-center bg-sky-700 p-1">
+    <div className="flex justify-end gap-2 items-center bg-sky-600 p-1">
   
   <input type="search" onChange={onChange} placeholder="Search by Name" className="border p-1 rounded-sm"/>
 
@@ -181,7 +177,7 @@ if(!data){
   </div>
    
     <table className="w-full bg-white" id="table-to-xls">
-      <thead className="bg-sky-600 text-white ">
+      <thead className="bg-sky-500 text-white ">
         <tr className="[&>*]:p-2">
           <td>S.No.</td>
           <td onClick={sortData} className="cursor-pointer flex justify-start items-center gap-3">First Name {sortNameIcon}</td>
@@ -195,7 +191,7 @@ if(!data){
       <tbody>
       {currentItem.map((item,index)=>{
         return(
-        <tr key={index} className="[&>*]:p-2 [&:nth-child(even)]:bg-gray-100 text-sm text-gray-700">
+        <tr key={index} className="[&>*]:p-2 [&:nth-child(even)]:bg-gray-100 text-sm text-gray-600">
         <>
           <td>{item.SrNo}</td>
           <td>{item.first_name}</td>
@@ -213,12 +209,12 @@ if(!data){
     </tbody>
     </table>
     </div>
-    <div className="mt-auto flex gap-x-8 items-center bg-gray-100 p-1">
-    <p className="p-1 w-1/3"><small>Showing {indexOfFirstItem + 1} to {indexOfLastItem > data.length? data.length:indexOfLastItem} of {data.length} entries</small> </p>
+    <div className="mt-auto flex gap-x-8 items-center border-t-[1px]  p-1">
+    <p className="p-1 w-1/3"><small className="text-gray-700">Showing {indexOfFirstItem + 1} to {indexOfLastItem > data.length? data.length:indexOfLastItem} of {data.length} entries</small> </p>
 
     
     <ul className="flex flex-grow justify-between items-center">
-      <li><button onClick={handlePrevbtn} disabled={currentPage == pages[0]? true:false} className={`${currentPage == pages[0]? "bg-gray-100 text-gray-400":"bg-blue-600 text-white"} border border-blue-500 p-1 px-2 rounded-sm`}>Prev</button></li>
+      <li><button onClick={handlePrevbtn} disabled={currentPage == pages[0]? true:false} className={`${currentPage == pages[0]? "bg-gray-100 text-gray-400 cursor-not-allowed":"bg-blue-600 text-white"} border border-blue-500 p-1 px-2 rounded-sm`}>Prev</button></li>
       {pageDecrBtn}
       
     {pages.map((number) =>{
@@ -226,22 +222,24 @@ if(!data){
         return(
           <li key={number} id={number} 
           onClick={handleClick}
-          className= {`${currentPage == number ? "bg-blue-300" : null} px-3 py-1 cursor-pointer rounded-sm`}>{number}</li>
+          className= {`${currentPage == number ? "bg-blue-600 text-white" : null} px-3 py-1 cursor-pointer rounded-sm `}>{number}</li>
           )
         }
       })}
       {pageIncrBtn}
       <li><button onClick={handleNextbtn}
-            disabled={currentPage === pages[pages.length - 1] ? true : false} className={`${currentPage === pages[pages.length - 1] ? "bg-gray-100 text-gray-400" : "bg-blue-600 text-white"} border border-blue-500 p-1 px-2 rounded-sm `}>Next</button> </li>
+            disabled={currentPage === pages[pages.length - 1] ? true : false} className={`${currentPage === pages[pages.length - 1] ? "bg-gray-100 text-gray-400 cursor-not-allowed " : "bg-blue-600 text-white"} border border-blue-500 p-1 px-2 rounded-sm `}>Next</button> </li>
       </ul>
       </div>
 </div>
 
-      {visible? (<><div className={`${visible? "translate-x-0":"translate-x-[500px]"} transform border absolute inset-0 h-full bg-white  transition-all md:w-1/3 flex flex-col bg-white md:static`}>
+      {visible? (<>
+            <div className={`${visible? "translate-x-0":"translate-x-[500px]"} transform border absolute inset-0 h-full bg-white  transition-all md:w-1/3 flex flex-col md:static`}>
         <button onClick={() =>{setVisible(false)}} className="ml-auto bg-gray-600 text-white px-2 rounded-sm" >X</button>
 
               {filterData?.map((data, index) =><EachPwh key={index} data={data} setVisible={setVisible}/>)}
-        </div></>) : ''}
+        </div>
+        </>) : ''}
 </div>
 {/* </>)} */}
       </>

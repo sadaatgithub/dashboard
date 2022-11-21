@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import {useNavigate} from "react-router-dom"
 import { toast } from "react-toastify";
 import { fetchUser } from '../../features/user/userSlice';
+import {RiLoader5Fill} from "react-icons/ri"
+
+
 
 
 const ChapterEdit = (props) => {
@@ -52,13 +55,14 @@ const onSubmit = (e) =>{
       
   },[isLoading,isSuccess,isError])
   return (
-    <form className='chapter-edit' onSubmit={onSubmit}>
-    <button className='chapter-edit-close' onClick={onClick}>X</button>
-      <div className="chapter-edit-heading">
+    <div className="absolute inset-0 bg-black/70 z-20 flex justify-center items-center">
+    <form className="border flex flex-col bg-white w-full sm:w-[80%] md:w-2/3 lg:w-[50%]   rounded-lg justify-center items-center" onSubmit={onSubmit}>
+    <button className="self-end px-2 text-white rounded-sm bg-gray-600" onClick={onClick}>X</button>
+      <div className="">
        <strong>Edit Chapter Address</strong>
       </div>
-      <div className="chapter-edit-input">
-        <div className="edit-form-group">
+      <div className="flex justify-evenly mt-4 w-full flex-col md:flex-row px-2">
+        <div className="flex flex-col [&>input]:border gap-y-1 [&>label]:text-gray-900 [&>input]:p-1">
           <label htmlFor="line_1">Line 1</label>
         <input type="text" placeholder='Line 1' name='line_1' value={data.chapter_address?.line_1} onChange={onChange('chapter_address')} />
         <label htmlFor="line_2">Line 2 </label>
@@ -69,7 +73,7 @@ const onSubmit = (e) =>{
         <label htmlFor="city">City</label>
         <input type="text" placeholder='City' name="city" value={data.chapter_address?.city} onChange={onChange('chapter_address')} />
         </div>
-        <div className="edit-form-group">
+        <div className="flex flex-col [&>input]:border gap-y-1 [&>label]:text-gray-900 [&>input]:p-1">
         
         <label htmlFor="tahsil">Tahsil </label>
         <input type="text" placeholder='Tahsil' name="tahsil" value={data.chapter_address?.tahsil} onChange={onChange('chapter_address')} />
@@ -81,8 +85,10 @@ const onSubmit = (e) =>{
         <input type="number"  placeholder='Pincode'  name='pincode' value={data.chapter_address?.pincode} onChange={onChange('chapter_address')} />
         </div>
       </div>
-      <button className="chapter-edit-btn-submit">{isLoading?"Updating...." :  "Update"}</button>
+
+      <button className="py-2 px-4 text-white rounded-sm bg-blue-700 mt-8 mb-4">{isLoading? <RiLoader5Fill className="animate-spin m-auto text-xl self-center cursor-not-allowed" /> :"Update"}</button>
     </form>
+    </div>
   )
 }
 

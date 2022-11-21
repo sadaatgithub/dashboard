@@ -10,7 +10,7 @@ const DashboardNav = () => {
    
     <ul className="flex-grow mt-10 flex flex-col  text-base text-gray-100 font-normal gap-y-3
      [&>*]:p-2 [&>*]:pl-4 [&>*]:ml-4 [&>*:hover]:bg-white [&>*:hover]:text-black [&>*]:rounded-l-full 
-     transition duration-500 ease-in">
+     [&>*]:transition-all duration-500 ease-in">
 
         <Link to="/pwh-data"><li className="flex items-center gap-x-4"><FaUsers size="15" className=""/>View Pwh</li></Link>
         <Link to="/add"><li className="flex items-center gap-x-4"><FaPlusCircle  size="15" className=""/>Add PwH</li></Link>

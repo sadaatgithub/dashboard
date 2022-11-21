@@ -9,7 +9,7 @@ const [open,setOpen] = useState(false)
   return (
     <>
    
-   <div className="border text-sm leading-loose text-gray-600 ">
+   <div className="text-sm leading-loose text-gray-600 ">
     <div className="flex justify-between px-8">
     <p>Date of Birth</p><p>{data.filter((data) => data.dob === null).length}</p>
     </div>
