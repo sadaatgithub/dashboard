@@ -1,17 +1,20 @@
-import React from 'react'
+import React from "react";
+import FormDiv from "./FormDiv";
+import FormGroup from "./FormGroup";
 
 const FamilyDetails = (props) => {
-    const {addPwh,onChange} = props
+  const { addPwh, onChange } = props;
 
   return (
     <>
-    <div className="flex flex-col p-2">
-
-      <p>Family History</p>
-                <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
-    [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
-                  <div className="form-group">
+      <FormDiv
+        children={
+          <>
+            <p>Family History</p>
+            <FormGroup
+              children={
+                <>
+                  <div className="">
                     <label htmlFor="no_of_affected">No of affected</label>
                     <input
                       type="text"
@@ -20,7 +23,7 @@ const FamilyDetails = (props) => {
                       onChange={onChange("pwh_family")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="">
                     <label htmlFor="affected_nhr_id">Affected NHR Id</label>
                     <input
                       type="text"
@@ -29,7 +32,7 @@ const FamilyDetails = (props) => {
                       onChange={onChange("pwh_family")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="">
                     <label htmlFor="family_income">Family Income</label>
                     <input
                       type="text"
@@ -38,7 +41,7 @@ const FamilyDetails = (props) => {
                       onChange={onChange("pwh_family")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="">
                     <p>BPL</p>
                     <div className="form-control flex">
                       <select
@@ -54,7 +57,7 @@ const FamilyDetails = (props) => {
                       </select>
                     </div>
                   </div>
-                  <div className="form-group">
+                  <div className="">
                     <label htmlFor="bpl_ref_no">BPL Ref No</label>
                     <input
                       type="text"
@@ -63,10 +66,14 @@ const FamilyDetails = (props) => {
                       onChange={onChange("pwh_family")}
                     />
                   </div>
-                </div>
-                </div>
+                </>
+              }
+            />
+          </>
+        }
+      />
     </>
-  )
-}
+  );
+};
 
-export default FamilyDetails
+export default FamilyDetails;

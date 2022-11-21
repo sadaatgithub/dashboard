@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch} from 'react-redux';
 import { fetchData, reset, sortingBy } from '../../features/data/dataSlice';
 // import { getPwhWithId , reset as resetUpdateData} from "../../features/data/addNewPwhSlice";
-import { FaAngleUp, FaAngleDown ,FaArrowDown, FaSortAlphaDown, FaSortAlphaUp, FaSort,FaSortDown,FaSortUp} from 'react-icons/fa';
+import { FaPlusCircle,FaSort,FaSortDown,FaSortUp,FaArrowLeft} from 'react-icons/fa';
 // import { useDownloadExcel  } from 'react-export-table-to-excel';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Spinner from '../Spinner';
@@ -156,8 +156,8 @@ if(!data){
   return (
     <>
     <div className="flex gap-4 bg-white py-4">
-      <button className="bg-gray-600 text-white py-1 px-2 rounded"  onClick={() => navigate(-1)}>Back</button>
-      <Link to="/add"><button className="bg-sky-600 text-white py-1 px-2 rounded">Add New PwH</button></Link>
+      <button className="bg-gray-600 text-white py-1 px-2 rounded flex items-center gap-x-2"  onClick={() => navigate(-1)}><FaArrowLeft/> Back</button>
+      <Link to="/add"><button className="bg-blue-600 text-white py-1 px-2 rounded flex items-center gap-x-2"><FaPlusCircle />Add New PwH</button></Link>
       </div>
  
     <div className="rounded  w-full flex bg-white ">

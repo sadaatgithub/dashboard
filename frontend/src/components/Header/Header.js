@@ -49,7 +49,7 @@ useEffect(() =>{
   return (
     <header className="p-2 flex justify-between bg-white border-b-[1px]">
       <div className="">
-        <Link to='/'><h3 className="text-xl md:text-2xl font-bold text-blue-700">National Hemophilia Registry</h3></Link>
+        <Link to='/'><h3 className="text-xl  font-bold text-blue-700">National Hemophilia Registry</h3></Link>
       </div>
       <ul>
       {user ? (

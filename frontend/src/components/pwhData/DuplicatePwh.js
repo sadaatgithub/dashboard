@@ -6,8 +6,9 @@ const DuplicatePwh = ({data,setDuplicateModal}) => {
   
   return (
     <>
-    <div className="absolute top-0 right-0 bottom-0 bg-blue-700 text-white shadow-lg w-[400px] h-[200px] p-4">
-        <FaTimes onClick={() => setDuplicateModal(false)}/>
+    <div className="absolute top-0 right-0 bottom-0 bg-blue-600 z-20 text-white shadow-xl w-[400px] h-[200px] p-4
+    flex flex-col gap-y-4 rounded-sm">
+        <FaTimes className="self-end cursor-pointer" onClick={() => setDuplicateModal(false)}/>
 
         <table>
             <thead>
@@ -21,7 +22,7 @@ const DuplicatePwh = ({data,setDuplicateModal}) => {
             {data.map((data,index) => {
                 return <tr key={index}>
                     <td>{data.SrNo}</td>
-                    <td>{data.first_name + " " + data.last_name}</td>
+                    <td className="text-sm font-thin">{data.first_name + " " + data.last_name}</td>
                     <td> </td>
                 </tr>
             })}
