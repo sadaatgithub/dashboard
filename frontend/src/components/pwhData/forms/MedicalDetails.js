@@ -8,11 +8,11 @@ const MedicalDetails = (props) => {
     }))
   return (
     <>
-    <div className="flex flex-col p-2">
+    <div className="flex flex-col p-2 gap-y-4">
 
         <p>Medical History</p>
-                <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+                <div className="flex flex-col md:flex-row gap-4 flex-wrap [&>div>input]:border border bg-white  p-2
+    [&>div]:flex [&>div]:flex-col
     [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
                   <div className="flex gap-1 flex-col">
                     <label htmlFor="age_of_diagnosis">Age Of Diagnosis</label>
@@ -102,7 +102,7 @@ const MedicalDetails = (props) => {
                     </select>
                   </div>
                 </div>
-                <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2">
+                <div className="flex flex-col md:flex-row  gap-4 flex-wrap [&>div>input]:border border bg-white [&>div>div>select]:w-full p-2">
                   <div className="flex gap-1 flex-col">
                   <label htmlFor="is_studying">Inhibitor Status</label>
                     <div className="flex">

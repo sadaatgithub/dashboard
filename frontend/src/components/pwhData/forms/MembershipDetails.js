@@ -7,8 +7,8 @@ const MembershipDetails = (props) => {
     <div className="flex flex-col p-2">
 
     <p>Membership</p>
-    <div className="flex gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    <div className="flex gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2 gap-2 border
+    [&>div]:flex [&>div]:flex-col [&>div]:gap-1
     [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
       <div className="form-group">
         <label htmlFor="addar_member">Aadhar no(member)</label>

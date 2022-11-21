@@ -8,8 +8,8 @@ const FamilyDetails = (props) => {
     <div className="flex flex-col p-2">
 
       <p>Family History</p>
-                <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+                <div className="flex flex-col md:flex-row gap-4 flex-wrap [&>div>input]:border bg-white  p-2
+    [&>div]:flex [&>div]:flex-col [&>div>input]:gap-1 w-full border
     [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
                   <div className="form-group">
                     <label htmlFor="no_of_affected">No of affected</label>

@@ -11,8 +11,8 @@ const PersonalDetail = (props) => {
     [&>p]:text-red-500 [&>p]:text-xl">
     <p>Personal</p>
                
-    <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    <div className="flex flex-col md:flex-row  gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
+     w-full border gap-2
     [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
       <div className="flex gap-1 flex-col">
         <label htmlFor="first_name">First Name</label>
@@ -74,6 +74,7 @@ const PersonalDetail = (props) => {
 
         <select
           name="gender"
+          className="p-1"
           id="gender"
           value={addPwh?.gender || ''}
           onChange={onChange()}
@@ -85,11 +86,12 @@ const PersonalDetail = (props) => {
           <option value="ND">Not To DIsclosed</option>
         </select>
       </div>
-      <div className=" flex gap-1 flex-col">
+      <div className=" flex gap-1 flex-col ">
         <label htmlFor="religion">Religion</label>
         <select
           name="religion"
           id="religion"
+          className="border p-1"
           value={addPwh?.religion || ''}
           onChange={onChange()}
         >
@@ -104,6 +106,7 @@ const PersonalDetail = (props) => {
       <div className=" flex gap-1 flex-col">
         <label htmlFor="caste">Caste</label>
         <select
+          className="border p-1 [& > *]:text-sm"
           name="caste"
           id="caste"
           value={addPwh?.caste || ''}
@@ -122,7 +125,7 @@ const PersonalDetail = (props) => {
     
     <p>Address</p>
                 <div className="flex gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    gap-2 border
     [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
                   <div className=" flex gap-1 flex-col">
                     <label htmlFor="line_1">Line 1</label>
@@ -205,7 +208,7 @@ const PersonalDetail = (props) => {
                 </div>
                 <p>Contact Info</p>
                 <div className="flex gap-2 [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+   border
     [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
                   <div className=" flex gap-1 flex-col">
                     <label htmlFor="mobile">Mobile<sup>*</sup></label>

@@ -10,8 +10,7 @@ const EducationalDetails = (props) => {
     <div className="p-2">
 
     <p>Educational</p>
-                <div className="flex gap-x-4 [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+                <div className="flex md:flex-row flex-col gap-x-4 [&>div>input]:border bg-white  p-2 border
     [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
                   <div className="flex flex-col gap-y-1">
                     {/* <p>Studying?</p> */}
@@ -36,9 +35,8 @@ const EducationalDetails = (props) => {
                   </div>
                 </div>
                 <p>Occupational</p>
-                <div className="flex flex-col md:flex-row gap-2 [&>div>input]:border bg-white  p-2
-    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
-    [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
+                <div className="flex flex-col md:flex-row gap-2 [&>div>input]:border bg-white  p-2 border
+                                [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
                   <div className="flex gap-1 flex-col">
                   <label htmlFor="is_employed">Employed</label>
                     <div className=" flex [&>select]:border">
