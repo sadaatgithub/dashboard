@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
 import { FaUser } from "react-icons/fa";
 import { login, reset } from "../../features/auth/authSlice";
+import {ImSpinner8} from "react-icons/im"
 
 
 const Signin = () => {
@@ -60,40 +61,43 @@ useEffect(() =>{
 // }
   return (
     <>
-      <section className="login-div">
-      <FaUser size={30}/>
-        <h1>Login</h1>
+      <section className="flex-grow flex justify-center items-center bg-gray-100">
+     
         {/* <p>Please Login</p> */}
-      </section>
-      <section className="form login-form">
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
+      <div className="w-full sm:w-2/3 flex flex-col items-center py-12 sm:py-20 bg-white rounded-lg shadow-md">
+      <FaUser className="text-blue-700" size={30}/>
+        <h1 className="text-2xl font-medium text-sky-700 mt-2">Login</h1>
+        <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-10 w-2/3 lg:w-2/5">
+          <div className="flex flex-col gap-1">
+            <label forhtml="username" className="text-sm text-gray-600">Username</label>
           <input
             type="text"
-            className="form-control"
+            className="border w-full py-1 rounded-sm focus:border-indigo-700 outline-none"
             id="username"
             name="username"
             value={username}
-            placeholder="Enter Username"
-            onChange={onChange }
-          />
-          </div>
-          <div className="form-group">
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            value={password}
-            placeholder="Enter Password"
+            // placeholder="Enter Username"
             onChange={onChange}
           />
           </div>
-          <div className="form-group">
-            <button type="submit" className="btn-login">{isLoading? 'Authorizing' : 'Login'}</button>
+          <div className="flex flex-col gap-1">
+          <label forhtml="password" className="text-sm text-gray-600">Password</label>
+
+          <input
+            type="password"
+            className="border w-full py-1 rounded-sm focus:border-indigo-700 outline-none"
+            id="password"
+            name="password"
+            value={password}
+            // placeholder="Enter Password"
+            onChange={onChange}
+          />
           </div>
+          <button type="submit" className="flex justify-center bg-sky-800 mt-12 text-white p-2 rounded-sm hover:bg-sky-700 transition-all">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
         </form>
+      </div>
       </section>
+
     </>
   );
 };

@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import React, { useEffect, useState,useRef } from 'react'
+import { DownloadTableExcel } from 'react-export-table-to-excel';
+// import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner';
 
 const DownLoadData = () => {
+
+  const tableRef = useRef(null);
 
 const navigate = useNavigate()
 const {data, isSuccess,isLoading} = useSelector((state) => state.data)
@@ -34,14 +37,14 @@ if(isLoading){
  
   return (
     <>
-    <main className="pwh-data-to-excel">
+    <main className="bg-white">
     <div className="close-div">
-      <button className='back-btn'  onClick={() => navigate(-1)}>Back</button>
-      </div>
-      <div className="excel-download-btn">
-       <div>
-      <label htmlFor="report-factorwise">Select Factor </label>
-      <select name="" id="report-factorwise"  onChange={(e)=>{setByFactor(e.target.value)}}>
+      <button className="bg-gray-600 text-white py-1 px-2 rounded mt-2"  onClick={() => navigate(-1)}>Back</button>
+    </div>
+      <div className="flex gap-x-8 py-1 bg-blue-600 mt-2">
+       <div className="ml-auto flex gap-x-4 justify-center items-center">
+      <label htmlFor="report-factorwise" className="text-white">Select Factor </label>
+      <select name="" id="report-factorwise" className="border py-1 rounded-sm"  onChange={(e)=>{setByFactor(e.target.value)}}>
         <option value="">All</option>
         
         {factorList.map((item,index) =>{
@@ -50,30 +53,31 @@ if(isLoading){
         })}
       </select>
       </div>
-       <div>
-      <label htmlFor="report-districtwise">Select District </label>
-      <select name="" id="report-districtwise" onChange={(e)=>{setByDistrict(e.target.value)}}>
+       <div className="flex gap-x-4 justify-center items-center">
+      <label htmlFor="report-districtwise" className="text-white">Select District</label>
+      <select name="" id="report-districtwise" className="border py-1 rounded-sm" onChange={(e)=>{setByDistrict(e.target.value)}}>
 
         <option value="" >All</option>
         {distList}
       </select>
       </div>
-      <ReactHTMLTableToExcel 
-      table="table-to-xls" 
-      filename="all_pwh"
-      sheet="tablexls"/>
+
+      <DownloadTableExcel filename="PwH Data" sheet="users"
+                    currentTableRef={tableRef.current}>
+                   <button className="mr-2 bg-blue-800 text-white py-1 px-2 rounded-sm">Export Excel</button>
+      </DownloadTableExcel>
 
       </div>
-    <div className="pwh-excel-table">
-      <table className='pwh-data-table' id='table-to-xls'>
+    <div className="">
+      <table className="text-xs w-full" id='table-to-xls' ref={tableRef}>
 
      
         <thead>
-          <tr>
+          <tr className="bg-blue-700 text-white font-thin [&>*]:p-1">
             <td>S.No</td>
             <td>First Name</td>
-            <td>Father name</td>
-            <td>Last name</td>
+            <td>Father Name</td>
+            <td>Last Name</td>
             <td>D.O.B</td>
             <td>Gender</td>
             <td>Religion</td>
@@ -91,10 +95,10 @@ if(isLoading){
             <td>INHIBITOR</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="[&>*:nth-child(even)]:bg-gray-100 ">
          {excelData?.map((data,index) =>{
           return (
-          <tr key={index}>
+          <tr key={index} className="[&>*:nth-child(1)]:text-center [&>*:nth-child(6)]:text-center [&>*]:py-2">
               <td>{index + 1}</td>
               <td>{data.first_name}</td>
               <td>{data.guardian_father_name? data.guardian_father_name:'---'}</td>
@@ -102,7 +106,6 @@ if(isLoading){
               <td>{data.dob}</td>
               <td>{data.gender}</td>
               <td>{data.religion}</td>
-            
               <td>{data.caste}</td>
               <td>{data.pwh_address.line_1 + " " + data.pwh_address.line_2}</td>
               <td>{data.contact.mobile}</td>

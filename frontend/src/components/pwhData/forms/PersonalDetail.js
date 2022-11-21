@@ -7,22 +7,26 @@ const PersonalDetail = (props) => {
 
   return (
     <>
-    <div className="form-div">
+    <div className="bg-white text-gray-800 absolute flex flex-col gap-2 transition-all z-10 rounded-sm p-2
+    [&>p]:text-red-500 [&>p]:text-xl">
     <p>Personal</p>
                
-    <div className="personal-info">
-      <div className="form-group">
-        <label htmlFor="first_name">First Name<sup>*</sup></label>
+    <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
+    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
+      <div className="flex gap-1 flex-col">
+        <label htmlFor="first_name">First Name</label>
         <input
           type="text"
           name="first_name"
           value={addPwh?.first_name || ''}
           onChange={onChange()}
+          // className="border"
           required
         />
        {/* <small>{valid.first_name? "":"Required"}</small> */}
       </div>
-      <div className="form-group">
+      <div className="flex gap-1 flex-col">
         <label htmlFor="guardian_father_name">
           Guardian/Father Name
         </label>
@@ -34,7 +38,7 @@ const PersonalDetail = (props) => {
         />
         {/* <span className="error-span"><p>Required</p></span> */}
       </div>
-      <div className="form-group">
+      <div className=" flex gap-1 flex-col">
         <label htmlFor="mothers_name">Mothers Name</label>
         <input
           type="text"
@@ -43,7 +47,7 @@ const PersonalDetail = (props) => {
           onChange={onChange()}
         />
       </div>
-      <div className="form-group">
+      <div className=" flex gap-1 flex-col">
         <label htmlFor="last_name">Last Name<sup>*</sup></label>
         <input
           type="text"
@@ -53,17 +57,19 @@ const PersonalDetail = (props) => {
           required
         />
       </div>
-      <div className="form-group">
+      <div className="flex gap-1 flex-col">
         <label htmlFor="dob">DOB</label>
         <input
           type="date"
           name="dob"
-          // format
+          // format="dd/mm/yyyy"
+          // className="date:mr-2"
           value={addPwh?.dob || ''}
           onChange={onChange()}
         />
       </div>
-      <div className="form-group">
+     
+      <div className="flex gap-1 flex-col [&>select]:border">
         <label htmlFor="gender">Gender</label>
 
         <select
@@ -79,7 +85,7 @@ const PersonalDetail = (props) => {
           <option value="ND">Not To DIsclosed</option>
         </select>
       </div>
-      <div className="form-group">
+      <div className=" flex gap-1 flex-col">
         <label htmlFor="religion">Religion</label>
         <select
           name="religion"
@@ -95,7 +101,7 @@ const PersonalDetail = (props) => {
           <option value="P">Parasi</option>
         </select>
       </div>
-      <div className="form-group">
+      <div className=" flex gap-1 flex-col">
         <label htmlFor="caste">Caste</label>
         <select
           name="caste"
@@ -115,8 +121,10 @@ const PersonalDetail = (props) => {
     </div>
     
     <p>Address</p>
-                <div className="address-info">
-                  <div className="form-group">
+                <div className="flex gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
+    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="line_1">Line 1</label>
                     <input
                       type="text"
@@ -126,7 +134,7 @@ const PersonalDetail = (props) => {
                       onChange={onChange("pwh_address")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="line_2">Line 2</label>
                     <input
                       type="text"
@@ -135,7 +143,7 @@ const PersonalDetail = (props) => {
                       onChange={onChange("pwh_address")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="line_3">Line 3</label>
                     <input
                       type="text"
@@ -144,7 +152,7 @@ const PersonalDetail = (props) => {
                       onChange={onChange("pwh_address")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="city">City</label>
                     <input
                       type="text"
@@ -154,7 +162,7 @@ const PersonalDetail = (props) => {
 
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="tahsil">Tahsil</label>
                     <input
                       type="text"
@@ -163,7 +171,7 @@ const PersonalDetail = (props) => {
                       onChange={onChange("pwh_address")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="district">District<sup>*</sup></label>
                     <input
                       type="text"
@@ -173,7 +181,7 @@ const PersonalDetail = (props) => {
                       required
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="state">State</label>
                     <input
                       type="text"
@@ -182,7 +190,7 @@ const PersonalDetail = (props) => {
                       onChange={onChange("pwh_address")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="pincode">Pincode<sup>*</sup></label>
                     <input
                       type="number"
@@ -196,8 +204,10 @@ const PersonalDetail = (props) => {
                   </div>
                 </div>
                 <p>Contact Info</p>
-                <div className="contact-info">
-                  <div className="form-group">
+                <div className="flex gap-2 [&>div>input]:border bg-white  p-2
+    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="mobile">Mobile<sup>*</sup></label>
                     <input
                       type="number"
@@ -208,7 +218,7 @@ const PersonalDetail = (props) => {
 
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="alternate_mobile">Alternate Mobile</label>
                     <input
                       type="number"
@@ -218,7 +228,7 @@ const PersonalDetail = (props) => {
                       onChange={onChange("contact")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className=" flex gap-1 flex-col">
                     <label htmlFor="email">Email<sup>*</sup></label>
                     <input
                       type="email"
@@ -230,6 +240,7 @@ const PersonalDetail = (props) => {
                     />
 
                   </div>
+                  
                 </div>
                 </div>
     </>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import "../pwhData/forms/form.css";
+// import "../pwhData/forms/form.css";
 import {
   createPwh,
   updatePwh,
@@ -162,28 +162,21 @@ if(isLoading){
    
     <>
     <div className="close-div">
-          <button
-            className="back-btn"
-            onClick={() => navigate(-1, { replace: true })}
-          >
-            Back
-          </button>
-        </div>
+          <button className="bg-gray-600 text-white py-1 px-2 rounded" onClick={() => navigate(-1, { replace: true })}>Back</button>
+    </div>
      
-      <div className="container-form">
+      <div className="flex gap-1 mt-1 w-full h-[80vh] ">
         
 
-        <div className="form-left">
-        <div className="form-btn">
+        <div className="w-1/5 bg-white">
           <Tabs formSteps={formSteps} setFormSteps={setFormSteps} tabArray={tabArray} />
        
         </div>
-        </div>
 
-        <div className="form-right">
+        <div className="w-4/5 bg-white">
       
-          <form className="form" onSubmit={onSubmit}>
-            <div className="form-section">
+          <form className="relative w-full flex h-full flex-col" onSubmit={onSubmit}>
+            <div className="relative flex-grow text-left overflow-y-scroll">
               {formSteps === 0 &&  <PersonalDetail addPwh={addPwh} onChange={onChange} valid={isPersonalInfo}/>}
               {formSteps === 1 &&  <EducationalDetails addPwh={addPwh} onChange={onChange}/>}
               {formSteps === 2 &&  <FamilyDetails addPwh={addPwh} onChange={onChange}/>}
@@ -191,12 +184,12 @@ if(isLoading){
               {formSteps === 4 &&  <MembershipDetails addPwh={addPwh} onChange={onChange}/>}
             </div>
 
-            <div className="form-btn-nxt-prev">
-              {formSteps > 0 && <input type='button' className="btn-submit" 
+            <div className="z-10 self-center flex gap-x-4">
+              {formSteps > 0 && <input type='button' className="bg-blue-600 text-white px-2 py-1 rounded-sm cursor-pointer" 
                       value="Prev" onClick={onPrev}/>}
             
                {isLoading? <Spinner />:""}
-            <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="btn-submit" 
+            <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="bg-blue-600 text-white px-2 py-1 rounded-sm cursor-pointer" 
                   value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' 
                   : 'Add':"Next"} onClick={formSteps > 3 && isFormValid === false ? onAlert:onNext}/>
             </div>

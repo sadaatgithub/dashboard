@@ -14,8 +14,8 @@ function DataChart() {
   const other = data.filter((data) => data.pwh_medical?.factor_def == "other").length
 
   return (
-    <div className="inner-pie-chart">
-    <Pie className='pie-chart-img'
+    <div className="w-2/3 md:w-[50%] aspect-square">
+    <Pie className=''
     data={{
    
       labels: [`FVIII ${f8}`, `FIX ${f9}`, `VwD ${vwd}`, `Other ${other}`],

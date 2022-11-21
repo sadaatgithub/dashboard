@@ -8,11 +8,13 @@ const MedicalDetails = (props) => {
     }))
   return (
     <>
-    <div className="form-div">
+    <div className="flex flex-col p-2">
 
         <p>Medical History</p>
-                <div className="medical-history">
-                  <div className="form-group">
+                <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2
+    [&>div>input]:flex [&>div>input]:flex-col [&>div>input]:gap-1
+    [&>div>input]:p-1 [&>div>label]:text-base [&>div>input]:rounded-sm [&>div>input]:outline-none [&>div>input:focus]:border-indigo-500">
+                  <div className="flex gap-1 flex-col">
                     <label htmlFor="age_of_diagnosis">Age Of Diagnosis</label>
                     <input
                       type="text"
@@ -21,7 +23,7 @@ const MedicalDetails = (props) => {
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="flex flex-col">
                     <label htmlFor="hospital_diagnosis">
                       Hospital Diagnosed
                     </label>
@@ -32,11 +34,13 @@ const MedicalDetails = (props) => {
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="flex flex-col">
                     <label htmlFor="blood_group_with_rh">Blood Group</label>
                     <select
                       name="blood_group_with_rh"
                       id=""
+                      className="border py-1"
+
                       value={addPwh?.pwh_medical?.blood_group_with_rh || ''}
                       onChange={onChange("pwh_medical")}
                     >
@@ -51,33 +55,22 @@ const MedicalDetails = (props) => {
                       <option value="B-">B -ve</option>
                     </select>
                   </div>
-                  <div className="form-group">
+                  <div className="flex flex-col gap-y-1">
                     <label htmlFor="factor_def">Factor</label>
                     <select
                       name="factor_def"
                       id=""
+                      className="border py-1"
                       value={addPwh?.pwh_medical?.factor_def || ''}
                       onChange={onChange("pwh_medical")}
                       required
                     >
                       <option value="null">Select</option>
-                      {/* <option value="1">F1</option>
-                      <option value="2">F2</option>
-                      <option value="3">F3</option>
-                      <option value="4">F4</option>
-                      <option value="5">F5</option>
-                      <option value="6">F6</option>
-                      <option value="7">F7</option>
-                      <option value="8">F8</option>
-                      <option value="9">F9</option>
-                      <option value="10">F10</option>
-                      <option value="11">F11</option>
-                      <option value="12">F12</option>
-                      <option value="13">F13</option> */}
+                 
                       {factorArrayList}
                     </select>
                   </div>
-                  <div className="form-group">
+                  <div className="flex gap-1 flex-col">
                     <label htmlFor="factor_level">Factor Level</label>
                     <input
                       type="text"
@@ -86,11 +79,12 @@ const MedicalDetails = (props) => {
                       onChange={onChange("pwh_medical")}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="flex gap-1 flex-col">
                     <label htmlFor="others_def">Other Defeciency</label>
                     <select
                       name="others_def"
                       id=""
+                      className="border py-1"
                       value={addPwh?.pwh_medical?.others_def || ''}
                       onChange={onChange("pwh_medical")}
                     >
@@ -108,41 +102,41 @@ const MedicalDetails = (props) => {
                     </select>
                   </div>
                 </div>
-                <div className="deformity">
-                  <div className="form-group">
+                <div className="flex flex-col md:flex-row items-center gap-x-8 flex-wrap [&>div>input]:border bg-white  p-2">
+                  <div className="flex gap-1 flex-col">
                   <label htmlFor="is_studying">Inhibitor Status</label>
-                    <div className="form-control flex">
-                      <select name="is_inhibitor_pos" id="" value={addPwh?.pwh_medical?.is_inhibitor_pos || ''}  onChange={onChange("pwh_medical")}>
+                    <div className="flex">
+                      <select name="is_inhibitor_pos" id="" className="border py-1" value={addPwh?.pwh_medical?.is_inhibitor_pos || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                       </select>
                     </div>
                   </div>
-                  <div className="form-group">
+                  <div className="flex gap-1 flex-col">
                   <label htmlFor="is_studying">HCV ?</label>
                     <div className="form-control flex">
-                      <select name="is_hcv_pos" id="" value={addPwh?.pwh_medical?.is_hcv_pos || ''}  onChange={onChange("pwh_medical")}>
+                      <select name="is_hcv_pos" className="border py-1" id="" value={addPwh?.pwh_medical?.is_hcv_pos || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                       </select>
                     </div>
                   </div>
-                  <div className="form-group">
+                  <div className="flex gap-1 flex-col">
                   <label htmlFor="is_studying">HIV ?</label>
                     <div className="form-control flex">
-                      <select name="is_hiv_pos" id="" value={addPwh?.pwh_medical?.is_hiv_pos || ''}  onChange={onChange("pwh_medical")}>
+                      <select name="is_hiv_pos" className="border py-1" id="" value={addPwh?.pwh_medical?.is_hiv_pos || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                       </select>
                     </div>
                   </div>
-                  <div className="form-group">
+                  <div className="flex gap-1 flex-col">
                   <label htmlFor="is_studying">Deformity</label>
                     <div className="form-control flex">
-                      <select name="is_deformity" id="" value={addPwh?.pwh_medical?.is_deformity || ''}  onChange={onChange("pwh_medical")}>
+                      <select name="is_deformity" className="border py-1" id="" value={addPwh?.pwh_medical?.is_deformity || ''}  onChange={onChange("pwh_medical")}>
                         <option value="null">Select</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>

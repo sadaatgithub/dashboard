@@ -82,99 +82,17 @@ useEffect(() =>{
 // }
   
   return (
-    <div className="each-pwh">
-      <div className="pwh-div">
-        <div className="pwh-info">
-          <div className="pwh-info-div">
-           <div className="pwh-info-label">
-            <h5>Name :</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>{data.first_name + " " + data.last_name}</p>
-           </div>
-          </div>
-          <div className="pwh-info-div">
-          <div className="pwh-info-label">
-            <h5>Guardian/Father Name :</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>{data.guardian_father_name + " " + data.last_name}</p>
-           </div>
-          </div>
-          <div className="pwh-info-div">
-          <div className="pwh-info-label">
-            <h5>D.O.B:</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>{data.dob}</p>
-           </div>
-          </div>
-          <div className="pwh-info-div">
-          <div className="pwh-info-label">
-            <h5>Clinical:</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>Factor {data.pwh_medical?.factor_def + " , " + data.pwh_medical?.factor_level + " , " + data.pwh_medical?.blood_group_with_rh} ve</p>
-           </div>
-          </div>
-          <div className="pwh-info-div">
-          <div className="pwh-info-label">
-            <h5>Age:</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>00</p>
-           </div>
-          </div>
-          <div className="pwh-info-div">
-          <div className="pwh-info-label">
-            <h5>Address :</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>{data.pwh_address?.line_1 + "," +data.pwh_address?.line_2  + "," +data.pwh_address?.line_2}</p>
-            
-            <p>{data.pwh_address?.line_3 + "," +data.pwh_address?.city}</p>
-            <p>{data.pwh_address?.tahsil + "," +data.pwh_address?.district}</p>
-            <p>{data.pwh_address?.state + "," +data.pwh_address?.pincode}</p>
-
-           </div>
-          </div>
-          <div className="pwh-info-div">
-           <div className="pwh-info-label">
-            <h5>Contact :</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>{data.contact?.mobile}</p>
-           </div>
-          </div>
-          <div className="pwh-info-div">
-           <div className="pwh-info-label">
-            <h5>Email :</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>{data.contact?.email}</p>
-           </div>
-          </div>
-          <div className="pwh-info-div">
-           <div className="pwh-info-label">
-            <h5>Chapter Membership :</h5>
-           </div>
-           <div className="pwh-info-value">
-            <p>ABC12345678</p>
-           </div>
-          </div>
-        
-         
-      
-        </div>
-        <div className="pwh-info-pro-pic">
+    <div className="flex flex-col">
+      <div className="flex flex-col gap-y-2">
+      <div className="flex flex-col justify-center items-center">
           {/* {isLoading? 'uploading':''} */}
-        {data.pwh_images[0]?.image? (<><img src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`} alt="img" height="auto" /></>):(<> <FaUser size={100}/></>)}
+        {data.pwh_images[0]?.image? (<><img src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`} alt="img" className="w-[100px] h-auto" /></>):(<> <FaUser size={100}/></>)}
             
         
-          <form onSubmit={onSubmit} >
+          <form onSubmit={onSubmit} className="">
             {data.pwh_images[0]?.image? (<>
 
-                  <input type="file" alt="" name="image" className="change-foto"
+                  <input type="file" alt="" name="image" className="hidden"
                   id="image" accept="image/png, image/jpeg"
                   onChange={onChange}/>
                   <label htmlFor="image">Change Photo</label>
@@ -183,7 +101,7 @@ useEffect(() =>{
 
                   </>):(<>
                      
-                  <input type="file" src="" alt="upload" name="image-upload" className="upload-foto"
+                  <input type="file" src="" alt="upload" name="image-upload" className="hidden"
                   id="image-upload" accept="image/png, image/jpeg"
                   onChange={onChange}/>
                     <label htmlFor="image-upload">Upload Photo</label>
@@ -195,11 +113,94 @@ useEffect(() =>{
           
           </form>
         </div>
+        <div className="flex flex-col gap-2 [&>*]:flex [&>*]:gap-2 [&>*]:pl-2 [&>div>div>h5]:font-semibold [&>div>div>h5]:text-sm [&>div>div:nth-child(2)]:text-sm">
+          <div className="">
+           <div className="">
+            <h5>Name :</h5>
+           </div>
+           <div className="">
+            <p>{data.first_name + " " + data.last_name}</p>
+           </div>
+          </div>
+          <div className="">
+          <div className="">
+            <h5>Guardian/Father Name :</h5>
+           </div>
+           <div className="">
+            <p>{data.guardian_father_name + " " + data.last_name}</p>
+           </div>
+          </div>
+          <div className="">
+          <div className="">
+            <h5>D.O.B:</h5>
+           </div>
+           <div className="">
+            <p>{data.dob}</p>
+           </div>
+          </div>
+          <div className="">
+          <div className="">
+            <h5>Clinical:</h5>
+           </div>
+           <div className="">
+            <p>Factor {data.pwh_medical?.factor_def + " , " + data.pwh_medical?.factor_level + " , " + data.pwh_medical?.blood_group_with_rh} ve</p>
+           </div>
+          </div>
+          <div className="">
+          <div className="">
+            <h5>Age:</h5>
+           </div>
+           <div className="">
+            <p>00</p>
+           </div>
+          </div>
+          <div className="">
+          <div className="">
+            <h5>Address :</h5>
+           </div>
+           <div className="">
+            <p>{data.pwh_address?.line_1 + "," +data.pwh_address?.line_2  + "," +data.pwh_address?.line_2}</p>
+            
+            <p>{data.pwh_address?.line_3 + "," +data.pwh_address?.city}</p>
+            <p>{data.pwh_address?.tahsil + "," +data.pwh_address?.district}</p>
+            <p>{data.pwh_address?.state + "," +data.pwh_address?.pincode}</p>
+
+           </div>
+          </div>
+          <div className="">
+           <div className="">
+            <h5>Contact :</h5>
+           </div>
+           <div className="">
+            <p>{data.contact?.mobile}</p>
+           </div>
+          </div>
+          <div className="">
+           <div className="">
+            <h5>Email :</h5>
+           </div>
+           <div className="">
+            <p>{data.contact?.email}</p>
+           </div>
+          </div>
+          <div className="">
+           <div className="">
+            <h5>Chapter Membership :</h5>
+           </div>
+           <div className="">
+            <p>ABC12345678</p>
+           </div>
+          </div>
+        
+         
+      
+        </div>
+        
       </div>
-      <div className="pwh-action">
-        <ul className="pwh-action-link">
+      <div className="flex mt-3">
+        <ul className="flex justify-between border w-full [&>*]:bg-blue-400 [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
        <Link to={"/edit/" + data.id}><li>Edit</li></Link>
-          <li onClick={onManage}>Manage</li>
+          <li onClick={onManage} className="">Manage</li>
 
           <li>Attach</li>
           <li>Download</li>
