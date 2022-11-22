@@ -93,7 +93,7 @@ useEffect(() =>{
             onChange={onChange}
           />
           </div>
-          <button type="submit" className="flex justify-center bg-sky-800 mt-12 text-white p-2 rounded-sm hover:bg-sky-700 transition-all">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
+          <button type="submit" className="flex justify-center bg-blue-800 mt-12 text-white p-2 rounded-sm hover:bg-blue-700 transition-all">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
         </form>
       </div>
       </section>

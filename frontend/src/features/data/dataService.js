@@ -4,7 +4,7 @@ const baseURL = "http://127.0.0.1:8000/api/";
 const authURL = "http://127.0.0.1:8000/"
 
 // fetching data for that user
-  const config = {
+ export const config = {
     headers: {
       Authorization: localStorage.getItem('user')
         ? 'JWT ' + localStorage.getItem('user')

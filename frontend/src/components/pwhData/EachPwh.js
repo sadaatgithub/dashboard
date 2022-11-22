@@ -136,7 +136,7 @@ useEffect(() =>{
            
           <div className="">
             <h5>Age:</h5>
-            <p>00</p>
+            <p>{data.current_age} Yr</p>
 
            </div>
           

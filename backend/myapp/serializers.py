@@ -2,6 +2,7 @@ from rest_framework import serializers
 from djoser.serializers import UserSerializer as BaseUserSerializer
 from myapp.models import FamilyDetails, MedicalDetails, Membership, Occupational, PatientImage, User, contact, pwh, pwhadress, useradress
 
+from datetime import date
 
 
 
@@ -86,9 +87,17 @@ class PwhSerializer(serializers.ModelSerializer):
         model = pwh
         fields = ['id',
                     'first_name', 'last_name',
-                    'guardian_father_name', 'mothers_name','dob',
+                    'guardian_father_name', 'mothers_name','dob','current_age',
                    'gender','religion','caste',
                     'pwh_address','contact','pwh_family','pwh_medical','pwh_occupation','pwh_membership','pwh_images','tag']
+        
+    current_age = serializers.SerializerMethodField(method_name="calculate_age")
+    def calculate_age(self,pwh:pwh):
+        today = date.today()
+        if pwh.dob:
+            age =  today.year - pwh.dob.year -((today.month, today.day) < (pwh.dob.month, pwh.dob.day))
+            return age
+        return 0
         # depth = 1
         # fields = '__all__'
     
