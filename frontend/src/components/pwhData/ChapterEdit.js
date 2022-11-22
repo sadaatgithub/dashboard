@@ -62,7 +62,7 @@ const onSubmit = (e) =>{
        <strong>Edit Chapter Address</strong>
       </div>
       <div className="flex justify-evenly mt-4 w-full flex-col md:flex-row px-2">
-        <div className="flex flex-col [&>input]:border gap-y-1 [&>label]:text-gray-900 [&>input]:p-1">
+        <div className="flex flex-col [&>input]:border gap-y-1 [&>label]:text-gray-900 [&>input]:p-1 [&>input]:text-sm">
           <label htmlFor="line_1">Line 1</label>
         <input type="text" placeholder='Line 1' name='line_1' value={data.chapter_address?.line_1} onChange={onChange('chapter_address')} />
         <label htmlFor="line_2">Line 2 </label>
@@ -73,7 +73,7 @@ const onSubmit = (e) =>{
         <label htmlFor="city">City</label>
         <input type="text" placeholder='City' name="city" value={data.chapter_address?.city} onChange={onChange('chapter_address')} />
         </div>
-        <div className="flex flex-col [&>input]:border gap-y-1 [&>label]:text-gray-900 [&>input]:p-1">
+        <div className="flex flex-col [&>input]:border gap-y-1 [&>label]:text-gray-900 [&>input]:p-1 [&>input]:text-sm">
         
         <label htmlFor="tahsil">Tahsil </label>
         <input type="text" placeholder='Tahsil' name="tahsil" value={data.chapter_address?.tahsil} onChange={onChange('chapter_address')} />
@@ -86,7 +86,7 @@ const onSubmit = (e) =>{
         </div>
       </div>
 
-      <button className="py-2 px-4 text-white rounded-sm bg-blue-700 mt-8 mb-4">{isLoading? <RiLoader5Fill className="animate-spin m-auto text-xl self-center cursor-not-allowed" /> :"Update"}</button>
+      <button className="py-2 px-4 text-white rounded-sm bg-blue-700 mt-8 mb-4 h-[40px] w-[100px]">{isLoading? <RiLoader5Fill className="animate-spin m-auto text-2xl self-center cursor-not-allowed" /> :"Update"}</button>
     </form>
     </div>
   )

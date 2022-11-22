@@ -52,25 +52,27 @@ useEffect (() =>{
 },[isLoading,isError,isSuccess,message])
   return (
     <>
-    <div className="close-div">
+    <div className="">
       <button className="bg-gray-600 text-white py-1 px-2 rounded mt-2"  onClick={() => navigate(-1)}>Back</button>
       </div>
-    <form className="self-center m-auto flex flex-col gap-y-3 [&>div>label]:text-gray-700 [&>div>label]:mb-1 w-1/2 md:w-1/3 bg-white p-14 rounded-lg shadow-lg" onSubmit={onSubmit}>
+    <form className="self-center m-auto flex flex-col gap-y-3 [&>div>label]:text-gray-700 [&>div>label]:mb-1 w-full md:w-4/5 lg:w-3/5 h-[70vh] bg-white p-14 rounded-lg shadow-lg" onSubmit={onSubmit}>
+      <div className="m-auto w-full lg:w-2/3 flex flex-col gap-y-4 [&>div>label]:text-gray-500">
       <div className="flex flex-col gap-y-1">
-      <label htmlFor="current_password">Enter Your Current Password</label>
+      <label htmlFor="current_password">Old Password</label>
       <input type="password" className="border py-2 px-2 focus:border-indigo-600 rounded-sm outline-none" id="current_password" name="current_password"
    onChange={onChange} value={current_password} required
       />
 </div>
       <div className="flex flex-col gap-y-1">
-      <label htmlFor="new_password">Enter New Password</label>
+      <label htmlFor="new_password">New Password</label>
       <input type="password" id="new_password" name="new_password" className="border py-2 px-2 outline-none focus:border-indigo-600 rounded-sm"
       onChange={onChange} value={new_password} required
       
       />
 </div>
 <div className="flex justify-center">
-            <button type="submit" className="bg-blue-600 py-2 px-3 text-white w-full mt-5 rounded-sm hover:bg-blue-700 transition-all">{isLoading? "Requesting...":"Change Password"}</button>
+            <button type="submit" className="bg-blue-700 py-2 px-3 text-white w-full mt-5 rounded-sm hover:bg-blue-600 transition-all">{isLoading? "Requesting...":"Change Password"}</button>
+          </div>
           </div>
     </form>
     </>
