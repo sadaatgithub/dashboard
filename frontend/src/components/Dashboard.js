@@ -110,9 +110,10 @@ if (isLoading) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 row-span-1">
         
         <div className="w-full flex flex-col items-center bg-white md:col-span-1 shadow-md rounded-md p-1">
-          <p className="text-2xl m-auto font-extrabold text-blue-800 tracking-wider p-2 uppercase ">Total PwH</p>
+          <p className="text-2xl m-auto font-extrabold text-blue-900 tracking-wider p-2 uppercase ">Total PwH</p>
           <p className="text-2xl md:text-4xl font-extrabold text-rose-500  p-1">{data.filter((data) => data.tag !== 'Deceased').length}</p>
           <small className="self-end mt-auto text-gray-400 pr-2 italic tracking-wider text-xs font-thin">*Deceased not included</small>
+
         </div>
           <FactorwiseCount />
        
