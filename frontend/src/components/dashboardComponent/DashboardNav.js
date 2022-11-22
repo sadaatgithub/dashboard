@@ -8,7 +8,7 @@ const DashboardNav = () => {
   return (
     <>
    
-    <ul className="flex-grow mt-10 flex flex-col text-base text-gray-100 font-normal gap-y-3
+    <ul className="flex-grow mt-10 flex flex-col text-base text-gray-100 font-normal gap-y-2
      [&>*]:p-2 [&>*]:pl-4 [&>*]:ml-4 [&>*:hover]:bg-white [&>*:hover]:text-black [&>*]:rounded-l-full 
      [&>*]:transition-all duration-500 ease-in pt-8">
         <li className="flex items-center gap-x-4 rounded-l-full bg-white text-gray-800"><FaHome/>Dashboard</li>

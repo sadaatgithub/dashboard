@@ -41,10 +41,10 @@ if(isSuccess){
   },[isSuccess])
   return (
     <>
-    <div className="manage-pwh-div">
-      <form onSubmit={onSubmit}>
+    <div className="absolute left-0 top-0 bottom-10 right-0  text-white bg-white/50 backdrop-blur-sm flex justify-center items-center">
+      <form onSubmit={onSubmit} className="flex justify-center items-center gap-x-6 h-1/2  mt-auto bg-gray-600/70 w-full">
       <label htmlFor="">Select &nbsp;  
-    <select name="tag" id="" className='' onChange={onChange} defaultValue={tagShow[0].tag}>
+    <select name="tag" id="" className="text-gray-600 text-sm p-1" onChange={onChange} defaultValue={tagShow[0].tag}>
       <option value=""   disabled>{tagShow.tag? tagShow.tag :"---Select--" }</option>
       <option value="Transfered">Transfered</option>
       <option value="Deceased">Deceased</option>
@@ -54,7 +54,7 @@ if(isSuccess){
       <option value="Non PwH">Non PwH</option>
       </select>
       </label>
-      <button>{isLoading? 'Requesting' : "Submit"}</button>
+      <button className="bg-blue-800 p-1 px-3">{isLoading? 'Requesting' : "Submit"}</button>
       </form>
       </div>
     
