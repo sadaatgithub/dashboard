@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch} from 'react-redux';
 import { fetchData, reset, sortingBy } from '../../features/data/dataSlice';
 // import { getPwhWithId , reset as resetUpdateData} from "../../features/data/addNewPwhSlice";
-import { FaPlusCircle,FaSort,FaSortDown,FaSortUp,FaArrowLeft} from 'react-icons/fa';
+import { FaPlusCircle,FaSort,FaSortDown,FaSortUp,FaArrowLeft,FaSearch} from 'react-icons/fa';
 // import { useDownloadExcel  } from 'react-export-table-to-excel';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Spinner from '../Spinner';
@@ -155,18 +155,19 @@ if(!data){
 }
   return (
     <>
-    <div className="flex gap-4 bg-white py-4">
-      <button className="bg-gray-600 text-white py-1 px-2 rounded flex items-center gap-x-2"  onClick={() => navigate(-1)}><FaArrowLeft/> Back</button>
-      <Link to="/add"><button className="bg-blue-600 text-white py-1 px-2 rounded flex items-center gap-x-2"><FaPlusCircle />Add New PwH</button></Link>
+    <div className="flex gap-4 bg-white py-2">
+      <button className="bg-gray-600 text-white py-2 px-3 rounded flex items-center gap-x-2 text-sm"  onClick={() => navigate(-1)}><FaArrowLeft/> Back</button>
+      <Link to="/add"><button className="bg-blue-600 text-white py-2 px-3 rounded flex items-center gap-x-2 text-sm"><FaPlusCircle />Add New PwH</button></Link>
       </div>
  
     <div className="rounded  w-full flex bg-white ">
     <div className="flex flex-col rounded shadow-xl gap-4 h-[80vh] w-full md:w-2/3  overflow-x-auto border">
     <div className="">
-    <div className="flex justify-end gap-2 items-center bg-sky-600 p-1">
-  
-  <input type="search" onChange={onChange} placeholder="Search by Name" className="border p-1 rounded-sm"/>
-
+    <div className="flex justify-end gap-2 items-center bg-neutral-600 p-1">
+  <div className="flex bg-white items-center px-2 [&>svg]:text-gray-600">
+  <FaSearch/>
+  <input type="search" onChange={onChange} placeholder="Search by Name" className="outline-none p-2 rounded-sm text-sm"/>
+  </div>
         <label htmlFor=""><small className="text-white mr-2 ">Entries to display</small>
             <select name="" id="" className="p-1 rounded-sm" onChange={howMany}> 
           <option value="10">10</option>
@@ -176,9 +177,9 @@ if(!data){
         </label>
   </div>
    
-    <table className="w-full bg-white" id="table-to-xls">
-      <thead className="bg-sky-500 text-white ">
-        <tr className="[&>*]:p-2">
+    <table className="w-full bg-white text-sm" id="table-to-xls">
+      <thead className="bg-neutral-500 text-white ">
+        <tr className="[&>*]:p-2 [&>*]:font-thin">
           <td>S.No.</td>
           <td onClick={sortData} className="cursor-pointer flex justify-start items-center gap-3">First Name {sortNameIcon}</td>
           <td>Father Name</td>

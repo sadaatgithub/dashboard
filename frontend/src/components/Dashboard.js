@@ -67,43 +67,58 @@ if (isLoading) {
 
 
     <div className="relative overflow-hidden flex gap-x-2 mt-2 w-full min-h-[90vh]">
+
+
+      {/* <---------------------Sidebar---------------------> */}
+
     <aside className={`${isSideBarOpen? 'translate-x-0':'-translate-x-[100%]'} w-[320px]  
-        z-10 bg-blue-600 backdrop-blur-sm md:bg-blue-600 md:backdrop-blur-none md:shadow-md absolute rounded-sm top-0 bottom-0 lg:static 
+        z-10 bg-blue-600 backdrop-blur-sm md:bg-blue-600 md:backdrop-blur-none md:shadow-md absolute rounded-md top-0 bottom-0 lg:static 
     lg:translate-x-0  transition-all flex flex-col border border-gray-200 overflow-hidden`}>
-      {/* <div className="font-medium text-white bg-sky-700/50">
-        <p className="p-2 ml-8">Dashboard</p>
-      </div> */}
+      
         <DashboardNav />
       
       <div className="flex items-center gap-x-1 pl-4 ml-4 pb-2 text-white mb-2">
       <AiOutlineSetting /><Link to="/change_password" className="font-extralight"><p className="text-gray-50 text-sm underline">Change Password</p></Link>
       </div>
     </aside>
-    <section className="flex flex-col w-full  justify-between px-1 gap-y-2 min-h-[90vh]">
-      <div className="flex flex-col sm:flex-row gap-y-2  gap-3">
+
+
+
+    {/* main container------------------------------------------------------------> */}
+
+
+    <section className="w-full grid grid-flow-row px-1 gap-y-2 min-h-[90vh]">
+
+      <div className="flex flex-col sm:flex-row gap-y-2  gap-3 row-span-1">
       <div className="py-6 flex flex-col gap-y-3 [&>*]:pl-2 p-4  bg-white shadow-md rounded-md sm:w-2/3 w-full">
         <h4 className="text-3xl font-semibold text-blue-700">Hii,</h4>
         <h5 className="text-base font-normal text-gray-800 ml-8">Welcome back Mr/Mrs keyperson</h5>
       
     </div>
-    <div className="w-full flex flex-col justify-center items-center bg-white shadow-md rounded-md min-h-[80px]">
+    <div className="w-full flex flex-col justify-center items-center bg-white shadow-md rounded-md min-h-[80px] text-gray-600">
       {/* <h4 className="self-start">Notification</h4> */}
       <p>You have {duplicate.length} duplicate entr{`${duplicate.length > 1? "ies" : "y"}`} <span onClick={duplicateModalHandler} className="cursor-pointer underline hover:text-blue-800">View</span></p>
       </div>
       {duplicateModal && <DuplicatePwh data={duplicate} setDuplicateModal={setDuplicateModal}/>}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 ">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 row-span-1">
         
         <div className="w-full flex flex-col items-center bg-white md:col-span-1 shadow-md rounded-md p-1">
+<<<<<<< HEAD
           <p className="text-2xl m-auto font-extrabold text-blue-900 tracking-wider p-2 uppercase drop-shadow-md">Total PwH</p>
           <p className="text-2xl md:text-4xl font-extrabold text-rose-600 drop-shadow-md p-1">{data.filter((data) => data.tag !== 'Deceased').length}</p>
           <small className="self-end mt-auto text-gray-400 pr-2 italic tracking-wide">*Deceased not included</small>
+=======
+          <p className="text-2xl m-auto font-extrabold text-blue-900 tracking-wider p-2 uppercase ">Total PwH</p>
+          <p className="text-2xl md:text-4xl font-extrabold text-rose-500  p-1">{data.filter((data) => data.tag !== 'Deceased').length}</p>
+          <small className="self-end mt-auto text-gray-400 pr-2 italic tracking-wider text-xs font-thin">*Deceased not included</small>
+>>>>>>> main
         </div>
           <FactorwiseCount />
        
         
       </div>
-      <div className="flex flex-col md:flex-row w-full  gap-3">
+      <div className="flex flex-col md:flex-row w-full  gap-3 row-span-4">
         <div className="md:w-3/5 flex justify-center bg-white shadow-md rounded-md items-center">
       <DataChart />
         </div>

@@ -177,9 +177,9 @@ useEffect(() =>{
         
       </div>
       <div className="flex mt-3">
-        <ul className="flex justify-between [&>*]:rounded-sm w-full [&>*]:bg-blue-600 [&>*]:text-white [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
+        <ul className="flex justify-between [&>*]:rounded-sm w-full [&>*]:cursor-pointer [&>*]:bg-blue-600 [&>*]:text-white [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
        <Link to={"/edit/" + data.id}><li>Edit</li></Link>
-          <li onClick={onManage} className="">Manage</li>
+          <li onClick={onManage} className="relative">Manage</li>
 
           <li>Attach</li>
           <li>Download</li>

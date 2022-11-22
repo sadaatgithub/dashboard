@@ -146,7 +146,7 @@ if(name === 'email'){
       navigate("/pwh-data");
       const msg = id? "Updated" : "Added"
       toast.success(`Successfully ${msg}....!`)
-      dispatch(fetchData());
+      // dispatch(fetchData());
       dispatch(reset());
     }
     if (isError) {
@@ -188,10 +188,10 @@ if(isLoading){
             </div>
 
             <div className="z-10 self-center flex gap-x-4 mb-2">
-              {formSteps > 0 && <input type='button' className="bg-blue-600 text-white px-2 py-1 rounded-sm cursor-pointer" 
+              {formSteps > 0 && <input type='button' className="bg-blue-600 text-white px-3 py-2 rounded-sm cursor-pointer" 
                       value="Prev" onClick={onPrev}/>}
             
-            <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="bg-blue-600 text-white px-2 py-1 rounded-sm cursor-pointer" 
+            <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="bg-blue-600 text-white px-3 py-2 rounded-sm cursor-pointer" 
                   value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' 
                   : 'Add':"Next"} onClick={formSteps > 3 && isFormValid === false ? onAlert:onNext}/>
             </div>

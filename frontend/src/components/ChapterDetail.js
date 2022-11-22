@@ -6,11 +6,11 @@ const ChapterDetail = () => {
   // const {userDetail} = props
 const {userDetail, isSuccess} = useSelector((state) => state.fetchUser)
 
-const [visible, setVisible] = useState(false)
+const [chapterEditModal, setChapterEditModal] = useState(false)
 
 
 const onClick = () =>{
-    setVisible(!visible)
+    setChapterEditModal(!chapterEditModal)
 }
 
 
@@ -33,7 +33,7 @@ const onClick = () =>{
         </div>
         </div>
         <button className="text-sm underline  self-end text-blue-600" onClick={onClick}>Edit</button>
-       {visible? (<ChapterEdit onClick={onClick}/>):(null)} 
+       {chapterEditModal? (<ChapterEdit onClick={onClick} state={chapterEditModal}/>):(null)} 
        </div></>) :(<>No data</>)}
        <div className="p-1 pl-4">
     <h5>Key Person:</h5>

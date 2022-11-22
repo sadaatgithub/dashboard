@@ -11,7 +11,7 @@ import {RiLoader5Fill} from "react-icons/ri"
 
 
 const ChapterEdit = (props) => {
-  const {onClick} = props
+  const {onClick,state} = props
 
   const {userDetail} = useSelector((state) => state.fetchUser)
   const {isLoading,isSuccess,isError,message} = useSelector((state) => state.userUpdate)
@@ -55,7 +55,7 @@ const onSubmit = (e) =>{
       
   },[isLoading,isSuccess,isError])
   return (
-    <div className="absolute inset-0 bg-black/70 z-20 flex justify-center items-center">
+    <div className={`absolute inset-0 bg-black/70 z-20 flex justify-center items-center transition-all duration-200 ease-linear `}>
     <form className="border flex flex-col bg-white w-full sm:w-[80%] md:w-2/3 lg:w-[50%]   rounded-lg justify-center items-center" onSubmit={onSubmit}>
     <button className="self-end px-2 text-white rounded-sm bg-gray-600" onClick={onClick}>X</button>
       <div className="">
