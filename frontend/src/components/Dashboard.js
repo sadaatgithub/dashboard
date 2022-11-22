@@ -11,6 +11,7 @@ import { FaBars,FaTimes,FaSortDown,FaSortUp } from 'react-icons/fa';
 import IncompleteData from './pwhData/IncompleteData';
 import DuplicatePwh from './pwhData/DuplicatePwh';
 import {AiOutlineSetting} from "react-icons/ai"
+import AgeBarchart from './charts/AgeBarchart';
 // import PieChart from './charts/PieChart';
 
 const Dashboard = () => {
@@ -58,27 +59,32 @@ if (isLoading) {
 }
   return (
     <>
-    <div className="text-xl p-1 lg:hidden">
-      {isSideBarOpen? <FaTimes onClick={sidebarHandler}/>:<FaBars  onClick={sidebarHandler}/>}
+    
+
+
+
+
+    <div className="relative overflow-hidden flex gap-x-2 w-full min-h-[90vh]">
+
+    <div className="text-xl py-2 lg:hidden bg-white absolute left-1 top-0 w-full">
+      {isSideBarOpen? null:<FaBars  onClick={sidebarHandler} className="ml-1 text-rose-500"/>}
       
       </div>
-
-
-
-
-    <div className="relative overflow-hidden flex gap-x-2 mt-2 w-full min-h-[90vh]">
-
-
       {/* <---------------------Sidebar---------------------> */}
 
-    <aside className={`${isSideBarOpen? 'translate-x-0':'-translate-x-[100%]'} w-[320px]  
-        z-10 bg-blue-600 backdrop-blur-sm md:bg-blue-600 md:backdrop-blur-none md:shadow-md absolute rounded-md top-0 bottom-0 lg:static 
+    <aside className={`${isSideBarOpen? 'translate-x-0':'-translate-x-[100%]'} w-[240px]  
+        z-10 bg-gradient-to-b from-blue-600 to-blue-800  backdrop-blur-sm  md:backdrop-blur-none md:shadow-md absolute rounded-md top-0 bottom-0 lg:static lg:mt-1
     lg:translate-x-0  transition-all flex flex-col border border-gray-200 overflow-hidden`}>
+      <div className="text-xl p-2 lg:hidden  flex text-white">
+      {isSideBarOpen? <FaTimes onClick={sidebarHandler} className="self-end ml-auto"/>:<FaTimes className="self-end ml-auto"/>}
       
+      </div>
         <DashboardNav />
       
-      <div className="flex items-center gap-x-1 pl-4 ml-4 pb-2 text-white mb-2">
-      <AiOutlineSetting /><Link to="/change_password" className="font-extralight"><p className="text-gray-50 text-sm underline">Change Password</p></Link>
+      <div className="flex items-center gap-x-1  m-auto pb-2 text-white mb-2">
+
+      <AiOutlineSetting /><Link to="/change_password" className="">
+        <p className="text-gray-50 text-sm underline font-thin">Change Password</p></Link>
       </div>
     </aside>
 
@@ -87,7 +93,7 @@ if (isLoading) {
     {/* main container------------------------------------------------------------> */}
 
 
-    <section className="w-full grid grid-flow-row px-1 gap-y-2 min-h-[90vh]">
+    <section className="w-full grid grid-flow-row px-1 gap-y-2 min-h-[90vh] mt-8 lg:mt-1">
 
       <div className="flex flex-col sm:flex-row gap-y-2  gap-3 row-span-1">
       <div className="py-6 flex flex-col gap-y-3 [&>*]:pl-2 p-4  bg-white shadow-md rounded-md sm:w-2/3 w-full">
@@ -104,7 +110,7 @@ if (isLoading) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 row-span-1">
         
         <div className="w-full flex flex-col items-center bg-white md:col-span-1 shadow-md rounded-md p-1">
-          <p className="text-2xl m-auto font-extrabold text-blue-900 tracking-wider p-2 uppercase ">Total PwH</p>
+          <p className="text-2xl m-auto font-extrabold text-blue-800 tracking-wider p-2 uppercase ">Total PwH</p>
           <p className="text-2xl md:text-4xl font-extrabold text-rose-500  p-1">{data.filter((data) => data.tag !== 'Deceased').length}</p>
           <small className="self-end mt-auto text-gray-400 pr-2 italic tracking-wider text-xs font-thin">*Deceased not included</small>
         </div>
@@ -116,14 +122,14 @@ if (isLoading) {
         <div className="md:w-3/5 flex justify-center bg-white shadow-md rounded-md items-center">
       <DataChart />
         </div>
-        <div className="md:w-2/5 bg-white shadow-md rounded-md">
-          <div className="flex w-full justify-center items-center">
+        <div className="md:w-2/5 bg-white shadow-md rounded-md flex justify-center items-center">
+          <div className="hidden w-full justify-center items-center">
             <div onClick={incompleteDataHandler} className={`${isIncompleteDataOpen? "bg-blue-500 text-white":""} px-4 py-1 w-full rounded-sm cursor-pointer`}><p className="flex justify-center items-center gap-x-2">Incomplete Data {isIncompleteDataOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
             <div onClick={chapterDetailHandler} className={`${isChapterDetailOpen? "bg-blue-500  text-white":""} px-8 py-1 w-full rounded-sm cursor-pointer`}><p className="flex justify-center items-center gap-x-2">Chapter Detail {isChapterDetailOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
         </div>
-          
-          {isIncompleteDataOpen && <IncompleteData />}
-          {isChapterDetailOpen && <ChapterDetail /> }
+          <AgeBarchart/>
+          {/* {isIncompleteDataOpen && <IncompleteData />}
+          {isChapterDetailOpen && <ChapterDetail /> } */}
         </div>
       </div>
     </section>

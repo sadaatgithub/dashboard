@@ -146,7 +146,7 @@ if(name === 'email'){
       navigate("/pwh-data");
       const msg = id? "Updated" : "Added"
       toast.success(`Successfully ${msg}....!`)
-      // dispatch(fetchData());
+      dispatch(fetchData());
       dispatch(reset());
     }
     if (isError) {
