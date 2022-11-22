@@ -113,7 +113,7 @@ if (isLoading) {
           <p className="text-2xl m-auto font-extrabold text-blue-900 tracking-wider p-2 uppercase ">Total PwH</p>
           <p className="text-2xl md:text-4xl font-extrabold text-rose-500  p-1">{data.filter((data) => data.tag !== 'Deceased').length}</p>
           <small className="self-end mt-auto text-gray-400 pr-2 italic tracking-wider text-xs font-thin">*Deceased not included</small>
->>>>>>> main
+
         </div>
           <FactorwiseCount />
        

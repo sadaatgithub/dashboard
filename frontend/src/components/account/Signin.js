@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify'
-import { FaUser } from "react-icons/fa";
+import { FaUser,FaLock ,FaEye,FaEyeSlash} from "react-icons/fa";
 import { login, reset } from "../../features/auth/authSlice";
 import {ImSpinner8} from "react-icons/im"
 
 
 const Signin = () => {
   
-  const { user, isLoading, isError, message } = useSelector(
-    (state) => state.auth
-  )
+  const { user, isLoading, isError, message } = useSelector((state) => state.auth)
+  const [showPswrd,setShowPswrd] = useState(false)
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -70,30 +70,39 @@ useEffect(() =>{
         <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-10 w-2/3 lg:w-2/5">
           <div className="flex flex-col gap-1">
             <label forhtml="username" className="text-sm text-gray-600">Username</label>
+            <div className="flex justify-center items-center border rounded-sm">
+              <FaUser className="text-4xl text-gray-500 bg-gray-100 p-2 "/>
           <input
             type="text"
-            className="border w-full py-1 rounded-sm focus:border-indigo-700 outline-none"
+            className="w-full pl-4 rounded-sm focus:border-indigo-700 outline-none text-gray-600 text-sm"
             id="username"
             name="username"
             value={username}
             // placeholder="Enter Username"
             onChange={onChange}
-          />
+          /></div>
+
           </div>
           <div className="flex flex-col gap-1">
           <label forhtml="password" className="text-sm text-gray-600">Password</label>
-
+          <div className="flex justify-center items-center border rounded-sm">
+          <FaLock className="text-4xl text-gray-500 bg-gray-100 p-2 "/>
           <input
-            type="password"
-            className="border w-full py-1 rounded-sm focus:border-indigo-700 outline-none"
+            type={showPswrd? "text":"password"}
+            className="w-full pl-4 rounded-sm focus:border-indigo-700 outline-none text-gray-600 text-sm"
             id="password"
             name="password"
             value={password}
             // placeholder="Enter Password"
             onChange={onChange}
           />
+          {/*  */}
+          {showPswrd? <FaEyeSlash className="text-4xl text-gray-800 p-2 cursor-pointer" onClick={()=>{setShowPswrd(false)}}/>
+          :<FaEye className="text-4xl text-gray-800 p-2 cursor-pointer" onClick={()=>{setShowPswrd(true)}}/>}
+          
           </div>
-          <button type="submit" className="flex justify-center bg-blue-800 mt-12 text-white p-2 rounded-sm hover:bg-blue-700 transition-all">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
+          </div>
+          <button type="submit" className="flex justify-center bg-blue-700 mt-12 text-white p-2 rounded-sm hover:bg-blue-600 transition-all">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
         </form>
       </div>
       </section>

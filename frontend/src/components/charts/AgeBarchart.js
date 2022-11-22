@@ -18,7 +18,7 @@ const AgeBarchart = () => {
 
     },[data])
   return (
-    <div className="w-full">
+    <div className="w-full px-1">
    <Bar data={{
     labels:["0-10","11-20","21-30","31-40","41-50","51-60","61-100"],
     datasets:[
