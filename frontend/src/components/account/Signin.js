@@ -68,7 +68,7 @@ useEffect(() =>{
       <FaUser className="text-blue-700" size={30}/>
         <h1 className="text-2xl font-medium text-sky-700 mt-2">Login</h1>
         <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-10 w-2/3 lg:w-2/5">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <label forhtml="username" className="text-sm text-gray-600">Username</label>
             <div className="flex justify-center items-center border rounded-sm">
               <FaUser className="text-4xl text-gray-500 bg-gray-100 p-2 "/>
@@ -83,7 +83,7 @@ useEffect(() =>{
           /></div>
 
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2 mt-4">
           <label forhtml="password" className="text-sm text-gray-600">Password</label>
           <div className="flex justify-center items-center border rounded-sm">
           <FaLock className="text-4xl text-gray-500 bg-gray-100 p-2 "/>
@@ -102,7 +102,7 @@ useEffect(() =>{
           
           </div>
           </div>
-          <button type="submit" className="flex justify-center bg-blue-700 mt-12 text-white p-2 rounded-sm hover:bg-blue-600 transition-all">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
+          <button type="submit" className="flex justify-center bg-blue-700 mt-12 text-white p-2 rounded-sm hover:bg-blue-600 transition-all h-[40px]">{isLoading? <ImSpinner8  className="animate-spin self-center"/> : 'Login'}</button>
         </form>
       </div>
       </section>

@@ -8,6 +8,8 @@ import changePasswordReducer from '../features/auth/changePwdSlice'
 import userUpdateSliceReducer from "../features/user/userUpdateSlice";
 import uploadImageSliceReducer from "../features/data/uploadImageSlice"
 import updatePwhSliceReducer from "../features/data/updatePwhSlice"
+import searchSliceReducer from "../features/searchdiv/searchSlice";
+
 
 export const store = configureStore({
   reducer:{
@@ -20,5 +22,6 @@ export const store = configureStore({
     userUpdate:userUpdateSliceReducer,
     uploadImage:uploadImageSliceReducer,
     updatePwh:updatePwhSliceReducer,
+    searchDiv:searchSliceReducer,
   },
 })

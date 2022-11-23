@@ -15,7 +15,7 @@ const MyPwh = () => {
   const {user} = useSelector((state) => state.auth)
   const [search, setSearch] =  useState('')
   const [visible,setVisible] = useState(false)
-  const [filterData ,setfilteredData] = useState()
+  const [filterPwh ,setfilteredPwh] = useState()
 
   // const [currentItem ,setcurrentItem] = useState(slicedData)
   // const currentItem = useMemo(() => data.filter(({name}) => name.toLowerCase().includes(search), [search, data])
@@ -119,8 +119,9 @@ const sortNameIcon = sortByName === "default"? <><FaSort  size={15}/></>
 
 const viewMore = ((e) =>{
     const id = e.target.value;
-    const filteredData = data.filter((data) => data.id == id)
-    setfilteredData(filteredData)
+    const filteredPwh = data.filter((data) => data.id === Number(id))
+    setfilteredPwh(filteredPwh)
+    console.log(filteredPwh)
     setVisible(true)
 })
 const onChange = (e) =>{
@@ -238,7 +239,7 @@ if(!data){
             <div className={`${visible? "translate-x-0":"translate-x-[500px]"} transform border absolute inset-0 h-full bg-white  transition-all md:w-1/3 flex flex-col md:static`}>
         <button onClick={() =>{setVisible(false)}} className="ml-auto bg-gray-600 text-white px-2 rounded-sm" >X</button>
 
-              {filterData?.map((data, index) =><EachPwh key={index} data={data} setVisible={setVisible}/>)}
+              {filterPwh?.map((data, index) =><EachPwh key={index} data={data} setVisible={setVisible}/>)}
         </div>
         </>) : ''}
 </div>

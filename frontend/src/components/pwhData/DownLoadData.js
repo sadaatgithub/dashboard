@@ -10,11 +10,11 @@ const DownLoadData = () => {
   const tableRef = useRef(null);
 
 const navigate = useNavigate()
-const {data, isSuccess,isLoading} = useSelector((state) => state.data)
+const {data,isLoading} = useSelector((state) => state.data)
 
 const factorList = [...new Set(data.map((item) => item.pwh_medical.factor_def))]
 
-const districtList = [...new Set(data.map((item) => item.pwh_address.district))]
+const districtList = [...new Set(data.map((item) => item.pwh_address.district))].sort()
 
 const [byDistrict, setByDistrict] = useState('')
 const [byFactor, setByFactor] = useState('')
@@ -41,10 +41,10 @@ if(isLoading){
     <div className="close-div">
       <button className="bg-gray-600 text-white py-1 px-2 rounded mt-2"  onClick={() => navigate(-1)}>Back</button>
     </div>
-      <div className="flex gap-x-8 py-1 bg-blue-600 mt-2">
+      <div className="flex gap-x-8 py-1 bg-gray-500 mt-2">
        <div className="ml-auto flex gap-x-4 justify-center items-center">
-      <label htmlFor="report-factorwise" className="text-white">Select Factor </label>
-      <select name="" id="report-factorwise" className="border py-1 rounded-sm"  onChange={(e)=>{setByFactor(e.target.value)}}>
+      <label htmlFor="report-factorwise" className="text-white text-sm">Select Factor</label>
+      <select name="" id="report-factorwise" className="border  rounded-sm text-sm"  onChange={(e)=>{setByFactor(e.target.value)}}>
         <option value="">All</option>
         
         {factorList.map((item,index) =>{
@@ -54,8 +54,8 @@ if(isLoading){
       </select>
       </div>
        <div className="flex gap-x-4 justify-center items-center">
-      <label htmlFor="report-districtwise" className="text-white">Select District</label>
-      <select name="" id="report-districtwise" className="border py-1 rounded-sm" onChange={(e)=>{setByDistrict(e.target.value)}}>
+      <label htmlFor="report-districtwise" className="text-white text-sm">Select District</label>
+      <select name="" id="report-districtwise" className="border rounded-sm text-sm" onChange={(e)=>{setByDistrict(e.target.value)}}>
 
         <option value="" >All</option>
         {distList}
@@ -64,7 +64,7 @@ if(isLoading){
 
       <DownloadTableExcel filename="PwH Data" sheet="users"
                     currentTableRef={tableRef.current}>
-                   <button className="mr-2 bg-blue-800 text-white py-1 px-2 rounded-sm">Export Excel</button>
+                   <button className="mr-2 bg-white text-blue-700 py-1 px-2 rounded-sm text-sm">Export to Excel</button>
       </DownloadTableExcel>
 
       </div>
@@ -73,7 +73,7 @@ if(isLoading){
 
      
         <thead>
-          <tr className="bg-blue-700 text-white font-thin [&>*]:p-1">
+          <tr className="bg-gray-400 text-white font-thin [&>*]:p-1">
             <td>S.No</td>
             <td>First Name</td>
             <td>Father Name</td>
@@ -98,8 +98,8 @@ if(isLoading){
         <tbody className="[&>*:nth-child(even)]:bg-gray-100 ">
          {excelData?.map((data,index) =>{
           return (
-          <tr key={index} className="[&>*:nth-child(1)]:text-center [&>*:nth-child(6)]:text-center [&>*]:py-2">
-              <td>{index + 1}</td>
+          <tr key={index} className="[&>*:nth-child(1)]:text-center [&>*:nth-child(6)]:text-center [&>*]:p-1 [&>*]:border-r">
+              <td className="border-r">{index + 1}</td>
               <td>{data.first_name}</td>
               <td>{data.guardian_father_name? data.guardian_father_name:'---'}</td>
               <td>{data.last_name}</td>

@@ -14,7 +14,7 @@ function DataChart() {
   const other = data.filter((data) => data.pwh_medical?.factor_def == "other").length
 
   return (
-    <div className="w-2/3 md:w-[50%] aspect-square">
+    <div className="sm:w-1/2 h-auto">
     <Pie className=''
     data={{
    
