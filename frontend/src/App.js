@@ -69,14 +69,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route
+              {/* <Route
                 path="/search"
                 element={
                   <ProtectedRoute user={user}>
                     <SearchDiv />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
               <Route
                 path="/download-data"
                 element={

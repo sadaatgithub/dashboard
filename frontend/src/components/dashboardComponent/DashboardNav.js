@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {FaUsers,FaAddressBook,FaSearch,FaDownload,FaHospital,FaPhone, FaPlusCircle,FaHome} from 'react-icons/fa'
-
-
+import { useSelector,useDispatch } from 'react-redux'
+import { searchOpen } from '../../features/searchdiv/searchSlice'
 
 const DashboardNav = () => {
+  // const {isSearchDivOpen} = useSelector((state) => state.searchDiv)
+const dispatch = useDispatch()
   return (
     <>
    
@@ -16,7 +18,7 @@ const DashboardNav = () => {
         <Link to="/add"><li className="flex items-center gap-x-2"><FaPlusCircle  size="15" className=""/>Add PwH</li></Link>
         <li className="flex items-center gap-x-2"><FaAddressBook  size="15" className=""/>Report</li>
         <Link to="/download-data"><li className="flex items-center gap-x-2"><FaDownload  size="15" className=""/>Download</li></Link>
-        <Link to="/search"> <li className="flex items-center gap-x-2"><FaSearch  size="15" className=""/>Search</li></Link>
+        <Link to="#"> <li className="flex items-center gap-x-2" onClick={()=> dispatch(searchOpen())}><FaSearch  size="15" className=""/>Search</li></Link>
         <li className="flex items-center gap-x-2"><FaHospital  size="15" className=""/>HTC Center</li>
         <li className="flex items-center gap-x-2"><FaPhone  size="15" className="" />Contact Us</li>
         
