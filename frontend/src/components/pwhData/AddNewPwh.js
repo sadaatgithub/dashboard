@@ -40,13 +40,7 @@ const AddNewPwh = () => {
   const [formSteps, setFormSteps] = useState(0)
 
 
-  const tabArray = [
-      "Personal",
-      "Educational",
-      "Family",
-      "Medical",
-      "Membership"
-  ]
+
 
 
 let isFormValid = Object.values(isPersonalInfo).every(value => value === true)
@@ -64,16 +58,16 @@ let isFormValid = Object.values(isPersonalInfo).every(value => value === true)
 
   }
 
-const onPrev = () =>{
+  const onPrev = () =>{
   setFormSteps(prevStep => prevStep - 1)
 
-}
+  }
 
-const onAlert = () =>{
+  const onAlert = () =>{
   if(!isFormValid){
     toast.info('Please Fill the required fields')
   }
-}
+  }
   const onSubmit = (e) => {
     e.preventDefault();
     id? dispatch(updatePwh(addPwh)): dispatch(createPwh(addPwh))
@@ -82,10 +76,10 @@ const onAlert = () =>{
   };
 
 
-if(id){
+  if(id){
   isFormValid = true
-}
-const onBlur = (name,value) =>{
+  }
+  const onBlur = (name,value) =>{
 if(name === 'email'){
   if(value.includes('@')){
     setPersonalInfo((prevState) => {return {...prevState,[name]:true}})
@@ -102,7 +96,8 @@ if(name === 'email'){
 
   }
 }
-}
+  }
+
   const onChange = (level) => (e) => {
     const name = e.target.name
     const value = e.target.value
@@ -166,16 +161,16 @@ if(isLoading){
           <button className="bg-gray-600 text-white py-1 px-2 rounded" onClick={() => navigate(-1, { replace: true })}>Back</button>
     </div>
      
-      <div className="flex md:flex-row flex-col gap-1 w-full h-[80vh] border shadow-sm ">
+      <div className="relative flex flex-col gap-1 w-full min-h-screen shadow-sm">
         
 
-        <div className="md:w-1/5 bg-white">
-          <Tabs formSteps={formSteps} setFormSteps={setFormSteps} tabArray={tabArray} />
+        <div className="">
+          <Tabs formSteps={formSteps} setFormSteps={setFormSteps}  />
         </div>
 
       
-          <form className="md:w-4/5 flex h-full flex-col  bg-white" onSubmit={onSubmit}>
-            <div className="relative flex-grow text-left overflow-y-auto">
+          <form className="flex flex-col bg-white mt-4 border min-h-[80vh] gap-y-4 overflow-y-scroll" onSubmit={onSubmit}>
+            <div className="grow text-left overflow-y-auto mb-12">
               
               {
                 formSteps === 0 ? <PersonalDetail addPwh={addPwh} onChange={onChange} valid={isPersonalInfo}/>
@@ -187,13 +182,13 @@ if(isLoading){
             
             </div>
 
-            <div className="z-10 self-center flex gap-x-4 mb-2">
-              {formSteps > 0 && <input type='button' className="bg-blue-600 text-white px-3 py-2 rounded-sm cursor-pointer" 
-                      value="Prev" onClick={onPrev}/>}
+            <div className="z-10 absolute  bottom-0 flex gap-x-4 mr-4">
+              {formSteps > 0 && <input type='button' className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-sm cursor-pointer" 
+                      value="PREV" onClick={onPrev}/>}
             
-            <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="bg-blue-600 text-white px-3 py-2 rounded-sm cursor-pointer" 
+            <input type={formSteps > 4 && isFormValid? "submit":"button"}  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-sm cursor-pointer" 
                   value={formSteps >= 4? addPwh?.id? isLoading? 'Updating' : 'Update' : isLoading? 'Sending' 
-                  : 'Add':"Next"} onClick={formSteps > 3 && isFormValid === false ? onAlert:onNext}/>
+                  : 'ADD':"NEXT"} onClick={formSteps > 3 && isFormValid === false ? onAlert:onNext}/>
             </div>
           </form>
       </div>

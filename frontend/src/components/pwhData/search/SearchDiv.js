@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import '../search/search.css'
 import { fetchData } from "../../../features/data/dataSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { FaTimes,FaUser } from "react-icons/fa";
 import { searchClose } from "../../../features/searchdiv/searchSlice";
 
@@ -123,6 +123,7 @@ const SearchDiv = () => {
                         {filteredData.map((data) => {
                           return (
                             <>
+                            <Link to={"/edit/" + data.id}>
                               <div key={data.id} className="flex flex-col border shadow-md text-sm gap-y-2 p-2 w-full">
                               {data.pwh_images[0]?.image? (<><img src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`} alt="img" className="m-auto object-cover" /></>)
                               :(<> <FaUser size={100} className="m-auto"/></>)}
@@ -130,6 +131,7 @@ const SearchDiv = () => {
                                 <h4>Name: {data.first_name + " " + data.last_name}</h4>
                                 <p>Factor Deff: {data.pwh_medical.factor_def}</p>
                               </div>
+                              </Link>
                             </>
                           );
                         })}

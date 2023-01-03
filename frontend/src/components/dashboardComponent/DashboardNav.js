@@ -16,9 +16,9 @@ const dispatch = useDispatch()
         <li className="flex items-center gap-x-2 rounded-l-full bg-white text-gray-800"><FaHome/>Dashboard</li>
         <Link to="/pwh-data"><li className="flex items-center gap-x-2"><FaUsers size="15" className=""/>View Pwh</li></Link>
         <Link to="/add"><li className="flex items-center gap-x-2"><FaPlusCircle  size="15" className=""/>Add PwH</li></Link>
-        <li className="flex items-center gap-x-2"><FaAddressBook  size="15" className=""/>Report</li>
         <Link to="/download-data"><li className="flex items-center gap-x-2"><FaDownload  size="15" className=""/>Download</li></Link>
         <Link to="#"> <li className="flex items-center gap-x-2" onClick={()=> dispatch(searchOpen())}><FaSearch  size="15" className=""/>Search</li></Link>
+        <li className="flex items-center gap-x-2"><FaAddressBook  size="15" className=""/>Report</li>
         <li className="flex items-center gap-x-2"><FaHospital  size="15" className=""/>HTC Center</li>
         <li className="flex items-center gap-x-2"><FaPhone  size="15" className="" />Contact Us</li>
         

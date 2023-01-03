@@ -41,7 +41,7 @@ if(isLoading){
     <div className="close-div">
       <button className="bg-gray-600 text-white py-1 px-2 rounded mt-2"  onClick={() => navigate(-1)}>Back</button>
     </div>
-      <div className="flex gap-x-8 py-1 bg-gray-500 mt-2">
+      <div className="flex gap-x-8 py-1 bg-gray-600 mt-2">
        <div className="ml-auto flex gap-x-4 justify-center items-center">
       <label htmlFor="report-factorwise" className="text-white text-sm">Select Factor</label>
       <select name="" id="report-factorwise" className="border  rounded-sm text-sm"  onChange={(e)=>{setByFactor(e.target.value)}}>
@@ -68,12 +68,12 @@ if(isLoading){
       </DownloadTableExcel>
 
       </div>
-    <div className="">
+    <div className="max-h-screen overflow-auto">
       <table className="text-xs w-full" id='table-to-xls' ref={tableRef}>
 
      
         <thead>
-          <tr className="bg-gray-400 text-white font-thin [&>*]:p-1">
+          <tr className="bg-gray-500 text-white font-thin [&>*]:p-1">
             <td>S.No</td>
             <td>First Name</td>
             <td>Father Name</td>

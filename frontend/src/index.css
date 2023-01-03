@@ -3,3 +3,34 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+.left-arrow{
+   @apply sm:before:content-[''] sm:before:absolute sm:before:-left-1 sm:before:top-1/2 sm:before:w-0 sm:before:h-0
+   sm:before:z-10 sm:before:border-[23px] sm:before:border-transparent sm:before:border-l-slate-400 sm:before:mt-[-23px]
+   transition-all duration-300 before:transition-all before:duration-300
+}
+.last_tab{
+   @apply sm:after:content-[''] sm:after:absolute sm:after:-right-[1px] sm:after:top-1/2 sm:after:w-0 sm:after:h-0
+   sm:after:z-10 sm:after:border-[23px] sm:after:border-transparent sm:after:border-r-white sm:after:mt-[-23px]
+   sm:transition-all duration-300 before:transition-all before:duration-300
+}
+.left-arrow:nth-child(1):before{
+    @apply border-l-white
+ }
+.left-arrow.active:before{
+   @apply border-l-white transition-all duration-300
+}
+.left-arrow.active +:before{
+    @apply border-l-sky-700 transition-all duration-300
+ }
+ .left-arrow:nth-child(-1).active :after{
+    @apply border-l-sky-700;
+    content: '';
+    position: absolute;
+    
+ }
+ .left-arrow.active{
+    @apply bg-sky-700 text-white
+ }

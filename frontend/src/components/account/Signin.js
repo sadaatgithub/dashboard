@@ -63,8 +63,8 @@ useEffect(() =>{
     <>
       <section className="flex-grow flex justify-center items-center bg-gray-100">
      
-        {/* <p>Please Login</p> */}
       <div className="w-full sm:w-2/3 flex flex-col items-center py-12 sm:py-20 bg-white rounded-lg shadow-md">
+
       <FaUser className="text-blue-700" size={30}/>
         <h1 className="text-2xl font-medium text-sky-700 mt-2">Login</h1>
         <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-10 w-2/3 lg:w-2/5">
