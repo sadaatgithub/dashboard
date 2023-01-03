@@ -5,7 +5,7 @@ import { fetchData, reset, sortingBy } from '../../features/data/dataSlice';
 // import { getPwhWithId , reset as resetUpdateData} from "../../features/data/addNewPwhSlice";
 import { FaPlusCircle,FaSort,FaSortDown,FaSortUp,FaArrowLeft,FaSearch} from 'react-icons/fa';
 // import { useDownloadExcel  } from 'react-export-table-to-excel';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+// import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Spinner from '../Spinner';
 import EachPwh from './EachPwh';
 // import Spinner from './Spinner';
@@ -19,7 +19,7 @@ const MyPwh = () => {
 
   // const [currentItem ,setcurrentItem] = useState(slicedData)
   // const currentItem = useMemo(() => data.filter(({name}) => name.toLowerCase().includes(search), [search, data])
-  const tableRef = useRef(null);
+  // const tableRef = useRef(null);
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -33,6 +33,7 @@ const MyPwh = () => {
   
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
+
   const currentItem = useMemo(() => data.filter((item) => {
     return Object.keys(item).
     some(key =>{
@@ -42,7 +43,7 @@ const MyPwh = () => {
       if (typeof item[key] === 'string'){
         return item[key].toString().toLowerCase().includes(search)
       }
-    })}).slice(indexOfFirstItem, indexOfLastItem))
+    })},[search]).slice(indexOfFirstItem, indexOfLastItem))
 
 
 
@@ -121,16 +122,15 @@ const viewMore = ((e) =>{
     const id = e.target.value;
     const filteredPwh = data.filter((data) => data.id === Number(id))
     setfilteredPwh(filteredPwh)
-    console.log(filteredPwh)
     setVisible(true)
 })
-const onChange = (e) =>{
+const searchHandler = (e) =>{
     setSearch(e.target.value)
 }
-const howMany = (e) =>{
+const howManyHandler = (e) =>{
   setIetmsPerPage(e.target.value)
 }
-const handleClick = (e) =>{
+const handleClickPage = (e) =>{
     setCurrentPage(Number(e.target.id))
 }
 
@@ -162,23 +162,23 @@ if(!data){
       </div>
  
     <div className="rounded  w-full flex bg-white ">
-    <div className="flex flex-col rounded shadow-xl gap-4 h-[80vh] w-full md:w-2/3  overflow-x-auto border">
+    <div className="flex flex-col rounded shadow-xl gap-4 h-[80vh] w-full md:w-2/3  overflow-hidden border">
     <div className="">
-    <div className="flex justify-end gap-2 items-center bg-neutral-600 p-1">
-  <div className="flex bg-white items-center px-2 [&>svg]:text-gray-600">
+    <div className="flex justify-end gap-2 items-center bg-neutral-600 p-1 flex-wrap">
+  <div className="flex  bg-white items-center px-2 [&>svg]:text-gray-500 rounded-sm">
   <FaSearch/>
-  <input type="search" onChange={onChange} placeholder="Search by Name" className="outline-none p-2 rounded-sm text-sm"/>
+  <input type="search" onChange={searchHandler} placeholder="Search by Name" className="outline-none p-2 text-sm"/>
   </div>
         <label htmlFor=""><small className="text-white mr-2 ">Entries to display</small>
-            <select name="" id="" className="p-1 rounded-sm" onChange={howMany}> 
+            <select name="" id="" className="p-1 rounded-sm" onChange={howManyHandler}> 
           <option value="10">10</option>
           <option value="50">50</option>
           <option value="100">100</option>
             </select>
         </label>
   </div>
-   
-    <table className="w-full bg-white text-sm" id="table-to-xls">
+   <div className="overflow-x-auto">
+    <table className="w-full bg-white text-sm overflow-auto z-[-1]" id="table-to-xls">
       <thead className="bg-neutral-500 text-white ">
         <tr className="[&>*]:p-2 [&>*]:font-thin">
           <td>S.No.</td>
@@ -211,6 +211,10 @@ if(!data){
     </tbody>
     </table>
     </div>
+    </div>
+
+
+  
     <div className="mt-auto flex gap-x-8 items-center border-t-[1px]  p-1">
     <p className="p-1 w-1/3"><small className="text-gray-700">Showing {indexOfFirstItem + 1} to {indexOfLastItem > data.length? data.length:indexOfLastItem} of {data.length} entries</small> </p>
 
@@ -223,7 +227,7 @@ if(!data){
       if(number < maxPageNumberLimit + 1 && number > minPageNumberLimit){
         return(
           <li key={number} id={number} 
-          onClick={handleClick}
+          onClick={handleClickPage}
           className= {`${currentPage == number ? "bg-blue-600 text-white" : null} px-3 py-1 cursor-pointer rounded-sm `}>{number}</li>
           )
         }

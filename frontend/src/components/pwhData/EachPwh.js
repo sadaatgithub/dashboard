@@ -142,7 +142,7 @@ useEffect(() =>{
           
           <div className="flex">
             <h5 className="min-w-fit">Address :</h5>
-            <div className="">
+            <div className="[&>p]:text-xs">
             <p>{data.pwh_address?.line_1 + "," +data.pwh_address?.line_2  + "," +data.pwh_address?.line_2}</p>
             
             <p>{data.pwh_address?.line_3 + "," +data.pwh_address?.city}</p>

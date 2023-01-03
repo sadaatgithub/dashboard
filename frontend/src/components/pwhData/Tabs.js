@@ -1,25 +1,37 @@
 import React from "react";
 
+
+
+const tabArray = [
+  "Personal",
+  "Educational",
+  "Family",
+  "Medical",
+  "Membership"
+]
+
 const Tabs = (props) => {
-  const { formSteps, setFormSteps, tabArray } = props;
+  const { formSteps, setFormSteps } = props;
 
   return (
     <>
-      <div className="flex flex-row md:flex-col gap-1 overflow-x-auto">
+      <div className="flex flex-row overflow-x-auto flex-wrap overflow-hidden">
         {tabArray.map((step, index) => {
           return (
             <button
               key={index}
               className={`${
-                formSteps === index
-                  ? "bg-blue-500 text-white text-base"
-                  : "bg-gray-100 text-gray-700"
-              } font-medium  text-left p-2 border border-transparent hover:border-sky-600 cursor-pointer`}
+                formSteps >= index 
+                  ? `text-base active  ${formSteps === tabArray.length-1? formSteps===index?"last_tab":"":""}`
+                  : "bg-slate-400 text-white"
+              } font-medium  text-left p-2 border border-transparent cursor-pointer grow uppercase left-arrow
+               relative `}
               onClick={(e) => {
                 setFormSteps(index);
               }}
             >
-              {step}
+             <span className="pl-8"> {index+1} &nbsp;
+              {step}</span>
             </button>
           );
         })}

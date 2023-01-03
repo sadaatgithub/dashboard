@@ -5,18 +5,32 @@ import { useEffect } from "react"
 
 const AgeBarchart = () => {
     const { data } = useSelector((state)=>state.data)
-    const ageZeroToTen = data.filter(data =>data.current_age >= 0 && data.current_age <= 10).length
-    const tenToTwenty = data.filter(data => data.current_age >= 11 && data.current_age <= 20).length
-    const twentyToThirty = data.filter(data => data.current_age >= 21 && data.current_age <= 30).length
-    const thirtyToForty = data.filter(data => data.current_age >= 31 && data.current_age <= 40).length
-    const fortyToFifty = data.filter(data => data.current_age >= 41 && data.current_age <= 50).length
-    const fiftyToSixty = data.filter(data => data.current_age >= 51 && data.current_age <= 60).length
-    const sixtyToOnward = data.filter(data => data.current_age >= 61 && data.current_age <= 100).length
+ 
 
+    let uptoTen = []
+    let tenTwenty = []
+    let twentyThirty = []
+    let thirtyForty = []
+    let fortyFifty = []
+    let fiftySixty = []
+    let sixtyOnward = []
 
-    useEffect(() =>{
+  const ageCounts = () =>{ data.map((data)=>data.current_age).forEach((data)=>
+      data<=10? uptoTen.push(data)
+      : data >=11 && data <=20? tenTwenty.push(data)
+      : data >=21 && data <=30? twentyThirty.push(data)
+      : data>=31 && data <=40? thirtyForty.push(data)
+      : data >= 41 && data <=50? fortyFifty.push(data)
+      :data >= 51 && data <=60? fiftySixty.push(data)
+      : sixtyOnward.push(data)
+  )
+}
+ageCounts()
 
-    },[data])
+useEffect(() =>{
+},[data])
+
+//filtering using reduce?
   return (
     <div className="w-full px-1">
    <Bar data={{
@@ -24,7 +38,7 @@ const AgeBarchart = () => {
     datasets:[
         {   
             label:"Pwh Count Age Wise",
-            data:[ageZeroToTen,tenToTwenty,twentyToThirty,thirtyToForty,fortyToFifty,fiftyToSixty,sixtyToOnward],
+            data:[uptoTen.length,tenTwenty.length,twentyThirty.length,thirtyForty.length,fortyFifty.length,fiftySixty.length,sixtyOnward.length],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.3)',
                 'rgba(255, 159, 64, 0.3)',

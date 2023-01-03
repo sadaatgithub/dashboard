@@ -2,12 +2,12 @@ import {useEffect,useState}from 'react'
 import { useNavigate ,Link} from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import Spinner from './Spinner';
-import ChapterDetail from './ChapterDetail';
+// import ChapterDetail from './ChapterDetail';
 import DataChart from './charts/DataChart';
 import DashboardNav from './dashboardComponent/DashboardNav';
 import FactorwiseCount from './dashboardComponent/FactorwiseCount';
-import { FaBars,FaTimes,FaSortDown,FaSortUp } from 'react-icons/fa';
-import IncompleteData from './pwhData/IncompleteData';
+import { FaBars,FaTimes} from 'react-icons/fa';
+// import IncompleteData from './pwhData/IncompleteData';
 import DuplicatePwh from './pwhData/DuplicatePwh';
 import {AiOutlineSetting} from "react-icons/ai"
 import AgeBarchart from './charts/AgeBarchart';
@@ -21,8 +21,8 @@ const Dashboard = () => {
   const [duplicateModal,setDuplicateModal] = useState(false)
 
   const [isSideBarOpen,setSideBar] = useState(false)
-  const [isIncompleteDataOpen,setIncopleteDataOpen] = useState(false)
-  const [isChapterDetailOpen, setChapterDetailOpen] = useState(true)
+  // const [isIncompleteDataOpen,setIncopleteDataOpen] = useState(false)
+  // const [isChapterDetailOpen, setChapterDetailOpen] = useState(true)
 
   const navigate = useNavigate()
 
@@ -35,17 +35,18 @@ const duplicateModalHandler = () =>{
     console.log("clicked")
     setDuplicateModal(true)
 }
-const incompleteDataHandler = () =>{
- 
-  setIncopleteDataOpen(!isIncompleteDataOpen)
-  setChapterDetailOpen(false)
+  // const incompleteDataHandler = () =>{
+  
+  //   setIncopleteDataOpen(!isIncompleteDataOpen)
+  //   setChapterDetailOpen(false)
 
-}
-const chapterDetailHandler = () =>{
-  setChapterDetailOpen(!isChapterDetailOpen)
-  setIncopleteDataOpen(false)
+  // }
+  // const chapterDetailHandler = () =>{
+  //   setChapterDetailOpen(!isChapterDetailOpen)
+  //   setIncopleteDataOpen(false)
 
-}
+  // }
+
 useEffect(() =>{
 
 if(!user){
@@ -59,11 +60,6 @@ if (isLoading) {
 }
   return (
     <>
-    
-
-
-
-
     <div className="relative overflow-hidden flex gap-x-2 w-full min-h-[90vh]">
 
       <SearchDiv/>
@@ -87,7 +83,7 @@ if (isLoading) {
       <div className="flex items-center gap-x-1  m-auto pb-2 text-white mb-2">
 
       <AiOutlineSetting /><Link to="/change_password" className="">
-        <p className="text-gray-50 text-sm underline font-thin">Change Password</p></Link>
+        <p className="text-gray-200 text-xs underline font-thin tracking-wide">Change Password</p></Link>
       </div>
     </aside>
 
@@ -128,11 +124,12 @@ if (isLoading) {
       <DataChart />
         </div>
         <div className="col-span-2 bg-white shadow-md rounded-md flex justify-center items-center">
+        <AgeBarchart/>
+
           {/* <div className="hidden w-full justify-center items-center">
             <div onClick={incompleteDataHandler} className={`${isIncompleteDataOpen? "bg-blue-500 text-white":""} px-4 py-1 w-full rounded-sm cursor-pointer`}><p className="flex justify-center items-center gap-x-2">Incomplete Data {isIncompleteDataOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
             <div onClick={chapterDetailHandler} className={`${isChapterDetailOpen? "bg-blue-500  text-white":""} px-8 py-1 w-full rounded-sm cursor-pointer`}><p className="flex justify-center items-center gap-x-2">Chapter Detail {isChapterDetailOpen? <FaSortUp/>:<FaSortDown/>}</p></div>
         </div> */}
-          <AgeBarchart/>
           {/* {isIncompleteDataOpen && <IncompleteData />}
           {isChapterDetailOpen && <ChapterDetail /> } */}
         </div>
