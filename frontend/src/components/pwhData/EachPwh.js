@@ -81,7 +81,7 @@ useEffect(() =>{
 
 // }
   
-  return (
+  return (<>
     <div className="flex flex-col  flex-grow h-full">
       <div className="flex flex-col gap-y-2">
       <div className="flex flex-col justify-center items-center">
@@ -190,9 +190,10 @@ useEffect(() =>{
           
       </div>
       
-      {modal? (<DeleteModal showModal={onClick} hideModal={hideModal} id={data.id} setVisible={setVisible} />) :(null)}
       
     </div>
+      {modal? (<DeleteModal showModal={onClick} hideModal={hideModal} id={data.id} setVisible={setVisible} />) :(null)}
+    </>
   );
 };
 

@@ -68,7 +68,7 @@ if(isLoading){
       </DownloadTableExcel>
 
       </div>
-    <div className="max-h-screen overflow-auto">
+    <div className="max-h-screen overflow-auto ">
       <table className="text-xs w-full" id='table-to-xls' ref={tableRef}>
 
      
@@ -95,7 +95,7 @@ if(isLoading){
             <td>INHIBITOR</td>
           </tr>
         </thead>
-        <tbody className="[&>*:nth-child(even)]:bg-gray-100 ">
+        <tbody className="[&>*:nth-child(even)]:bg-gray-100">
          {excelData?.map((data,index) =>{
           return (
           <tr key={index} className="[&>*:nth-child(1)]:text-center [&>*:nth-child(6)]:text-center [&>*]:p-1 [&>*]:border-r">
