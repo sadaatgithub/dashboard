@@ -70,14 +70,14 @@ const MyPwh = () => {
   for (let i = 1; i <= Math.ceil([...data].length / itemsPerPage); i++) {
     pages.push(i);
   }
-  let pageIncrBtn = null;
-  if (pages.length > maxPageNumberLimit) {
-    pageIncrBtn = <li> &hellip;</li>;
-  }
-  let pageDecrBtn = null;
-  if (minPageNumberLimit >= 1) {
-    pageDecrBtn = <li> &hellip; </li>;
-  }
+  // let pageIncrBtn = null;
+  // if (pages.length > maxPageNumberLimit) {
+  //   pageIncrBtn = <li> &hellip;</li>;
+  // }
+  // let pageDecrBtn = null;
+  // if (minPageNumberLimit >= 1) {
+  //   pageDecrBtn = <li> &hellip; </li>;
+  // }
   const handleNextbtn = () => {
     setCurrentPage(currentPage + 1);
 
@@ -151,16 +151,7 @@ const MyPwh = () => {
   const handleClickPage = (e) => {
     setCurrentPage(Number(e.target.id));
   };
-  const selectPageHandler = (selectedPage) => {
-    console.log(selectedPage);
-    if (
-      selectedPage >= 1 &&
-      selectedPage <= data.length / 10 &&
-      selectedPage !== currentPage
-    ) {
-      setCurrentPage(selectedPage);
-    }
-  };
+ 
   useEffect(() => {
     if (data.length == 0) {
       dispatch(fetchData());

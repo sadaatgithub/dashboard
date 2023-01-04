@@ -43,7 +43,6 @@ const onSubmit = (e) =>{
   e.preventDefault();
 
   dispatch(uploadImage(postImage))
-  console.log(postImage)
   
 
 }
@@ -54,7 +53,6 @@ const onChange = (e) =>{
     image:e.target.files[0],
   }))
   // setImage(e.target.files[0])
-  console.log(postImage);
 
 
 
@@ -70,6 +68,7 @@ useEffect(() =>{
     toast.success('Uploaded Successfully')
     window.location.reload()
   }
+  console.log(postImage);
 
     // setVisible(false)
   
@@ -86,7 +85,14 @@ useEffect(() =>{
       <div className="flex flex-col gap-y-2">
       <div className="flex flex-col justify-center items-center">
           {/* {isLoading? 'uploading':''} */}
-        {data.pwh_images[0]?.image? (<><img src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`} alt="img" className="w-[100px] h-[100px] rounded-full object-cover" /></>):(<> <FaUser size={100}/></>)}
+        {data.pwh_images[0]?.image? 
+        (<>
+        <img src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`}
+         alt="img" className="w-[100px] h-[100px] rounded-full object-cover" />
+        </>)
+        : postImage.image? <img src={postImage.image}
+        alt="img" className="w-[100px] h-[100px] rounded-full object-cover" />
+       :<FaUser size={100}/>}
             
         
           <form onSubmit={onSubmit} className="">
@@ -95,8 +101,9 @@ useEffect(() =>{
                   <input type="file" alt="" name="image" className="hidden"
                   id="image" accept="image/png, image/jpeg"
                   onChange={onChange}/>
-                  <label htmlFor="image">Change Photo</label>
-                  {postImage.image? (<><input type="submit" value="Change Photo" htmlFor="image" /></>):(<></>)}
+                  
+                  {postImage.image? (<><input type="submit" value="Change Photo" htmlFor="image" /></>)
+                  :(<><label htmlFor="image">Change Photo</label></>)}
                   
 
                   </>):(<>
@@ -104,8 +111,9 @@ useEffect(() =>{
                   <input type="file" src="" alt="upload" name="image-upload" className="hidden"
                   id="image-upload" accept="image/png, image/jpeg"
                   onChange={onChange}/>
-                    <label htmlFor="image-upload">Upload Photo</label>
-                    {postImage.image? (<><input type="submit" value="Upload Photo" className="text-blue-600" /></>):(<></>)}
+                    
+                    {postImage.image? (<><input type="submit" value="Upload Photo" className="text-blue-600" /></>)
+                    :(<><label htmlFor="image-upload">Upload Photo</label></>)}
 
 
                   </>)}

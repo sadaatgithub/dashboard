@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { deletePwh } from "../../features/data/deleteSlice";
+import { deletePwh,reset } from "../../features/data/deleteSlice";
 import { fetchData } from '../../features/data/dataSlice';
 
 const DeleteModal = ({onClick, hideModal, id,setVisible}) => {
@@ -21,6 +21,9 @@ const dispatch = useDispatch()
         toast.success('Deleted...!')
         hideModal()
         dispatch(fetchData())
+    }
+    return() =>{
+      dispatch(reset())
     }
 // console.log(data_id);
   },[dispatch, isLoading,isSuccess, isError, message])
