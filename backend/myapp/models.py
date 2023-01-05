@@ -62,7 +62,10 @@ class pwh(models.Model):
 
 class PatientImage(models.Model):
     patient = models.ForeignKey(pwh, on_delete=models.CASCADE, related_name='pwh_images')
-    image = models.ImageField(upload_to='pwh/images')
+    image = models.ImageField(upload_to='pwh_images')
+
+    # class Meta:
+    #     ordering=['-image']
 
 class useradress(models.Model):
     id = models.AutoField(primary_key=True)

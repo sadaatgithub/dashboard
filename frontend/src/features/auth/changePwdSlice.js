@@ -15,12 +15,18 @@ export const changePassword = createAsyncThunk(
     try {
       return await dataService.changePassword(data);
     } catch(error){
-      const message =
-      (error.response &&
-        error.response.data &&
-        error.response.data.detail) ||
-      error.message ||
-      error.toString();
+
+      let message
+      error.response.data['current_password']? message="Invalid Old Password"
+      :error.response.data['new_password']? message=error.response.data['new_password'].toString()
+      :message=""
+      // const message =
+      // (error.response &&
+      //   error.response.data &&
+      //   error.response.data.detail) ||
+      // error.message ||
+      // error.toString();
+      // console.log(error.response.data['current_password'].toString())
     return thunkAPI.rejectWithValue(message);
     }
   }
@@ -51,6 +57,7 @@ export const changePasswordSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
+        // console.log(action.payload)
       })
   }
 })

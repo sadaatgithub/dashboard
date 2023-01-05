@@ -32,7 +32,6 @@ const sidebarHandler = () =>{
 }
 
 const duplicateModalHandler = () =>{
-    console.log("clicked")
     setDuplicateModal(true)
 }
   // const incompleteDataHandler = () =>{
@@ -72,7 +71,7 @@ if (isLoading) {
       {/* <---------------------Sidebar---------------------> */}
 
     <aside className={`${isSideBarOpen? 'translate-x-0':'-translate-x-[100%]'} w-[240px]  
-        z-10 bg-gradient-to-b from-blue-600 to-blue-800  backdrop-blur-sm  md:backdrop-blur-none md:shadow-md absolute rounded-r-2xl top-0 bottom-0 lg:static lg:mt-1
+        z-10 bg-gradient-to-b from-blue-600 to-blue-700  backdrop-blur-sm  md:backdrop-blur-none md:shadow-md absolute rounded-r-2xl top-0 bottom-0 lg:static lg:mt-1
     lg:translate-x-0  transition-all flex flex-col border border-gray-200 overflow-hidden`}>
       <div className="text-xl p-2 lg:hidden  flex text-white">
       {isSideBarOpen? <FaTimes onClick={sidebarHandler} className="self-end ml-auto"/>:<FaTimes className="self-end ml-auto"/>}

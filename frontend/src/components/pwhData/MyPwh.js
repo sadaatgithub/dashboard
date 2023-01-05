@@ -46,8 +46,7 @@ const MyPwh = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItem = data
-    .filter((item) => {
+  const currentItem = data?.filter((item) => {
       return Object.keys(item).some((key) => {
         // if(typeof item[key] === 'object'){
 

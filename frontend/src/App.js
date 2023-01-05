@@ -90,7 +90,7 @@ function App() {
           </div>
         </Suspense>
       </Router>
-      <ToastContainer position="bottom-center"/>
+      <ToastContainer position="top-right" theme="colored"/>
     </>
   );
 }

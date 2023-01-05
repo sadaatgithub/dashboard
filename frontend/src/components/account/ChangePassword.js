@@ -5,6 +5,8 @@ import { changePassword , reset} from "../../features/auth/changePwdSlice";
 import {toast} from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
+import {ImSpinner8} from "react-icons/im"
+
 import { fetchData, reset as dataReset } from "../../features/data/dataSlice";
 import { fetchUser, reset as userReset } from "../../features/user/userSlice";
 
@@ -31,23 +33,25 @@ const onChange = (e) =>{
 }
 const onSubmit = (e) => {
       e.preventDefault()
-      console.log(formData);
       dispatch(changePassword(formData))
 }
 
 useEffect (() =>{
   if(isError){
-    toast.error('Something went wrong...!')
+    toast.error(message)
+    dispatch(reset())
   }
   if(isSuccess){
     dispatch(reset())
     dispatch(logout())
     dispatch(dataReset())
     dispatch(userReset())
+    toast.success('Password Changed Successfully!,Please Login with new Password')
     navigate('/login')
-    toast.success('Password Changed Successfully...Please Login with new Password')
   }
-
+// return()=>{
+//   dispatch(reset())
+// }
 
 },[isLoading,isError,isSuccess,message])
   return (
@@ -71,7 +75,7 @@ useEffect (() =>{
       />
 </div>
 <div className="flex justify-center">
-            <button type="submit" className="bg-blue-700 py-2 px-3 text-white w-full mt-5 rounded-sm hover:bg-blue-600 transition-all">{isLoading? "Requesting...":"Change Password"}</button>
+            <button type="submit" className=" flex justify-center bg-blue-700 py-2 px-3 text-white w-full mt-5 rounded-sm hover:bg-blue-600 transition-all h-[40px]">{isLoading? <ImSpinner8  className="animate-spin self-center"/>:"Change Password"}</button>
           </div>
           </div>
     </form>
