@@ -223,7 +223,7 @@ const MyPwh = () => {
             </div>
             {/* search and entry div*/}
 
-            <div className="overflow-auto">
+            <div className="overflow-auto mb-12">
               <table
                 className="w-full bg-white text-sm overflow-scroll z-[-1]"
                 id="table-to-xls"
