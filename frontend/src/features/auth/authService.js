@@ -22,7 +22,6 @@ const logout = () => {
   localStorage.removeItem("user_detail");
   localStorage.removeItem("refresh_token")
   
-  console.log('logout')
   // clearTimeout(logoutNow)
   // window.location.reload()
 };

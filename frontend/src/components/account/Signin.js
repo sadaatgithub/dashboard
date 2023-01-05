@@ -63,7 +63,7 @@ useEffect(() =>{
     <>
       <section className="flex-grow flex justify-center items-center bg-gray-100">
      
-      <div className="w-full sm:w-2/3 flex flex-col items-center py-12 sm:py-20 bg-white rounded-lg shadow-md">
+      <div className="w-full md:w-3/4 flex flex-col items-center py-12 sm:py-20 bg-white rounded-lg shadow-md">
 
       <FaUser className="text-blue-700" size={30}/>
         <h1 className="text-2xl font-medium text-sky-700 mt-2">Login</h1>
@@ -80,6 +80,7 @@ useEffect(() =>{
             value={username}
             // placeholder="Enter Username"
             onChange={onChange}
+            required
           /></div>
 
           </div>
@@ -95,6 +96,7 @@ useEffect(() =>{
             value={password}
             // placeholder="Enter Password"
             onChange={onChange}
+            required
           />
           {/*  */}
           {showPswrd? <FaEyeSlash className="text-4xl text-gray-800 p-2 cursor-pointer" onClick={()=>{setShowPswrd(false)}}/>

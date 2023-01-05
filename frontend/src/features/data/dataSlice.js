@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import dataService from "./dataService";
+import updateService from "./updateService";
+import { current } from '@reduxjs/toolkit'
 
 const initialState = {
   data:[],
@@ -12,6 +14,7 @@ const initialState = {
   sortByNameDsc : false,
   sortByFactorAsc : false,
   sortByFactorDsc : false,
+  isUpdatedDataFetched:false,
   message:'',
 
 }
@@ -50,6 +53,14 @@ async (addPwh, thunkAPI) =>{
   }
 })
 
+export const fetchUpdatedPwh = createAsyncThunk('updated_pwh', async(id,thunkAPI) =>{
+  try{
+    return await updateService.getPwhWithId(id)
+  }catch(error){
+    return thunkAPI.rejectWithValue()
+  }
+})
+
 
 
 
@@ -66,6 +77,7 @@ export const dataSlice = createSlice({
       state.isError = false
       state.message = ''
       state.data = []
+
     },
     sortingBy:(state,action) =>{
       const sortBy = action.payload
@@ -93,6 +105,10 @@ export const dataSlice = createSlice({
       }
 
         // console.log(data)
+    },
+    resetFetchedState:(state)=>{
+      state.isUpdatedDataFetched=false
+
     }
 },
 extraReducers:(builder) =>{
@@ -116,27 +132,36 @@ extraReducers:(builder) =>{
       state.isDataFetched = false
       state.message = action.payload
     })
-    // .addCase(sendData.pending, (state)=>{
+    .addCase(fetchUpdatedPwh.pending, (state)=>{
     //  state.isLoading = true
 
-    // })
-    // .addCase(sendData.fulfilled, (state,action)=>{
-    //   state.isLoading = false
-    //   state.isSuccess = true
-    //   console.log('fulfilled');
-    // })
-    // .addCase(sendData.rejected, (state,action)=>{
-    //  state.isLoading = false
-    //  state.isError = true
-    //  state.message = action.payload
-    // })
+    })
+    .addCase(fetchUpdatedPwh.fulfilled, (state,action)=>{
+      const id = action.payload.id
+       const uData = state.data.filter((data)=> data.id !== id)
+       state.data = uData
+       state.data.push(action.payload)
+       state.data.sort((a,b) => a.id - b.id)
+       const sortedData = state.data.map((data,index) =>({
+        ...data,SrNo: index + 1
+      }))
+      state.data = sortedData
+      state.isUpdatedDataFetched = true
+      console.log("fetched")
+      
+    })
+    .addCase(fetchUpdatedPwh.rejected, (state,action)=>{
+     state.isLoading = false
+     state.isError = true
+     state.message = action.payload
+    })
   
 }
 
 })
 
 
-export const { reset , sortingBy} = dataSlice.actions
+export const { reset , sortingBy,resetFetchedState} = dataSlice.actions
 export default dataSlice.reducer;
 
 
