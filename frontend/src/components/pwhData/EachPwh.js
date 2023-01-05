@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
 import ManageModal from "../modal/ManageModal";
 import { fetchUpdatedPwh } from "../../features/data/dataSlice";
+import { resetFetchedState } from "../../features/data/dataSlice";
 
 
 const EachPwh = (props) => {
@@ -25,7 +26,7 @@ const EachPwh = (props) => {
   const dispatch = useDispatch();
   // const navigate = useNavigate()
 
-  // const {data} = useSelector((state) =>state.data)
+  const {data:mainData,isUpdatedDataFetched} = useSelector((state) =>state.data)
   const { isSuccess, isError, isLoading } = useSelector(
     (state) => state.uploadImage
   );
@@ -67,15 +68,21 @@ const EachPwh = (props) => {
       dispatch(imageReset());
       toast.success("Uploaded Successfully");
       dispatch(fetchUpdatedPwh(data_id))
+    
+    
       // window.location.reload()
     }
-    console.log(postImage);
-    // return()=>{
-    //   setPostImage({id:null,
-    //     image:null,})
-    // }
+    if(isUpdatedDataFetched){
+      console.log("true")
+      setPostImage({id:null,
+        image:null,})
+    }
+    return()=>{
+      dispatch(resetFetchedState())
+    }
+     
     // setVisible(false)
-  }, [isSuccess, dispatch]);
+  }, [isSuccess, dispatch,isUpdatedDataFetched,mainData]);
 
   // const onEdit = (e) =>{
   //   const id = e.target.value;
@@ -85,16 +92,16 @@ const EachPwh = (props) => {
 
   return (
     <>
-      <div className="flex flex-col  flex-grow h-full">
-        <div className="flex flex-col gap-y-2">
-          <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col flex-grow h-[75vh]  gap-y-6">
+        <div className="flex gap-4">
+          <div className="flex flex-col justify-center items-center p-2 gap-2">
 
             {data.pwh_images[0]?.image? (
               postImage.image ? (
                 <img
                   src={URL.createObjectURL(postImage.image)}
                   alt="img 1"
-                  className="w-[100px] h-[100px] rounded-full object-cover"
+                  className="w-[100px] h-[100px] rounded-full object-cover border-4 border-blue-400"
                 />
               ) : 
               (
@@ -102,7 +109,7 @@ const EachPwh = (props) => {
                   <img
                     src={`http://127.0.0.1:8000${data.pwh_images[0]?.image}`}
                     alt="img 0"
-                    className="w-[100px] h-[100px] rounded-full object-cover"
+                    className="w-[100px] h-[100px] rounded-full object-cover border-4 border-green-400"
                   />
                 </>
               )
@@ -110,10 +117,10 @@ const EachPwh = (props) => {
               <img
                 src={URL.createObjectURL(postImage.image)}
                 alt="img"
-                className="w-[100px] h-[100px] rounded-full object-cover"
+                className="w-[100px] h-[100px] rounded-full object-cover border-4 border-green-400"
               />
             ) : (
-              <FaUser size={100} />
+              <FaUser size={100} className="rounded-full border-4  border-green-400"/>
             )}
 
             <form onSubmit={onSubmit} className="">
@@ -129,17 +136,20 @@ const EachPwh = (props) => {
                     onChange={onChange}
                   />
 
-                  {postImage.image ? (
+                  {postImage.image? (
                     <>
                       <input
                         type="submit"
-                        value="Change Photo"
+                        value={`${postImage.image? "Upload":"Change"}`}
                         htmlFor="image"
+                        className="cursor-pointer p-1 px-2 rounded-md bg-yellow-400"
                       />
+                      {/* <label htmlFor="image" className="text-sm p-1 px-2 rounded-md cursor-pointer bg-yellow-400">Change Photo</label> */}
+
                     </>
                   ) : (
                     <>
-                      <label htmlFor="image">Change Photo</label>
+                      <label htmlFor="image" className="text-sm p-1 px-2 rounded-md cursor-pointer bg-yellow-400">Change Photo</label>
                     </>
                   )}
                 </>
@@ -172,21 +182,22 @@ const EachPwh = (props) => {
                 </>
               )}
             </form>
+
           </div>
-          <div className="flex flex-col gap-2 [&>*]:flex [&>*]:gap-2 [&>*]:pl-2 [&>div>h5]:font-semibold [&>div>h5]:text-gray-800 [&>div]:text-sm [&>div>div:nth-child(2)]:text-sm">
+
+          <div className="flex flex-col justify-center gap-1 [&>*]:flex [&>*]:gap-2 [&>*]:pl-2 [&>div>h5]:font-semibold [&>div>h5]:text-gray-800 [&>div]:text-sm [&>div>div:nth-child(2)]:text-sm">
             <div className="">
               <h5>Name :</h5>
               <p>{data.first_name + " " + data.last_name}</p>
             </div>
             <div className="">
-              <h5>Guardian/Father Name :</h5>
+              <h5>Father Name:</h5>
               <p>{data.guardian_father_name + " " + data.last_name}</p>
             </div>
             <div className="">
               <h5>D.O.B:</h5>
               <p>{data.dob}</p>
             </div>
-
             <div className="">
               <h5>Clinical:</h5>
               <p>
@@ -199,15 +210,21 @@ const EachPwh = (props) => {
                 ve
               </p>
             </div>
-
-            <div className="">
+            <div className="flex">
               <h5>Age:</h5>
               <p>{data.current_age} Yr</p>
             </div>
+            
+          </div>
+        </div>
+          <div className="flex flex-col border-t p-4 [&>div>h5]:font-semibold [&>div>h5]:text-sm gap-2">
+       
 
-            <div className="flex">
+            
+
+            <div className="flex gap-4">
               <h5 className="min-w-fit">Address :</h5>
-              <div className="[&>p]:text-xs">
+              <div className="[&>p]:text-sm">
                 <p>
                   {data.pwh_address?.line_1 +
                     "," +
@@ -226,22 +243,22 @@ const EachPwh = (props) => {
               </div>
             </div>
 
-            <div className="">
+            <div className="flex gap-4">
               <h5>Contact :</h5>
               <p>{data.contact?.mobile}</p>
             </div>
 
-            <div className="">
+            <div className="flex gap-4">
               <h5>Email :</h5>
               <p>{data.contact?.email}</p>
             </div>
-            <div className="">
+            <div className="flex gap-4">
               <h5>Chapter Membership :</h5>
               <p>ABC12345678</p>
             </div>
           </div>
-        </div>
-        <div className="flex mt-3">
+
+        <div className="flex mt-auto">
           <ul className="flex justify-between [&>*]:rounded-sm w-full [&>*]:cursor-pointer [&>*]:bg-blue-600 [&>*]:text-white [&>*]:w-full gap-1 [&>*]:text-center [&>*]:p-1">
             <Link to={"/edit/" + data.id}>
               <li>Edit</li>

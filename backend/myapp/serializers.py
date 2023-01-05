@@ -68,14 +68,21 @@ class ChapterSerializer(serializers.ModelSerializer):
 class PatientImageSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(required=False)
     def create(self, validated_data):
+        print(validated_data)
         patient_id = self.context['patient_id']
-        preExist = PatientImage.objects.get(patient_id=patient_id)
-        preExist.delete()
+        try:
+            preExist = PatientImage.objects.get(patient_id=patient_id)
+            if preExist:
+                 preExist.delete()
+        except:
+            return
+        finally:
+        
         # print(preExist)
         # if preExist:
         #     return preExist.update(patient_id=patient_id,**validated_data)
         # else:
-        return PatientImage.objects.create(patient_id=patient_id,**validated_data)
+            return PatientImage.objects.create(patient_id=patient_id,**validated_data)
        
     class Meta:
         model = PatientImage

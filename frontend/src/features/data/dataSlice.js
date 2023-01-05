@@ -14,6 +14,7 @@ const initialState = {
   sortByNameDsc : false,
   sortByFactorAsc : false,
   sortByFactorDsc : false,
+  isUpdatedDataFetched:false,
   message:'',
 
 }
@@ -76,6 +77,7 @@ export const dataSlice = createSlice({
       state.isError = false
       state.message = ''
       state.data = []
+
     },
     sortingBy:(state,action) =>{
       const sortBy = action.payload
@@ -103,6 +105,10 @@ export const dataSlice = createSlice({
       }
 
         // console.log(data)
+    },
+    resetFetchedState:(state)=>{
+      state.isUpdatedDataFetched=false
+
     }
 },
 extraReducers:(builder) =>{
@@ -140,6 +146,8 @@ extraReducers:(builder) =>{
         ...data,SrNo: index + 1
       }))
       state.data = sortedData
+      state.isUpdatedDataFetched = true
+      console.log("fetched")
       
     })
     .addCase(fetchUpdatedPwh.rejected, (state,action)=>{
@@ -153,7 +161,7 @@ extraReducers:(builder) =>{
 })
 
 
-export const { reset , sortingBy} = dataSlice.actions
+export const { reset , sortingBy,resetFetchedState} = dataSlice.actions
 export default dataSlice.reducer;
 
 
