@@ -2,25 +2,25 @@ import {useEffect,useState}from 'react'
 import { useNavigate ,Link} from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import Spinner from './Spinner';
-// import ChapterDetail from './ChapterDetail';
 import DataChart from './charts/DataChart';
 import DashboardNav from './dashboardComponent/DashboardNav';
 import FactorwiseCount from './dashboardComponent/FactorwiseCount';
 import { FaBars,FaTimes} from 'react-icons/fa';
-// import IncompleteData from './pwhData/IncompleteData';
 import DuplicatePwh from './pwhData/DuplicatePwh';
 import {AiOutlineSetting} from "react-icons/ai"
 import AgeBarchart from './charts/AgeBarchart';
 import SearchDiv from './pwhData/search/SearchDiv';
+// import IncompleteData from './pwhData/IncompleteData';
+// import ChapterDetail from './ChapterDetail';
 // import PieChart from './charts/PieChart';
 
 const Dashboard = () => {
   const {user} = useSelector((state)=>state.auth)
   const {data,isLoading,isSuccess} = useSelector((state)=>state.data)
-  // const {userDetail} = useSelector((state) => state.fetchUser)
   const [duplicateModal,setDuplicateModal] = useState(false)
-
   const [isSideBarOpen,setSideBar] = useState(false)
+  
+  // const {userDetail} = useSelector((state) => state.fetchUser)
   // const [isIncompleteDataOpen,setIncopleteDataOpen] = useState(false)
   // const [isChapterDetailOpen, setChapterDetailOpen] = useState(true)
 
@@ -34,6 +34,8 @@ const sidebarHandler = () =>{
 const duplicateModalHandler = () =>{
     setDuplicateModal(true)
 }
+
+const today = new Date()
   // const incompleteDataHandler = () =>{
   
   //   setIncopleteDataOpen(!isIncompleteDataOpen)
@@ -94,10 +96,10 @@ if (isLoading) {
     <section className="w-full grid grid-flow-row px-1 gap-y-2 min-h-[90vh] mt-8 lg:mt-1">
 
       <div className="flex flex-col sm:flex-row gap-y-2  gap-3 row-span-1">
-      <div className="py-6 flex flex-col gap-y-2 [&>*]:pl-2 p-4  bg-white shadow-md rounded-md sm:w-2/3 w-full">
+      <div className="py-6 flex flex-col gap-y-2 [&>*]:pl-2 p-2  bg-white shadow-md rounded-md sm:w-2/3 w-full">
         <h4 className="text-base md:text-2xl font-semibold text-blue-700">Hello,</h4>
         <h5 className="text-base font-normal text-gray-800 md:ml-8">Welcome back Mr/Mrs keyperson</h5>
-        {/* <small>{today.getDate()}/<span>{today.getMonth()}</span>/<span>{today.getFullYear()}</span></small> */}
+        {/* <small>{today.getDate()}-<span>{today.toLocaleString('default', { month: 'short' })}</span>-<span>{today.getFullYear()}</span></small> */}
       
     </div>
     <div className="w-full flex flex-col justify-center items-center bg-white shadow-md rounded-md min-h-[80px] text-gray-600">
@@ -109,7 +111,7 @@ if (isLoading) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 row-span-1">
         
         <div className="w-full flex flex-col items-center bg-white md:col-span-1 shadow-md rounded-md p-1">
-          <p className="text-xl md:text-2xl m-auto font-extrabold text-blue-900 tracking-wider p-2 uppercase ">Total PwH</p>
+          <p className="text-xl md:text-2xl m-auto font-extrabold text-blue-900 tracking-wider p-2 uppercase ">Total Entry</p>
           <p className="text-2xl md:text-4xl font-extrabold text-rose-500  p-1">{data.filter((data) => data.tag !== 'Deceased').length}</p>
           <small className="self-end mt-auto text-gray-400 pr-2 italic tracking-wider text-xs font-thin">*Deceased not included</small>
 

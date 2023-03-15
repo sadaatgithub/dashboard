@@ -4,6 +4,7 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const DownLoadData = () => {
 
@@ -39,7 +40,7 @@ if(isLoading){
     <>
     <main className="bg-white">
     <div className="close-div">
-      <button className="bg-gray-600 text-white py-1 px-2 rounded mt-2"  onClick={() => navigate(-1)}>Back</button>
+      <button className="bg-gray-600 text-white py-1 px-2 rounded mt-2 flex gap-2 items-center"  onClick={() => navigate(-1)}><FaArrowLeft />Back</button>
     </div>
       <div className="flex gap-x-8 py-1 bg-gray-600 mt-2">
        <div className="ml-auto flex gap-x-4 justify-center items-center">
