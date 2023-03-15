@@ -11,7 +11,7 @@ const FactorwiseCount = () => {
 
   return (
     <div className="flex flex-col justify-between items-center  bg-white sm:col-span-2 shadow-md rounded-md p-2">
-    <h3 className="text-base lg:text-xl  font-bold text-blue-800 uppercase p-2 ">PWH count Factor wise</h3>
+    <h3 className="text-base lg:text-xl  font-bold text-blue-800 uppercase p-2 ">Patient count Factor wise</h3>
       <ul className="flex  w-full justify-around  [&>li]:p-2 text-gray-900 font-medium [&>li]:flex [&>li]:flex-col [&>li]:items-center">
         <li>FVIII <span className="text-slate-500">{isFactor8? data.filter((data) =>data.pwh_medical?.factor_def === "8").length : "0"}</span>
         </li>
